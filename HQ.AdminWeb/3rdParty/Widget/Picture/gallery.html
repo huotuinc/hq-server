@@ -1,0 +1,1233 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://resali.huobanplus.com/cdn/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="assets/libs/layer/skin/layer.css" rel="stylesheet" />
+    <link href="assets/libs/JGrid/theme/Jackson_skin_gray.css" rel="stylesheet" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            border: 0;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        html, body, .photo-gallery {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        label {
+            font-weight: normal;
+        }
+
+        .ui-box {
+            margin-bottom: 15px;
+        }
+
+        .popover-box, .popover-copy-box {
+            display: none;
+            position: absolute;
+            z-index: 1010;
+            border-radius: 2px;
+            -webkit-box-shadow: 0 1px 6px rgba(0,0,0,0.4);
+            box-shadow: 0 1px 6px rgba(0,0,0,0.4);
+        }
+
+            .popover-box.top-left, .popover-box.top-center, .popover-box.top-right {
+                margin-top: 10px;
+            }
+
+            .popover-copy-box.top-left, .popover-copy-box.top-center, .popover-copy-box.top-right {
+                margin-top: 10px;
+            }
+
+            .popover-box .popover-box-inner, .popover-copy-box .popover-box-inner {
+                position: relative;
+                min-width: 240px;
+                background: #fff;
+                border-radius: 2px;
+                padding: 10px 20px;
+                z-index: 2;
+            }
+
+            .popover-box .arrow, .popover-copy-box .arrow {
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                background: #fff;
+                -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+                box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+                z-index: 1;
+            }
+
+            .popover-box.top-left .arrow, .popover-box.top-center .arrow, .popover-box.top-right .arrow {
+                top: 0;
+                -webkit-transform: rotate(45deg) translateY(-50%);
+                -moz-transform: rotate(45deg) translateY(-50%);
+                -ms-transform: rotate(45deg) translateY(-50%);
+                transform: rotate(45deg) translateY(-50%);
+                -webkit-transform-origin: 50% 0;
+                -moz-transform-origin: 50% 0;
+                -ms-transform-origin: 50% 0;
+                transform-origin: 50% 0;
+            }
+
+            .popover-copy-box.top-left .arrow, .popover-copy-box.top-center .arrow, .popover-copy-box.top-right .arrow {
+                top: 0;
+                -webkit-transform: rotate(45deg) translateY(-50%);
+                -moz-transform: rotate(45deg) translateY(-50%);
+                -ms-transform: rotate(45deg) translateY(-50%);
+                transform: rotate(45deg) translateY(-50%);
+                -webkit-transform-origin: 50% 0;
+                -moz-transform-origin: 50% 0;
+                -ms-transform-origin: 50% 0;
+                transform-origin: 50% 0;
+            }
+
+            .popover-box.top-center .arrow, .popover-copy-box.top-center .arrow {
+                left: 50%;
+                -webkit-transform: rotate(45deg) translateX(-50%) translateY(-50%);
+                -moz-transform: rotate(45deg) translateX(-50%) translateY(-50%);
+                -ms-transform: rotate(45deg) translateX(-50%) translateY(-50%);
+                transform: rotate(45deg) translateX(-50%) translateY(-50%);
+                -webkit-transform-origin: 0 0;
+                -moz-transform-origin: 0 0;
+                -ms-transform-origin: 0 0;
+                transform-origin: 0 0;
+            }
+
+        .popover-box-inner .title {
+            margin-bottom: 6px;
+        }
+
+        .popover-box-inner .form-control {
+            margin-bottom: 6px;
+        }
+
+        .popover-box-inner .btn {
+            padding: 4px 24px;
+            font-size: 12px;
+        }
+
+        .popover-box-inner .copy-box {
+            overflow: hidden;
+        }
+
+        .popover-box-inner .input-copy {
+            float: left;
+            border-radius: 4px 0 0 4px;
+            cursor: not-allowed;
+        }
+
+        .popover-box-inner .btn-copy {
+            padding: 8px 12px 7px;
+            border-left: none;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .popover-box-inner .type-list {
+            height: 130px;
+            overflow-y: auto;
+            margin: 8px 0;
+        }
+
+            .popover-box-inner .type-list li {
+                padding: 4px 2px;
+            }
+
+        .photo-gallery .gallery-container {
+            float: left;
+            width: 130px;
+            height: 100%;
+            min-height: 350px;
+            padding: 10px 0;
+            background: #F8F8F8;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .photo-gallery .gallery-list {
+            margin-bottom: 15px;
+        }
+
+            .photo-gallery .gallery-list li {
+                height: 40px;
+                line-height: 40px;
+                position: relative;
+                padding: 0 31px 0 18px;
+                margin-right: 1px;
+                cursor: pointer;
+                border-bottom: 1px #fff solid;
+            }
+
+            .photo-gallery .gallery-list .gallery-name {
+                width: 80px;
+                display: inline-block;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+            .photo-gallery .gallery-list .gallery-num {
+                position: absolute;
+                top: 0;
+                right: 8px;
+                color: #999;
+            }
+
+        .photo-gallery .media-container {
+            overflow: hidden;
+            margin-left: 140px;
+        }
+
+        .photo-gallery .media-title {
+            height: 28px;
+            margin-top: 5px;
+            margin-right: 5px;
+        }
+
+        .photo-gallery .media-title-wrap h1 {
+            display: inline;
+            line-height: 28px;
+            font-size: 16px;
+        }
+
+        .photo-gallery .media-title-wrap h1, .photo-gallery .media-title-wrap a {
+            margin-right: 10px;
+        }
+
+        .photo-gallery .action-bar {
+            background: #f8f8f8;
+            padding: 6px 6px;
+            margin-bottom: 20px;
+            min-height: 28px;
+            line-height: 28px;
+        }
+
+            .photo-gallery .action-bar .batch-opt {
+                margin-left: 20px;
+            }
+
+        .photo-gallery .image-list {
+            zoom: 1;
+            margin: 0 0 0 -20px;
+        }
+
+        .photo-gallery .image-checked::after {
+            content: '\2714';
+            position: absolute;
+            top: 2px;
+            right: 1px;
+            width: 0;
+            height: 0;
+            color: #fff;
+            text-indent: 12px;
+            line-height: 13px;
+            border-style: solid;
+            border-width: 0 25px 27px 0;
+            border-color: transparent #09f transparent transparent;
+        }
+
+        .photo-gallery .image-checked .image-box {
+            border: 2px solid #09f;
+        }
+
+        .photo-gallery .image-item {
+            position: relative;
+            float: left;
+            width: 135px;
+            margin: 0 0 20px 20px;
+        }
+
+            .photo-gallery .image-item .image-box {
+                width: 135px;
+                height: 135px;
+            }
+
+        .photo-gallery .image-size {
+            position: absolute;
+            top: 105px;
+            left: 0px;
+            width: 135px;
+            height: 30px;
+            line-height: 30px;
+            background: rgba(0,0,0,0.5);
+            text-align: center;
+            color: #eee;
+        }
+
+        .photo-gallery .image-item .image-title {
+            padding: 8px 0 0;
+        }
+
+            .photo-gallery .image-item .image-title label {
+                display: inline-block;
+                width: 135px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+                .photo-gallery .image-item .image-title label input[type="checkbox"] {
+                    margin: 0 6px 0 0;
+                    vertical-align: baseline;
+                }
+
+        .photo-gallery .image-item .image-opt a {
+            margin-right: 2px;
+        }
+
+        #picUploader .modal-body .network-image-region {
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        #picUploader .modal-body .network-image-region, #picUploader .modal-body .local-image-region {
+            margin: 0 20px;
+            padding: 30px 10px;
+            zoom: 1;
+            overflow: hidden;
+        }
+
+            #picUploader .modal-body .local-image-region .title {
+                float: left;
+                font-size: 14px;
+                width: 109px;
+                text-align: right;
+            }
+
+            #picUploader .modal-body .local-image-region .content {
+                position: relative;
+                zoom: 1;
+                float: left;
+                margin-left: 10px;
+                width: 385px;
+                max-height: 180px;
+                background-color: #fff;
+            }
+
+        #picUploader .modal-body .add-local-image-button {
+            position: relative;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            border: 2px dashed #ddd;
+            line-height: 71px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 36px;
+            color: #ddd;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+            #picUploader .modal-body .add-local-image-button input {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 80px;
+                height: 80px;
+                direction: rtl;
+                font-size: 23px;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+        #picUploader .modal-body .add-local-image-li li {
+            position: relative;
+            display: inline-block;
+            width: 80px;
+            float: left;
+            height: 80px;
+            border: 1px solid #ddd;
+            line-height: 71px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 36px;
+            color: #ddd;
+            position: relative;
+            float: left;
+            margin: 0 10px 10px 0px;
+            width: 80px;
+            height: 80px;
+        }
+
+        #picUploader .add-local-image-li li:hover .close-modal {
+            display: block;
+        }
+
+        .close-modal {
+            position: absolute;
+            z-index: 2;
+            top: -9px;
+            right: -9px;
+            width: 20px;
+            height: 20px;
+            font-size: 16px;
+            line-height: 18px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 10px;
+            color: #fff;
+            display: none;
+            background: rgba(153,153,153,0.6);
+        }
+
+            .close-modal.small {
+                top: -8px;
+                right: -8px;
+                width: 18px;
+                height: 18px;
+                font-size: 14px;
+                line-height: 16px;
+                border-radius: 9px;
+            }
+
+        .widget-attachment .image-box {
+            width: 80px;
+            height: 80px;
+        }
+
+        .close-modal:hover {
+            color: #fff;
+            background: #000000;
+            text-decoration: none;
+        }
+
+        .jackson-pager-box {
+            color: #5b5959;
+            margin-left: 11px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+
+        .on {
+            background: #fff;
+        }
+
+        .disabled, .disabled:hover {
+            color: #cccccc;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="photo-gallery">
+        <input type="hidden" id="js-photo-selectvalue" />
+        <div class="gallery-container" id="js-gallery-container">
+            <div>
+                <div class="text-center" style="margin-bottom: 20px;"><a href="javascript:;" class="btn btn-default btn-success text-center" id="js-group-add">+ 添加分组</a></div>
+                <div class="text-center" style="margin-bottom: 20px;"><a href="javascript:;" class="btn btn-default btn-primary text-center" data-toggle="modal" data-target="#picUploader">+ 上传图片</a></div>
+                <ul class="gallery-list" id="js-gallery-list"></ul>
+            </div>
+        </div>
+        <div class="media-container" id="js-photo-box" style="height: 100%">
+            <div class="media-title ui-box">
+                <span class="media-title-wrap">
+                    <h1 data-id="0" id="js-hot-group" data-name="未分组">未分组</h1>
+                    <a class="js-change-group-name disabled" data-for="js-hot-group" href="javascript:;">重命名</a>
+                    <a class="js-remove-group disabled" href="javascript:;">删除分组</a>
+                </span>
+                <!--<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#picUploader">上传图片</button>-->
+                <button type="button" class="btn btn-success pull-right js-widget-gallery-select" style="margin-right: 20px; margin-left: 20px;" id="js-cms-pictureSave">确定</button>
+            </div>
+            <div class="action-bar">
+                <div class="row" style="margin-right:0px;">
+                    <div class="col-lg-2" style="width:230px; float:left;">
+                        <label>
+                            <input type="checkbox" id="js-select-all">全选
+                        </label>
+                        <a href="javascript:;" class="batch-opt disabled js-batch-group-grouping js-grouping-image" data-for="0">修改分组</a>
+                        <a href="javascript:;" class="batch-opt disabled js-batch-group-remove js-remove-image" data-for="0">删除</a>
+                    </div>
+                    <div class="col-lg-6" style="width:250px; float:left;">
+                        <div class="input-group">
+                            <input type="text" id="js-keyword-name" class="form-control">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="js-button-search">搜索</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 js-widget-gallery-select" style="width:290px; float:right;">
+                        <span style="color:red; margin-right:10px; float:right;">请点击下面的图片来实现图片选择操作</span>
+                    </div>
+                </div>
+            </div>
+            <div class="image-list" id="js-image-list">
+            </div>
+        </div>
+    </div>
+    <div class="popover-box top-center">
+        <div class="popover-box-inner"></div>
+        <div class="arrow"></div>
+    </div>
+    <div class="popover-copy-box top-center" style="top: 306px; left: 223.141px; display: none;">
+        <div class="popover-box-inner">
+            <div class="form-inline popover-tips">
+                <div class="input-append copy-box popover-tips">
+                    <input type="text" class="form-control popover-tips input-copy js-url-placeholder url-placeholder" id="js-url-copy" readonly="" value="http://res.pdmall.com/resource/images/photo/4471/20160330164240.jpg">
+                    <button type="button" class="btn btn-default btn-copy js-btn-copy" id="js-btn-copy">复制</button>
+                </div>
+            </div>
+        </div>
+        <div class="arrow" style="left: 50%; top: 0px;"></div>
+    </div>
+    <div class="modal fade" id="picUploader" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">上传图片</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline network-image-region">
+                        <div class="text-center">
+                            <div class="form-group">
+                                <label>网络图片：</label>
+                                <input type="text" placeholder="请添加网络图片地址" style="width: 300px" class="form-control js-network-image-url" id="js-network-image-url">
+                            </div>
+                            <button class="btn btn-default js-network-image-confirm" type="button" data-loading-text="提取中..." id="js-network-image">提取</button>
+                        </div>
+                        <img id="js-network-image-box" style="display:none; width:80px;margin-left: 113px;margin-top: 10px; border:1px #cccccc solid;" src="http://manager.51flashmall.com/resource/images/photo/3447/20160628104656.jpg" />
+                    </form>
+                    <div class="local-image-region">
+                        <div class="title">本地图片：</div>
+                        <div class="content" id="js-image-content">
+                            <ul class="add-local-image-li widget-attachment" id="js-local-image-list" style="margin-top: 8px;"></ul>
+                            <div class="js-add-local-attachment add-local-image-button pull-left">
+                                +
+                                <input type="file" value="添加 +" id="js-local-file" multiple="" accept="image/gif, image/jpeg, image/png,image/jpg">
+                                <img src="http://res.pdmall.com/resource/images/photo/4471/20160815111329.jpg" style="display: none;" id="resultImage" />
+                            </div>
+                        </div>
+                        <div class="c-gray" style="clear: both; margin-left: 109px;">
+                            仅支持jpg、gif、png三种格式, 大小不超过1 MB
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="js-uploader-submit">确认</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/template" id="photoTemplate">
+    {{each Rows as row i}}
+    <div class="image-item js-picture-photo" id="{{row.id}}" data-name="{{row.name}}" data-thumbPicUrl="{{row.thumbPicUrl}}" data-thumbPicUri="{{row.thumbPicUri}}" data-smallPicUri="{{row.smallPicUri}}" data-smallPicUrl="{{row.smallPicUrl}}" data-bigPicUri="{{row.bigPicUri}}" data-bigPicUrl="{{row.bigPicUrl}}" data-id="{{row.id}}" data-size="{{row.size}}">
+        <img class="image-box" src="{{row.smallPicUrl}}" alt="">
+        <div class="image-size">{{row.size}}</div>
+        <div class="image-title"><label><input type="checkbox" data-id="{{row.id}}" onclick="Gallery.isSelect();">{{row.name}}</label></div>
+        <div class="image-opt">
+            <a class="js-change-name" data-for="{{row.id}}" href="javascript:;">改名</a>
+            <a class="js-copy-url" data-url="{{row.smallPicUrl}}" href="javascript:;">链接</a>
+            <a class="js-grouping-image" data-for="{{row.id}}" href="javascript:;">分组</a>
+            <a class="js-remove-image" data-for="{{row.id}}" href="javascript:;">删除</a>
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script type="text/template" id="groupTemplate">
+    {{each data as row i}}
+    {{if row.id==0}}
+    <li class="ui-tooltip js-ul-tooltip on" data-id="{{row.id}}" data-name="{{row.name}}">
+        {{else}}
+    <li class="ui-tooltip js-ul-tooltip" data-id="{{row.id}}" data-name="{{row.name}}">
+        {{/if}}
+        <span class="gallery-name">{{row.name}}</span>
+        {{ if row.count>0}}
+        <span class="gallery-num">{{row.count}}</span>
+        {{/if}}
+    </li>
+    {{/each}}
+</script>
+<script src="http://resali.huobanplus.com/cdn/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://resali.huobanplus.com/cdn/bootstrap/3.3.6/bootstrap.min.js"></script>
+<script src="assets/libs/jquery.nicescroll.min.js"></script>
+<script src="assets/libs/arttemplate/template.js"></script>
+<script src="assets/libs/JGrid/jquery.JGrid.js"></script>
+<script src="assets/libs/layer/layer.js"></script>
+<script src="assets/libs/layer/extend/layer.ext.js"></script>
+<script src="assets/js/jquery.picture.js?t=1.3"></script>
+<script src="assets/libs/megapix-image.js"></script>
+<script src="assets/libs/jquery.jqueue.js"></script>
+<script src="assets/libs/zeroclip/ZeroClipboard.js"></script>
+<script>
+    /**
+    * @brief 获得页面参数
+    * @param 参数名
+    * */
+    function getQuery(name) {
+        var strHref = window.document.location.href;
+        var intPos = strHref.indexOf("?");
+        var strRight = strHref.substr(intPos + 1);
+        var arrTmp = strRight.split("&");
+        for (var i = 0; i < arrTmp.length; i++) {
+            var arrTemp = arrTmp[i].split("=");
+            if (arrTemp[0].toUpperCase() == name.toUpperCase()) return arrTemp[1];
+        }
+        if (arguments.length == 1)
+            return "";
+        if (arguments.length == 2)
+            return arguments[1];
+    };
+    var isMult = getQuery("isMult");
+    var isselect = getQuery("isselect");
+    if (isMult == 'False' || isMult == 'false') {
+        isMult = false;
+    } else {
+        isMult = true;
+    }
+    var pageSize = 10;
+    if (typeof isselect == 'undefined') {
+        isselect = true;
+    } else {
+        if (isselect == 'false' || isselect == 'False') {
+            isselect = false;
+            pageSize=27
+        } else {
+            isselect = true;
+        }
+    }
+    var customerId = getQuery("customerId");
+    var height = getQuery("height");//图片限制高度
+    var width = getQuery("width");//图片限制宽度
+    var domain = getQuery("domain");//主域名
+    var cross = getQuery("cross");//是否支持跨域,一般用于做测试使用（还存在安全风险）
+    if (cross == '1')
+        document.domain = domain;
+    var uploaderUri = getQuery('uploaderUri');
+    if (uploaderUri == '') {
+        uploaderUri = "/3rdParty/Widget/Picture/PictureHandler.aspx";//图片上传服务,需要自己编写上传服务,并且调用mallapi 服务接口
+    }
+    var grallery;
+    var Popover = {
+        popoverHandle: function (element, content) {
+            var width = $(document).width();
+            var height = $(document).height();
+            var left = element.offset().left - 106;
+            var leftDistance = left + 240;
+            if (leftDistance > width) {
+                if (element.hasClass("js-copy-url")) {
+                    left = element.offset().left - $(".popover-copy-box").width();
+                } else {
+                    left = element.offset().left - $(".popover-box").width();
+                }
+                $(".arrow").css("left", "96%");
+            } else {
+                $(".arrow").css("left", "50%");
+            }
+            var top = element.offset().top + 20;
+            if ((height - top) < 215) {
+                $(".arrow").css("top", "100%");
+                if (element.hasClass("js-remove-image")) {
+                    top = element.offset().top - 145;
+                }
+                if (element.hasClass("js-copy-url")) {
+                    top = element.offset().top - 80;
+                }
+                if (element.hasClass("js-change-name")) {
+                    top = element.offset().top - 135;
+                }
+                if (element.hasClass("js-grouping-image")) {
+                    top = element.offset().top - 235;
+                }
+            } else {
+                $(".arrow").css("top", "0");
+            }
+            if (element.hasClass("js-copy-url")) {
+                var box = $('.popover-copy-box');
+                box.css({ 'top': top, 'left': left });
+            } else {
+                var box = $('.popover-box');
+                box.css({ 'top': top, 'left': left });
+                box.find('.popover-box-inner').append(content);
+            }
+        },
+        popoverClear: function () {
+            var box = $('.popover-box');
+            if (box.length) {
+                box.find('.popover-box-inner').empty();
+            }
+        },
+        changeName: function () {
+            $(document).on('click', '.js-change-name', function () {
+                var id = $(this).attr('data-for');
+                var name = $("#" + id).attr("data-name");
+                Popover.popoverClear();
+                var html = [
+                    '<div class="title popover-tips">修改名称</div>',
+                    '<div><input class="form-control popover-tips js-name-input" type="text" value="' + name + '">',
+                    '<input class="form-control popover-tips js-id-input" type="hidden" value="' + id + '">',
+                    '</div>',
+                    '<div class="clearfix popover-tips"><a href="javascript:;" class="btn btn-primary js-change-name-save">确定</a><a href="javascript:;" class="btn btn-default js-cancel pull-right">取消</a></div>'
+                ];
+                var content = html.join('\n');
+                Popover.popoverHandle($(this), content);
+                Popover.openPopover();
+                Gallery.changeNameSubmit();
+            });
+        },
+        changeGroupName: function () {
+            $(document).on('click', '.js-change-group-name', function () {
+                if (!$(this).hasClass("disabled")) {
+                    var id = $(this).attr('data-for');
+                    var name = $("#" + id).attr("data-name");
+                    Popover.popoverClear();
+                    var html = [
+                        '<div class="title popover-tips">修改名称</div>',
+                        '<div><input class="form-control popover-tips js-group-input" type="text" value="' + name + '">',
+                        '<input class="form-control popover-tips js-id-input" type="hidden" value="' + id + '">',
+                        '</div>',
+                        '<div class="clearfix popover-tips"><a href="javascript:;" class="btn btn-primary js-change-group-save">确定</a><a href="javascript:;" class="btn btn-default js-cancel pull-right">取消</a></div>'
+                    ];
+                    var content = html.join('\n');
+                    Popover.popoverHandle($(this), content);
+                    Popover.openPopover();
+                    Gallery.changeGroupName();
+                }
+            });
+        },
+        copyUrl: function () {
+            $(document).on('click', '.js-copy-url', function () {
+                Popover.popoverClear();
+                var url = $(this).attr("data-url");
+                $("#js-url-copy").val(url)
+                //var html = [
+                //    '<div class="form-inline popover-tips">',
+                //    '<div class="input-append copy-box popover-tips">',
+                //    '<input type="text" class="form-control popover-tips input-copy js-url-placeholder url-placeholder" id="js-url-placeholder" readonly value="' + url + '">',
+                //    '<button type="button" class="btn btn-default btn-copy js-btn-copy" id="js-btn-copy">复制</button>',
+                //    '</div></div>'
+                //];
+                //var content = html.join('\n');
+                Popover.popoverHandle($(this), "");
+                $('.popover-copy-box').show();
+            });
+        },
+        groupingImage: function () {
+            $(document).on('click', '.js-grouping-image', function () {
+                if (!$(this).hasClass("disabled")) {
+                    Popover.popoverClear();
+                    var imageId = $(this).attr("data-for");
+                    var array = Gallery.getGroupList();
+                    var _groupHtml = "";
+                    if (array != null && array.length > 0) {
+                        for (var i = 0; i < array.length; i++) {
+                            _groupHtml += '<li class="popover-tips"><label class="popover-tips"><input type="radio" name="category" class="popover-tips" value="' + array[i].id + '">' + array[i].name + '</label></li>';
+                        }
+                    }
+                    var html = [
+                        '<div class="title popover-tips">选择分组</div>',
+                        '<ul class="type-list popover-tips js-category-list">',
+                        '' + _groupHtml + '',
+                        '</ul>',
+                        '<div class="clearfix popover-tips"><a href="javascript:;" class="btn btn-primary js-change-group-image-save" data-for="' + imageId + '">确定</a><a href="javascript:;" class="btn btn-default js-cancel pull-right">取消</a></div>'
+                    ];
+                    var content = html.join('\n');
+                    Popover.popoverHandle($(this), content);
+                    Popover.openPopover();
+                    $(".js-category-list").niceScroll({
+                        touchbehavior: false,
+                        cursorcolor: "#808080",
+                        cursoropacitymax: 1,
+                        cursorwidth: 5,
+                        cursorborder: "none",
+                        cursorborderradius: "4px",
+                        background: "#cccccc",
+                        autohidemode: true
+                    });
+                    Gallery.changeGroupByImages();
+                }
+            });
+        },
+        removeImage: function () {
+            $(document).on('click', '.js-remove-image', function () {
+                if (!$(this).hasClass("disabled")) {
+                    Popover.popoverClear();
+                    var id = $(this).attr("data-for");
+                    var html = [
+                        '<div class="title popover-tips">确定删除该图片？</div>',
+                        '<div class="popover-tips" style="margin: 6px 0 12px 0; color: #999;width:250px;">若删除，不会对目前已使用该图片的相关业务造成影响。</div>',
+                        '<div class="clearfix popover-tips"><a href="javascript:;" class="btn btn-primary js-delete-photo-save" data-id="' + id + '">确定</a><a href="javascript:;" class="btn btn-default js-cancel pull-right">取消</a></div>'
+                    ];
+                    var content = html.join('\n');
+                    Popover.popoverHandle($(this), content);
+                    Popover.openPopover();
+                    Gallery.deleteImage();
+                }
+            });
+        },
+        removeGroup: function () {
+            $(document).on('click', '.js-remove-group', function () {
+                if (!$(this).hasClass("disabled")) {
+                    Popover.popoverClear();
+                    var id = $(this).attr("data-for");
+                    var html = [
+                        '<div class="title popover-tips">确定删除该分组？</div>',
+                        '<div class="popover-tips" style="margin: 6px 0 12px 0; color: #999;width:250px;">仅删除分组，不删除图片，组内图片将自动归入未分组</div>',
+                        '<div class="clearfix popover-tips"><a href="javascript:;" class="btn btn-primary js-delete-group-save" data-id="' + id + '">确定</a><a href="javascript:;" class="btn btn-default js-cancel pull-right">取消</a></div>'
+                    ];
+                    var content = html.join('\n');
+                    Popover.popoverHandle($(this), content);
+                    Popover.openPopover();
+                    Gallery.deleteGroup();
+                }
+            });
+        },
+        openPopover: function () {
+            $('.popover-box').show();
+        },
+        closePopover: function () {
+            $(document).on('click', '.js-cancel', function () {
+                Popover.popoverClear();
+                $('.popover-box').hide();
+                $(".popover-copy-box").hide();
+            });
+        },
+        clearPopover: function () {
+            Popover.popoverClear();
+            $('.popover-box').hide();
+            $(".popover-copy-box").hide();
+        },
+        bindClearPopover: function () {
+            $('body').click(function (event) {
+                var target = $(event.target)
+                if (!target.hasClass("popover-box")
+                    && !target.hasClass("popover-box-inner")
+                    && !target.hasClass("popover-tips")) {
+                    Popover.clearPopover();
+                }
+            });
+        },
+        init: function () {
+            Popover.clearPopover();
+            Popover.changeName();
+            Popover.copyUrl();
+            Popover.groupingImage();
+            Popover.removeImage();
+            Popover.closePopover();
+            Popover.removeGroup();
+            Popover.changeGroupName();
+            Popover.bindClearPopover();
+        }
+    };
+    var Gallery = {
+        initPhotoList: function () {
+            grallery = $("#js-image-list").jPicture({
+                url: "http://apilm." + domain,//伙伴商城 mallAPI 根目录URI
+                isMult: isMult,//是否可以选择多张图片
+                customerId: customerId, //商户ID
+                height: height,//0表示自动,-1表示正方形
+                width: width,//0表示自动,-1表示正方形
+                pageSize: pageSize,
+                groupTemplate: $("#groupTemplate").html(),//分组显示模版
+                groupLabel: "js-gallery-list",//分组显示标签ID
+                photoTemplate: $("#photoTemplate").html(),//显示图片库列表的模版
+            });
+        },
+        save: function () {
+            var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+            $("#js-cms-pictureSave").click(function () {
+                var dom = parent.$('#js_cms_picture_value');
+                if (typeof dom == "undefined" || dom.length <= 0) {
+                    parent.$("body").append("<input type='hidden' id='js_cms_picture_value' value='" + $("#js-photo-selectvalue").val() + "'/>");
+                } else {
+                    parent.$("#js_cms_picture_value").val($("#js-photo-selectvalue").val());
+                }
+                parent.layer.close(index);
+            });
+        },
+        initUploader: function () {
+            var fileInput = document.getElementById('js-local-file');
+            fileInput.onchange = function () {
+                for (var i = 0; i < fileInput.files.length; i++) {
+                    var file = fileInput.files[i];
+                    var mpImg = new MegaPixImage(file);
+                    var resImgName = fileInput.files[i].name
+                    var resImg = document.getElementById('resultImage');
+                    mpImg.render(resImg, { maxHeight: 1920, quality:1 }, function (data) {
+                        var imageBase64 = data;
+                        var id = (new Date().getTime() + i);
+                        var imageObj = { base64: data, name: resImgName, ID: id }
+                        var html = [
+                            '<li><div class="image-box" style="background:url(\'' + imageBase64 + '\') no-repeat;"></div><a href="javascript:;" data-id="' + id + '" class="close-modal small js-remove-attachment">×</a></li>'
+                        ];
+                        JQueue.PutQueue(imageObj);
+                        var content = html.join('\n');
+                        $("#js-local-image-list").append(html);
+                        Gallery.removeImage();
+                    });
+                }
+            };
+        },
+        getNetworkImage: function () {
+            $("#js-network-image").click(function () {
+                var newworkImageUrl = $("#js-network-image-url").val();
+                $.ajax({
+                    type: "get",
+                    dataType: "jsonp",
+                    url: 'http://apilm.' + domain + "/gallery/uploaderPhotoByUrl",//提交到一般处理程序请求数据
+                    data: { groupId: $("#js-hot-group").attr("data-id"), url: newworkImageUrl, customerId: customerId },
+                    success: function (data) {
+                        if (data != null) {
+                            if (data.code == 200) {
+                                $("#js-network-image-box").attr("src", data.data);
+                                $("#js-network-image-box").show();
+                                grallery.RefreshByList();
+                                grallery.RefreshByGroup();
+                                setTimeout(function () {
+                                    $('#picUploader').modal('hide')
+                                    $("#js-network-image-box").hide();
+                                }, 2000);
+                            } else if (data.code == 500) {
+                                layer.msg("网络图片不存在");
+                            }
+                        } else {
+                            layer.msg("服务器繁忙,请稍后再试...");
+                        }
+                        $("#js-network-image-url").val("");
+                    }
+                });
+            });
+        },
+        removeImage: function () {
+            var obj = $(".js-remove-attachment");
+            $.each(obj, function (item, dom) {
+                $(dom).click(function () {
+                    var id = $(this).attr("data-id");
+                    JQueue.Delete(id);
+                    $(this).parent().remove();
+                })
+            })
+        },
+        deleteImage: function () {
+            var obj = $(".js-delete-photo-save");
+            $.each(obj, function (item, dom) {
+                $(dom).click(function () {
+                    var id = $(this).attr('data-id');
+                    var deleteIds = id;
+                    if (id == 0) {//批量删除图片
+                        deleteIds = Gallery.getSelectIds();
+                    }
+                    if (deleteIds != '') {
+                        $.ajax({
+                            type: "get",
+                            dataType: "jsonp",
+                            //url: '/3rdParty/Widget/Picture/PictureHandler.aspx',//提交到一般处理程序请求数据
+                            url: "http://apilm." + domain + "/gallery/deletePhotoList",
+                            data: { photoIds: deleteIds },
+                            success: function (data) {
+                                if (data != null) {
+                                    if (data.code == 200) {
+                                        $("#js-select-all").attr("checked", false);
+                                        layer.msg("删除图片成功");
+                                        grallery.RefreshByGroup();
+                                        grallery.RefreshByList();
+                                    }
+                                    else
+                                        layer.msg(data.msg);
+                                } else {
+                                    layer.msg("系统繁忙,请稍后再试...");
+                                }
+                            }
+                        });
+                    }
+                    Popover.clearPopover();
+                })
+            })
+        },
+        uploaderSubmit: function () {
+            $("#js-uploader-submit").click(function () {
+                var imageObj = $("#js-local-image-list input[name='image-input']");
+                var array = JQueue.array;
+                var arrayJsonStr = JSON.stringify(array)
+                var dataParam;
+                if (array != null && array.length > 0) {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: uploaderUri,//提交到一般处理程序请求数据
+                        data: { customerId: customerId, images: arrayJsonStr, groupId: $("#js-hot-group").attr("data-id"), action: "uploaderImages" },
+                        success: function (data) {
+                            if (data != null) {
+                                if (data.code == 200) {
+                                    layer.msg("上传成功");
+                                    $("#js-local-image-list").html("");
+                                    grallery.RefreshByList();
+                                    grallery.RefreshByGroup();
+                                } else {
+                                    layer.msg(data.msg);
+                                }
+                            } else {
+                                layer.msg("服务器繁忙,请稍后再试...");
+                            }
+                            JQueue.Empty();
+                            $('#picUploader').modal('hide')
+                        }
+                    })
+                } else {
+                    $('#picUploader').modal('hide')
+                }
+            })
+        },
+        selectAll: function () {
+            $("#js-select-all").click(function () {
+                var $this = this;
+                $("#js-image-list input[type=checkbox]").each(function (idx, item) {
+                    if ($this.checked) {
+                        item.checked = $this.checked;
+                    }
+                    else {
+                        item.checked = $this.checked;
+                    }
+                });
+                Gallery.isSelect();
+            });
+        },
+        getSelectIds: function () {
+            var idsArray = new Array();
+            var deleteIds;
+            $("#js-image-list input[type=checkbox]").each(function (item, dom) {
+                if (dom.checked) {
+                    idsArray.push($(dom).attr("data-id"));
+                }
+            });
+            deleteIds = idsArray.toString();
+            return deleteIds
+        },
+        isSelect: function (obj) {
+            var deleteIds = Gallery.getSelectIds();
+            //if (obj != undefined) {
+            //    var id = $(obj).attr("data-id");
+            //    if (obj.checked) {
+            //        $("#" + id).addClass("image-checked");
+            //    } else {
+            //        $("#" + id).removeClass("image-checked");
+            //    }
+            //}
+            if (deleteIds != null && deleteIds != '') {
+                $(".js-batch-group-grouping").removeClass("disabled");
+                $(".js-batch-group-remove").removeClass("disabled");
+            } else {
+                $(".js-batch-group-grouping").addClass("disabled");
+                $(".js-batch-group-remove").addClass("disabled");
+            }
+        },
+        deleteGroup: function () {
+            var obj = $(".js-delete-group-save");
+            $.each(obj, function (item, dom) {
+                $(dom).click(function () {
+                    var groupId = $("#js-hot-group").attr("data-id");
+                    $.ajax({
+                        type: "get",
+                        dataType: "jsonp",
+                        //url: '/3rdParty/Widget/Picture/PictureHandler.aspx',//提交到一般处理程序请求数据
+                        url: "http://apilm." + domain + "/gallery/deleteGroup",
+                        data: { groupId: groupId },
+                        success: function (data) {
+                            if (data != null) {
+                                if (data.code == 200) {
+                                    layer.msg("删除分组成功");
+                                    grallery.RefreshByGroup();
+                                    grallery.RefreshByList();
+                                }
+                                else
+                                    layer.msg(data.msg);
+                            } else {
+                                layer.msg("系统繁忙,请稍后再试...");
+                            }
+                        }
+                    });
+                    Popover.clearPopover();
+                })
+            })
+        },
+        changeGroupName: function () {
+            var obj = $(".js-change-group-save");
+            $.each(obj, function (item, dom) {
+                $(dom).click(function () {
+                    var groupId = $("#js-hot-group").attr("data-id");
+                    var groupName = $(".js-group-input").val();
+                    $.ajax({
+                        type: "get",
+                        dataType: "jsonp",
+                        //url: '/3rdParty/Widget/Picture/PictureHandler.aspx',//提交到一般处理程序请求数据
+                        url: "http://apilm." + domain + "/gallery/modifyGroupName",
+                        data: { groupId: groupId, groupName: groupName },
+                        success: function (data) {
+                            if (data != null) {
+                                if (data.code == 200) {
+                                    layer.msg("修改分组名称成功");
+                                    $("#js-hot-group").html(groupName);
+                                    $("#js-hot-group").attr("data-name", groupName);
+                                    grallery.RefreshByGroup();
+                                    grallery.RefreshByList();
+                                }
+                                else
+                                    layer.msg(data.msg);
+                            } else {
+                                layer.msg("系统繁忙,请稍后再试...");
+                            }
+                        }
+                    });
+                    Popover.clearPopover();
+                });
+            })
+        },
+        changeNameSubmit: function () {
+            var obj = $(".js-change-name-save");
+            $.each(obj, function (item, dom) {
+                $(dom).click(function () {
+                    var name = $(".js-name-input").val();
+                    var id = $(".js-id-input").val();
+                    $.ajax({
+                        type: "get",
+                        dataType: "jsonp",
+                        //url: 'PictureHandler.aspx',//提交到一般处理程序请求数据
+                        url: "http://apilm." + domain + "/gallery/modifyPhotoName",
+                        data: { customerId: customerId, photoId: id, photoName: name },
+                        success: function (data) {
+                            if (data != null) {
+                                if (data.code == 200) {
+                                    layer.msg("重命名成功");
+                                    grallery.RefreshByList();
+                                } else {
+                                    layer.msg("重命名失败,请稍后再试...");
+                                }
+                            } else {
+                                layer.msg("重命名失败,请稍后再试...");
+                            }
+                        }
+                    })
+                    Popover.clearPopover();
+                })
+            })
+        },
+        getGroupList: function () {
+            var obj = $("#js-gallery-list li");
+            var array = new Array();
+            $.each(obj, function (item, dom) {
+                var id = $(dom).attr("data-id");
+                var name = $(dom).attr("data-name");
+                array.push({ id: id, name: name });
+            })
+            return array;
+        },
+        changeGroupByImages: function () {
+            $(".js-change-group-image-save").click(function () {
+                var imageId = $(this).attr("data-for");
+                if (imageId == 0) {
+                    imageId = Gallery.getSelectIds();
+                }
+                var groupId = $('.js-category-list input[name="category"]:checked ').val();
+                $.ajax({
+                    type: "get",
+                    dataType: "jsonp",
+                    //url: '/3rdParty/Widget/Picture/PictureHandler.aspx',//提交到一般处理程序请求数据
+                    url: "http://apilm." + domain + "/gallery/modifyPhotoGroupId",
+                    data: { groupId: groupId, photoIds: imageId },
+                    success: function (data) {
+                        if (data != null) {
+                            if (data.code == 200) {
+                                layer.msg("图片修改分组成功");
+                                grallery.RefreshByGroup();
+                                grallery.RefreshByList();
+                            }
+                            else
+                                layer.msg(data.msg);
+                        } else {
+                            layer.msg("系统繁忙,请稍后再试...");
+                        }
+                    }
+                });
+                Popover.clearPopover();
+            });
+        },
+        clear: function () {
+            var dom = parent.$('#js_cms_picture_value');
+            if (dom.length > 0) {
+                parent.$("#js_cms_picture_value").val("");
+            }
+        },
+        init: function () {
+            Gallery.clear();
+            Gallery.initPhotoList();
+            Gallery.save();
+            Gallery.removeImage();
+            Gallery.initUploader();
+            Gallery.uploaderSubmit();
+            Gallery.selectAll();
+            Gallery.getNetworkImage();
+        }
+    }
+    $(function () {
+        if (!isselect) {
+            $(".js-widget-gallery-select").hide();
+            $("#js-gallery-container").width("200");
+            $("#js-photo-box").css("margin-left", 210);
+        }
+        var height = $("#js-gallery-container").height() - 110;
+        $("#js-gallery-list").height(height);
+        var clip = new ZeroClipboard();
+        //添加复制载体，这样id="copy"的按钮内嵌一个flash
+        clip.clip(document.getElementById("js-btn-copy"));
+        clip.on("ready", function (readyEvent) {
+            //swf文件加载完成后触发
+            this.on("copy", function () {
+                //当复制时，获取要复制的内容
+                this.setText(document.getElementById("js-url-copy").value);
+                layer.msg("复制成功");
+            });
+        });
+
+        $("#js-gallery-list").niceScroll({
+            touchbehavior: false,
+            cursorcolor: "#808080",
+            cursoropacitymax: 1,
+            cursorwidth: 5,
+            cursorborder: "none",
+            cursorborderradius: "4px",
+            background: "#cccccc",
+            autohidemode: true
+        });
+        $("#js-photo-box").niceScroll({
+            touchbehavior: false,
+            cursorcolor: "#808080",
+            cursoropacitymax: 1,
+            cursorwidth: 5,
+            cursorborder: "none",
+            cursorborderradius: "4px",
+            background: "#cccccc",
+            autohidemode: true
+        });
+        $("#js-image-content").niceScroll({
+            touchbehavior: true,
+            cursorcolor: "#808080",
+            cursoropacitymax: 1,
+            cursorwidth: 5,
+            cursorborder: "none",
+            cursorborderradius: "4px",
+            background: "#cccccc",
+            autohidemode: false
+        });
+        Gallery.init();
+        Popover.init();
+    })
+</script>
+</html>

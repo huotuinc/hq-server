@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PictureHandler.aspx.cs" Inherits="LM.AdminWeb._3rdParty.Widget.Picture.PictureHandler" %>
