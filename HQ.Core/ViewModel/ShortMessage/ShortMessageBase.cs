@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HQ.Core.Model.Gallery.ShortMessage
+namespace HQ.Core.Model.ViewModel.ShortMessage
 {
     /// <summary>
     /// 短信消息的基类，所有短信消息实体都要继承该类

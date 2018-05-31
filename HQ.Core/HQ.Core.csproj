@@ -54,23 +54,26 @@
     <Compile Include="BLL\PageBase\AdminPageBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BLL\ShortMessage\ChuanglanSmsProvider.cs" />
-    <Compile Include="BLL\ShortMessage\ISmsProvider.cs" />
+    <Compile Include="BLL\ShortMessage\SmsProvider\ChuanglanSmsProvider.cs" />
+    <Compile Include="BLL\ShortMessage\SmsProvider\ISmsProvider.cs" />
     <Compile Include="BLL\ShortMessage\SafeSmsCodeManager.cs" />
     <Compile Include="BLL\ShortMessage\ShortMessageDispatcher.cs" />
     <Compile Include="BLL\ShortMessage\ShortMessageContext.cs" />
     <Compile Include="BLL\ShortMessage\ShortMessageTemplateBLL.cs" />
-    <Compile Include="BLL\ShortMessage\SmsProviderFactory.cs" />
+    <Compile Include="BLL\ShortMessage\ShortMessageVerificationBLL.cs" />
+    <Compile Include="BLL\ShortMessage\SmsProvider\SmsProviderFactory.cs" />
     <Compile Include="BLL\SystemConfig\ManagerBLL.cs" />
     <Compile Include="DAL\Gallery\BaseDAL.cs" />
     <Compile Include="DAL\Gallery\GalleryDAL.cs" />
     <Compile Include="DAL\Gallery\PhotoGroupDAL.cs" />
     <Compile Include="DAL\ShortMessage\ShortMessageTemplateDAL.cs" />
+    <Compile Include="DAL\ShortMessage\ShortMessageVerificationDAL.cs" />
     <Compile Include="DAL\SystemConfig\ManagerDAL.cs" />
     <Compile Include="Enum\HQEnums.cs" />
     <Compile Include="Model\Gallery\GalleryModel.cs" />
     <Compile Include="Model\Gallery\PhotoGroupModel.cs" />
     <Compile Include="Model\ShortMessage\ShortMessageTemplateModel.cs" />
+    <Compile Include="Model\ShortMessage\ShortMessageVerificationModel.cs" />
     <Compile Include="Model\SystemConfig\ManagerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ApiResult.cs" />

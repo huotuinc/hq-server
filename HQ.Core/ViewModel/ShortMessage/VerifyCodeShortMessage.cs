@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HQ.Core.Model.Gallery.ShortMessage
+namespace HQ.Core.Model.ViewModel.ShortMessage
 {
     [ShortMessageFit(FitId = HQEnums.SmsSceneOptions.验证码)]
     public class VerifyCodeShortMessage : ShortMessageBase
