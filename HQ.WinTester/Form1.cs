@@ -25,8 +25,14 @@ namespace HQ.WinTester
         {
             string clientId = "fabb0d8a6c92489f90aa7d97b646d423";
             string clientSecret = "522d048c337f97b2cf78289ca49326aa23ccf847";
-            HotPageData<List<PromotionIdItemEntity>> data = DdkApiWrapper.GetPromotionIdList(clientId, clientSecret, 1, 10);
-            MessageBox.Show(JsonConvert.SerializeObject(data));
+            //HotPageData<List<PromotionIdItemEntity>> data = DdkApiWrapper.GetPromotionIdList(clientId, clientSecret, 1, 10);
+            //MessageBox.Show(JsonConvert.SerializeObject(data));
+
+            //var result = DdkApi.GetGoodsList(clientId, clientSecret, new GoodsSearchConditionEntity() { sort_type = GoodsSortTypeOptions.综合排序, with_coupon = true,keyword= "瘦身产品" });
+            //MessageBox.Show(JsonConvert.SerializeObject(result));
+
+            var result = DdkApi.GetGoodsDetail(clientId, clientSecret, 1561154663);
+            MessageBox.Show(JsonConvert.SerializeObject(result));
         }
     }
 }

@@ -48,8 +48,13 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="DdkApi.cs" />
-    <Compile Include="DdkApiWrapper.cs" />
+    <Compile Include="Entities\GoodsDetailJsonResult.cs" />
+    <Compile Include="Entities\GoodsPromotionUrlJsonResult.cs" />
     <Compile Include="Entities\GoodsSearchListJsonResult.cs" />
+    <Compile Include="Entities\GoodsTagCatJsonResult.cs" />
+    <Compile Include="Entities\IncrementOrderJsonResult.cs" />
+    <Compile Include="Entities\ThemeGoodsSearchJsonResult.cs" />
+    <Compile Include="Entities\ThemeListJsonResult.cs" />
     <Compile Include="IPinduoduoJsonResult.cs" />
     <Compile Include="Entities\PromotionIdJsonResult.cs" />
     <Compile Include="Entities\ErrorJsonResult.cs" />
