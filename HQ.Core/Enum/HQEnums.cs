@@ -12,6 +12,16 @@ namespace HQ.Core.Enum
     public class HQEnums
     {
         /// <summary>
+        /// 对接平台类型
+        /// </summary>
+        public enum PlatformTypeOptions
+        {
+            拼多多 = 0,
+            京东 = 1,
+            淘宝 = 2
+        }
+
+        /// <summary>
         /// 后台管理员类型
         /// </summary>
         public enum ManagerRoleOptions
