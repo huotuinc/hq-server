@@ -830,7 +830,7 @@
     var Gallery = {
         initPhotoList: function () {
             grallery = $("#js-image-list").jPicture({
-                url: "http://apilm." + domain,//伙伴商城 mallAPI 根目录URI
+                url: "http://api." + domain,//伙伴商城 mallAPI 根目录URI
                 isMult: isMult,//是否可以选择多张图片
                 customerId: customerId, //商户ID
                 height: height,//0表示自动,-1表示正方形
@@ -882,7 +882,7 @@
                 $.ajax({
                     type: "get",
                     dataType: "jsonp",
-                    url: 'http://apilm.' + domain + "/gallery/uploaderPhotoByUrl",//提交到一般处理程序请求数据
+                    url: 'http://api.' + domain + "/gallery/uploaderPhotoByUrl",//提交到一般处理程序请求数据
                     data: { groupId: $("#js-hot-group").attr("data-id"), url: newworkImageUrl, customerId: customerId },
                     success: function (data) {
                         if (data != null) {
@@ -930,7 +930,7 @@
                             type: "get",
                             dataType: "jsonp",
                             //url: '/3rdParty/Widget/Picture/PictureHandler.aspx',//提交到一般处理程序请求数据
-                            url: "http://apilm." + domain + "/gallery/deletePhotoList",
+                            url: "http://api." + domain + "/gallery/deletePhotoList",
                             data: { photoIds: deleteIds },
                             success: function (data) {
                                 if (data != null) {
@@ -1038,7 +1038,7 @@
                         type: "get",
                         dataType: "jsonp",
                         //url: '/3rdParty/Widget/Picture/PictureHandler.aspx',//提交到一般处理程序请求数据
-                        url: "http://apilm." + domain + "/gallery/deleteGroup",
+                        url: "http://api." + domain + "/gallery/deleteGroup",
                         data: { groupId: groupId },
                         success: function (data) {
                             if (data != null) {
@@ -1068,7 +1068,7 @@
                         type: "get",
                         dataType: "jsonp",
                         //url: '/3rdParty/Widget/Picture/PictureHandler.aspx',//提交到一般处理程序请求数据
-                        url: "http://apilm." + domain + "/gallery/modifyGroupName",
+                        url: "http://api." + domain + "/gallery/modifyGroupName",
                         data: { groupId: groupId, groupName: groupName },
                         success: function (data) {
                             if (data != null) {
@@ -1100,7 +1100,7 @@
                         type: "get",
                         dataType: "jsonp",
                         //url: 'PictureHandler.aspx',//提交到一般处理程序请求数据
-                        url: "http://apilm." + domain + "/gallery/modifyPhotoName",
+                        url: "http://api." + domain + "/gallery/modifyPhotoName",
                         data: { customerId: customerId, photoId: id, photoName: name },
                         success: function (data) {
                             if (data != null) {
@@ -1140,7 +1140,7 @@
                     type: "get",
                     dataType: "jsonp",
                     //url: '/3rdParty/Widget/Picture/PictureHandler.aspx',//提交到一般处理程序请求数据
-                    url: "http://apilm." + domain + "/gallery/modifyPhotoGroupId",
+                    url: "http://api." + domain + "/gallery/modifyPhotoGroupId",
                     data: { groupId: groupId, photoIds: imageId },
                     success: function (data) {
                         if (data != null) {

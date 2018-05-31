@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Gallery\GalleryBLL.cs" />
+    <Compile Include="BLL\Gallery\PhotoGroupBLL.cs" />
     <Compile Include="BLL\ManagerProvider\AgentManagerProvider.cs" />
     <Compile Include="BLL\ManagerProvider\BackManagerProvider.cs" />
     <Compile Include="BLL\ManagerProvider\ManagerProviderBase.cs" />
@@ -56,18 +58,25 @@
     <Compile Include="BLL\ShortMessage\ISmsProvider.cs" />
     <Compile Include="BLL\ShortMessage\SafeSmsCodeManager.cs" />
     <Compile Include="BLL\ShortMessage\ShortMessageDispatcher.cs" />
-    <Compile Include="BLL\ShortMessage\ShortMessageFactory.cs" />
+    <Compile Include="BLL\ShortMessage\ShortMessageContext.cs" />
     <Compile Include="BLL\ShortMessage\ShortMessageTemplateBLL.cs" />
     <Compile Include="BLL\ShortMessage\SmsProviderFactory.cs" />
     <Compile Include="BLL\SystemConfig\ManagerBLL.cs" />
+    <Compile Include="DAL\Gallery\BaseDAL.cs" />
+    <Compile Include="DAL\Gallery\GalleryDAL.cs" />
+    <Compile Include="DAL\Gallery\PhotoGroupDAL.cs" />
     <Compile Include="DAL\ShortMessage\ShortMessageTemplateDAL.cs" />
     <Compile Include="DAL\SystemConfig\ManagerDAL.cs" />
     <Compile Include="Enum\HQEnums.cs" />
+    <Compile Include="Model\Gallery\GalleryModel.cs" />
+    <Compile Include="Model\Gallery\PhotoGroupModel.cs" />
     <Compile Include="Model\ShortMessage\ShortMessageTemplateModel.cs" />
     <Compile Include="Model\SystemConfig\ManagerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ApiResult.cs" />
     <Compile Include="ViewModel\ISearchCondition.cs" />
+    <Compile Include="ViewModel\ResultStatus.cs" />
+    <Compile Include="ViewModel\SearchCondition\HQSearchContext.cs" />
     <Compile Include="ViewModel\SearchCondition\ManagerSearchCondition.cs" />
     <Compile Include="ViewModel\ShortMessage\ShortMessageBase.cs" />
     <Compile Include="ViewModel\ShortMessage\VerifyCodeShortMessage.cs" />

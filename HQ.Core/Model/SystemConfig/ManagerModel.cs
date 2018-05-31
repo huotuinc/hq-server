@@ -24,7 +24,7 @@ namespace HQ.Core.Model.SystemConfig
         private string _authmenus;
         private string _authfuncs;
         /// <summary>
-        /// 
+        /// 管理员id
         /// </summary>
         public int ManagerId
         {
@@ -32,7 +32,7 @@ namespace HQ.Core.Model.SystemConfig
             get { return _managerid; }
         }
         /// <summary>
-        /// 
+        /// 账号名
         /// </summary>
         public string LoginName
         {
@@ -40,7 +40,7 @@ namespace HQ.Core.Model.SystemConfig
             get { return _loginname; }
         }
         /// <summary>
-        /// 
+        /// 密码
         /// </summary>
         public string Password
         {
@@ -48,7 +48,7 @@ namespace HQ.Core.Model.SystemConfig
             get { return _password; }
         }
         /// <summary>
-        /// 
+        /// 最后登录时间
         /// </summary>
         public DateTime? LastLoginTime
         {
@@ -56,7 +56,7 @@ namespace HQ.Core.Model.SystemConfig
             get { return _lastlogintime; }
         }
         /// <summary>
-        /// 
+        /// 最后登录ip
         /// </summary>
         public string LastLoginIp
         {
@@ -64,7 +64,7 @@ namespace HQ.Core.Model.SystemConfig
             get { return _lastloginip; }
         }
         /// <summary>
-        /// 
+        /// 创建时间
         /// </summary>
         public DateTime? CreateTime
         {
@@ -72,7 +72,7 @@ namespace HQ.Core.Model.SystemConfig
             get { return _createtime; }
         }
         /// <summary>
-        /// 
+        /// 是否锁定
         /// </summary>
         public bool IsLocked
         {
@@ -80,7 +80,7 @@ namespace HQ.Core.Model.SystemConfig
             get { return _islocked; }
         }
         /// <summary>
-        /// 
+        /// 备注信息
         /// </summary>
         public string Remark
         {
@@ -88,7 +88,7 @@ namespace HQ.Core.Model.SystemConfig
             get { return _remark; }
         }
         /// <summary>
-        /// 
+        /// 是否超管
         /// </summary>
         public bool IsSuper
         {
@@ -96,7 +96,7 @@ namespace HQ.Core.Model.SystemConfig
             get { return _issuper; }
         }
         /// <summary>
-        /// 
+        /// 授权的菜单列表
         /// </summary>
         public string AuthMenus
         {
@@ -104,7 +104,7 @@ namespace HQ.Core.Model.SystemConfig
             get { return _authmenus; }
         }
         /// <summary>
-        /// 
+        /// 授权的功能列表
         /// </summary>
         public string AuthFuncs
         {

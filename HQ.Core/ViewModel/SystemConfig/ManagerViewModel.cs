@@ -5,6 +5,9 @@ using System.Text;
 
 namespace HQ.Core.ViewModel
 {
+    /// <summary>
+    /// 各类型管理员抽象公用的视图实体
+    /// </summary>
     [Serializable]
     public class ManagerViewModel
     {
@@ -28,9 +31,10 @@ namespace HQ.Core.ViewModel
         /// 是否超级管理员，后台管理员
         /// </summary>
         public int IsSuper { get; set; }
-
+        /// <summary>
+        /// 管理员id
+        /// </summary>
         public int ManagerId { get; set; }
-
         /// <summary>
         /// 授权的菜单
         /// </summary>

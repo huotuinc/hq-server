@@ -170,6 +170,52 @@
     <Content Include="3rdParty\ueditor\ueditor.all.min.js" />
     <Content Include="3rdParty\ueditor\ueditor.config.js" />
     <Content Include="3rdParty\ueditor\ueditor.parse.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\js\jquery.picture.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\arttemplate\template-debug.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\arttemplate\template-native-debug.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\arttemplate\template-native.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\arttemplate\template.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\img\--small-load.gif" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\img\asc.gif" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\img\button-white.gif" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\img\data-table-th.gif" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\img\desc.gif" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\img\load.gif" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\img\small-load.gif" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\img\th.gif" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\jquery.JGrid--.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\jquery.JGrid-v1.0.0.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\jquery.JGrid.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\jquery.JGridss.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\theme\Jackson_skin.css" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\theme\Jackson_skin_blue.css" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\theme\Jackson_skin_blue_noline.css" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\theme\Jackson_skin_brank.css" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\theme\Jackson_skin_gray.css" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\JGrid\theme\Jackson_skin_noline.css" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\jquery.jqueue.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\jquery.nicescroll.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\jquery.nicescroll.min.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\layer\extend\layer.ext.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\layer\layer.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\layer\skin\default\icon-ext.png" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\layer\skin\default\icon.png" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\layer\skin\default\loading-0.gif" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\layer\skin\default\loading-1.gif" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\layer\skin\default\loading-2.gif" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\layer\skin\layer.css" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\layer\skin\layer.ext.css" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\megapix-image.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\zeroclip\ZeroClipboard.Core.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\zeroclip\ZeroClipboard.Core.min.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\zeroclip\ZeroClipboard.Core.min.map" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\zeroclip\ZeroClipboard.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\zeroclip\ZeroClipboard.min.js" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\zeroclip\ZeroClipboard.min.map" />
+    <Content Include="3rdParty\Widget\Picture\assets\libs\zeroclip\ZeroClipboard.swf" />
+    <Content Include="3rdParty\Widget\Picture\gallery.html" />
+    <Content Include="3rdParty\Widget\Picture\PictureHandler.aspx" />
+    <Content Include="3rdParty\Widget\Picture\readme.txt" />
     <Content Include="3rdParty\zTree\css\demo.css" />
     <Content Include="3rdParty\zTree\css\zTreeStyle\img\diy\1_close.png" />
     <Content Include="3rdParty\zTree\css\zTreeStyle\img\diy\1_open.png" />
@@ -212,6 +258,13 @@
       <DependentUpon>imageUp.ashx</DependentUpon>
     </Compile>
     <Compile Include="3rdParty\ueditor\net\Uploader.cs" />
+    <Compile Include="3rdParty\Widget\Picture\PictureHandler.aspx.cs">
+      <DependentUpon>PictureHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3rdParty\Widget\Picture\PictureHandler.aspx.designer.cs">
+      <DependentUpon>PictureHandler.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AjaxHandler.aspx.cs">
       <DependentUpon>AjaxHandler.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -293,7 +346,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="3rdParty\Widget\" />
+    <Folder Include="3rdParty\Widget\Picture\assets\css\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

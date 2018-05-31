@@ -34,7 +34,7 @@
         e,width: 0,//0表示自动,-1表示正方形
     2,mallapi上传图片api接口:
         请求方式->POST
-        请求地址->apilm.xxx.com/gallery/uploadImage 
+        请求地址->api.xxx.com/gallery/uploadImage 
         请求参数->images ->图片对象json系列化字符串,customerId->商户号，groupId->所属分组ID
  2、修改photo.html 里面的引用js和css路径,让其路径是可用状态;以下仅是例子:
     <link rel="stylesheet" href="http://resali.huobanplus.com/cdn/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -84,7 +84,7 @@ $.fn.extend({
         var self = this;
         var settings = {
             label: $element.attr("id"),//显示图片列表的id
-            url: "http://apilm.devpdmall.com",//伙伴商城 mallAPI 根目录URI
+            url: "http://api.devpdmall.com",//伙伴商城 mallAPI 根目录URI
             isMult: true,//是否可以选择多张图片
             customerId: "4471", //商户ID
             height: 0,//0表示自动,-1表示正方形

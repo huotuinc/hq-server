@@ -8,14 +8,6 @@ using System.Text;
 
 namespace HQ.Core.BLL.ShortMessage
 {
-    internal class ChuanglanSmsVerThreeResultModel
-    {
-        public string time { get; set; }
-        public string msgId { get; set; }
-        public string errorMsg { get; set; }
-        public string code { get; set; }
-    }
-
     /// <summary>
     /// 创蓝短信接口,V3版本
     /// </summary>
@@ -291,4 +283,13 @@ namespace HQ.Core.BLL.ShortMessage
         }
 
     }
+
+    internal class ChuanglanSmsVerThreeResultModel
+    {
+        public string time { get; set; }
+        public string msgId { get; set; }
+        public string errorMsg { get; set; }
+        public string code { get; set; }
+    }
+
 }

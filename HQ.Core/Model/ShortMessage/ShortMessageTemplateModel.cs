@@ -18,7 +18,7 @@ namespace HQ.Core.Model.ShortMessage
         private DateTime _createtime;
         private int _status;
         /// <summary>
-        /// 
+        /// 模板id
         /// </summary>
         public int Id
         {
@@ -26,7 +26,7 @@ namespace HQ.Core.Model.ShortMessage
             get { return _id; }
         }
         /// <summary>
-        /// 
+        /// 发送场景
         /// </summary>
         public int SceneType
         {
@@ -34,7 +34,7 @@ namespace HQ.Core.Model.ShortMessage
             get { return _scenetype; }
         }
         /// <summary>
-        /// 
+        /// 模板内容
         /// </summary>
         public string Template
         {
@@ -42,7 +42,7 @@ namespace HQ.Core.Model.ShortMessage
             get { return _template; }
         }
         /// <summary>
-        /// 
+        /// 创建时间
         /// </summary>
         public DateTime CreateTime
         {
@@ -50,7 +50,7 @@ namespace HQ.Core.Model.ShortMessage
             get { return _createtime; }
         }
         /// <summary>
-        /// 
+        /// 启用状态
         /// </summary>
         public int Status
         {

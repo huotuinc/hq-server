@@ -25,7 +25,7 @@
         e,width: 0,//0表示自动,-1表示正方形
     2,mallapi上传图片api接口:
         请求方式->POST
-        请求地址->apilm.xxx.com/gallery/uploadImage 
+        请求地址->api.xxx.com/gallery/uploadImage 
         请求参数->images ->图片对象json系列化字符串,customerId->商户号，groupId->所属分组ID
  2、修改gallery.html 里面的引用js和css路径,让其路径是可用状态;以下仅是例子,一般支付把Picture文件夹copy到项目工程中,里面的引用一般不需要重新引用:
     <link rel="stylesheet" href="http://resali.huobanplus.com/cdn/bootstrap/3.3.6/css/bootstrap.min.css">

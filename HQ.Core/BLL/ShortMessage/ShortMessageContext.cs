@@ -1,5 +1,5 @@
 ﻿using HQ.Core.Enum;
-using LM.Core.Model.ShortMessage;
+using HQ.Core.Model.Gallery.ShortMessage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +8,9 @@ using System.Text;
 
 namespace HQ.Core.BLL.ShortMessage
 {
+    /// <summary>
+    /// 短信场景负责人
+    /// </summary>
     public class ShortMessageContext
     {
         private static ShortMessageContext _Instance = new ShortMessageContext();
@@ -61,7 +64,7 @@ namespace HQ.Core.BLL.ShortMessage
             Assembly asm = Assembly.GetExecutingAssembly();
             foreach (Type t in asm.GetTypes())
             {
-                if (t.BaseType != null && t.BaseType.FullName == "LM.Core.Model.ShortMessage.ShortMessageBase")
+                if (t.BaseType != null && t.BaseType.FullName == "HQ.Core.Model.Gallery.ShortMessage.ShortMessageBase")
                 {
                     foreach (object arr in t.GetCustomAttributes(typeof(ShortMessageFitAttribute), false))
                     {

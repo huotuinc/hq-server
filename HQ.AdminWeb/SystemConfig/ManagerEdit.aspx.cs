@@ -1,7 +1,7 @@
 ﻿using HQ.Common;
 using HQ.Core.BLL.SystemConfig;
 using HQ.Core.Model.SystemConfig;
-using LM.Core.BLL.PageBase;
+using HQ.Core.BLL.PageBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace HQ.Core.Model.ViewModel
 {
+    /// <summary>
+    /// 返回JSON，一般用于后台ajax请求包装
+    /// </summary>
     public class ApiResult
     {
         public int resultCode;

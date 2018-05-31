@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace LM.Core.BLL.PageBase
+namespace HQ.Core.BLL.PageBase
 {
     /// <summary>
     /// 后台页面基类

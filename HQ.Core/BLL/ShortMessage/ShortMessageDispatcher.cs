@@ -1,8 +1,8 @@
 ﻿using HQ.Common;
 using HQ.Core.Enum;
 using HQ.Core.Model.ShortMessage;
-using LM.Core.Model;
-using LM.Core.Model.ShortMessage;
+using HQ.Core.Model.Gallery;
+using HQ.Core.Model.Gallery.ShortMessage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
