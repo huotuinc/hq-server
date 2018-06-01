@@ -1,6 +1,5 @@
 ﻿using HQ.Core.DAL.SystemConfig;
 using HQ.Core.Model.SystemConfig;
-using HQ.Core.ViewModel.SearchCondition;
 using System;
 using System.Collections.Generic;
 using System.Data;

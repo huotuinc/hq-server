@@ -1,5 +1,4 @@
 ﻿using HQ.Core.BLL.SystemConfig;
-using HQ.Core.ViewModel.SearchCondition;
 using HQ.Core.BLL.PageBase;
 using System;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using HQ.Core.Model.SystemConfig;
 
 namespace HQ.AdminWeb.SystemConfig
 {

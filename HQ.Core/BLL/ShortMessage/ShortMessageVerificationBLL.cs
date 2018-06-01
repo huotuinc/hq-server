@@ -1,12 +1,12 @@
 ﻿using HQ.Common;
 using HQ.Core.BLL.ShortMessage;
-using HQ.Core.Model.ViewModel.ShortMessage;
 using HQ.Core.Model.ShortMessage;
 using LM.Core.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using HQ.Core.Model.ShortMessage.TemplateImpl;
 
 namespace LM.Core.BLL
 {

@@ -1,5 +1,5 @@
 ﻿using HQ.Core.Enum;
-using HQ.Core.Model.ViewModel.ShortMessage;
+using HQ.Core.Model.ShortMessage.TemplateImpl;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HQ.Core.Model.ViewModel.ShortMessage
+namespace HQ.Core.Model.ShortMessage.TemplateImpl
 {
     /// <summary>
-    /// 短信消息的基类，所有短信消息实体都要继承该类
+    /// 短信模板的基类，所有短信消息实体都要继承该类
     /// </summary>
     public abstract class ShortMessageBase
     {

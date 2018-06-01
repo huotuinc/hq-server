@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HQ.Core.ViewModel.SearchCondition
+namespace HQ.Core.Model.SystemConfig
 {
     /// <summary>
     /// 管理员查询条件

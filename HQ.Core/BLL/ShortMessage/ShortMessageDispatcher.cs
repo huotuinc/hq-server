@@ -2,11 +2,11 @@
 using HQ.Core.Enum;
 using HQ.Core.Model.ShortMessage;
 using HQ.Core.Model.Gallery;
-using HQ.Core.Model.ViewModel.ShortMessage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using HQ.Core.Model.ShortMessage.TemplateImpl;
 
 namespace HQ.Core.BLL.ShortMessage
 {

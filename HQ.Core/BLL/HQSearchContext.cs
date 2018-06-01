@@ -1,11 +1,12 @@
-﻿using System;
+﻿using HQ.Core.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace HQ.Core.ViewModel.SearchCondition
+namespace HQ.Core.BLL
 {
     /// <summary>
     /// 搜索条件容器
