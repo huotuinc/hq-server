@@ -11,15 +11,15 @@ namespace HQ.Model
 		{}
 		#region Model
 		private decimal _bindid;
-		private int? _userid;
-		private int? _oauthtype;
+		private int _userid;
+		private int _oauthtype;
 		private string _identification;
 		private string _refreshtoken;
-		private DateTime? _oauthtime;
+		private DateTime _oauthtime;
 		private string _oauthuinfo;
 		private string _wxunionid;
 		/// <summary>
-		/// 
+		/// 自增id
 		/// </summary>
 		public decimal BindId
 		{
@@ -27,23 +27,23 @@ namespace HQ.Model
 			get{return _bindid;}
 		}
 		/// <summary>
-		/// 
+		/// 用户id
 		/// </summary>
-		public int? UserId
+		public int UserId
 		{
 			set{ _userid=value;}
 			get{return _userid;}
 		}
 		/// <summary>
-		/// 
+		/// 授权类型
 		/// </summary>
-		public int? OauthType
+		public int OauthType
 		{
 			set{ _oauthtype=value;}
 			get{return _oauthtype;}
 		}
 		/// <summary>
-		/// 
+		/// 标识
 		/// </summary>
 		public string Identification
 		{
@@ -51,7 +51,7 @@ namespace HQ.Model
 			get{return _identification;}
 		}
 		/// <summary>
-		/// 
+		/// 刷新token
 		/// </summary>
 		public string RefreshToken
 		{
@@ -59,15 +59,15 @@ namespace HQ.Model
 			get{return _refreshtoken;}
 		}
 		/// <summary>
-		/// 
+		/// 授权时间
 		/// </summary>
-		public DateTime? OauthTime
+		public DateTime OauthTime
 		{
 			set{ _oauthtime=value;}
 			get{return _oauthtime;}
 		}
 		/// <summary>
-		/// 
+		/// 授权返回信息
 		/// </summary>
 		public string OauthUInfo
 		{
@@ -75,7 +75,7 @@ namespace HQ.Model
 			get{return _oauthuinfo;}
 		}
 		/// <summary>
-		/// 
+		/// 微信unionid
 		/// </summary>
 		public string WxUnionId
 		{

@@ -22,38 +22,37 @@ namespace HQ.DAL
 		/// </summary>
 		public bool Add(HQ.Model.ShareZoneArticleModel model)
 		{
-			StringBuilder strSql=new StringBuilder();
-			strSql.Append("insert into HQ_ShareZone_Article(");
-			strSql.Append("ShareId,ShareContent,ShareImgList,CreateTime,ShareCount,GoodsId,PromotionAmount,CatId,ShowTime,HideTime,VideoList,PlatType)");
-			strSql.Append(" values (");
-			strSql.Append("@ShareId,@ShareContent,@ShareImgList,@CreateTime,@ShareCount,@GoodsId,@PromotionAmount,@CatId,@ShowTime,@HideTime,@VideoList,@PlatType)");
-			SqlParameter[] parameters = {
-					new SqlParameter("@ShareId", SqlDbType.Int,4),
-					new SqlParameter("@ShareContent", SqlDbType.VarChar,1000),
-					new SqlParameter("@ShareImgList", SqlDbType.VarChar,3000),
-					new SqlParameter("@CreateTime", SqlDbType.DateTime),
-					new SqlParameter("@ShareCount", SqlDbType.Int,4),
-					new SqlParameter("@GoodsId", SqlDbType.VarChar,50),
-					new SqlParameter("@PromotionAmount", SqlDbType.Decimal,9),
-					new SqlParameter("@CatId", SqlDbType.Int,4),
-					new SqlParameter("@ShowTime", SqlDbType.DateTime),
-					new SqlParameter("@HideTime", SqlDbType.DateTime),
-					new SqlParameter("@VideoList", SqlDbType.VarChar,3000),
-					new SqlParameter("@PlatType", SqlDbType.SmallInt,2)};
-			parameters[0].Value = model.ShareId;
-			parameters[1].Value = model.ShareContent;
-			parameters[2].Value = model.ShareImgList;
-			parameters[3].Value = model.CreateTime;
-			parameters[4].Value = model.ShareCount;
-			parameters[5].Value = model.GoodsId;
-			parameters[6].Value = model.PromotionAmount;
-			parameters[7].Value = model.CatId;
-			parameters[8].Value = model.ShowTime;
-			parameters[9].Value = model.HideTime;
-			parameters[10].Value = model.VideoList;
-			parameters[11].Value = model.PlatType;
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("insert into HQ_ShareZone_Article(");
+            strSql.Append("ShareContent,ShareImgList,CreateTime,ShareCount,GoodsId,PromotionAmount,CatId,ShowTime,HideTime,VideoList,PlatType)");
+            strSql.Append(" values (");
+            strSql.Append("@ShareContent,@ShareImgList,@CreateTime,@ShareCount,@GoodsId,@PromotionAmount,@CatId,@ShowTime,@HideTime,@VideoList,@PlatType)");
+            strSql.Append(";select @@IDENTITY");
+            SqlParameter[] parameters = {
+                    new SqlParameter("@ShareContent", SqlDbType.VarChar,1000),
+                    new SqlParameter("@ShareImgList", SqlDbType.VarChar,3000),
+                    new SqlParameter("@CreateTime", SqlDbType.DateTime),
+                    new SqlParameter("@ShareCount", SqlDbType.Int,4),
+                    new SqlParameter("@GoodsId", SqlDbType.VarChar,50),
+                    new SqlParameter("@PromotionAmount", SqlDbType.Decimal,9),
+                    new SqlParameter("@CatId", SqlDbType.Int,4),
+                    new SqlParameter("@ShowTime", SqlDbType.DateTime),
+                    new SqlParameter("@HideTime", SqlDbType.DateTime),
+                    new SqlParameter("@VideoList", SqlDbType.VarChar,3000),
+                    new SqlParameter("@PlatType", SqlDbType.SmallInt,2)};
+            parameters[0].Value = model.ShareContent;
+            parameters[1].Value = model.ShareImgList;
+            parameters[2].Value = model.CreateTime;
+            parameters[3].Value = model.ShareCount;
+            parameters[4].Value = model.GoodsId;
+            parameters[5].Value = model.PromotionAmount;
+            parameters[6].Value = model.CatId;
+            parameters[7].Value = model.ShowTime;
+            parameters[8].Value = model.HideTime;
+            parameters[9].Value = model.VideoList;
+            parameters[10].Value = model.PlatType;
 
-			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
+            int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
 			{
 				return true;
@@ -68,48 +67,47 @@ namespace HQ.DAL
 		/// </summary>
 		public bool Update(HQ.Model.ShareZoneArticleModel model)
 		{
-			StringBuilder strSql=new StringBuilder();
-			strSql.Append("update HQ_ShareZone_Article set ");
-			strSql.Append("ShareId=@ShareId,");
-			strSql.Append("ShareContent=@ShareContent,");
-			strSql.Append("ShareImgList=@ShareImgList,");
-			strSql.Append("CreateTime=@CreateTime,");
-			strSql.Append("ShareCount=@ShareCount,");
-			strSql.Append("GoodsId=@GoodsId,");
-			strSql.Append("PromotionAmount=@PromotionAmount,");
-			strSql.Append("CatId=@CatId,");
-			strSql.Append("ShowTime=@ShowTime,");
-			strSql.Append("HideTime=@HideTime,");
-			strSql.Append("VideoList=@VideoList,");
-			strSql.Append("PlatType=@PlatType");
-			strSql.Append(" where ");
-			SqlParameter[] parameters = {
-					new SqlParameter("@ShareId", SqlDbType.Int,4),
-					new SqlParameter("@ShareContent", SqlDbType.VarChar,1000),
-					new SqlParameter("@ShareImgList", SqlDbType.VarChar,3000),
-					new SqlParameter("@CreateTime", SqlDbType.DateTime),
-					new SqlParameter("@ShareCount", SqlDbType.Int,4),
-					new SqlParameter("@GoodsId", SqlDbType.VarChar,50),
-					new SqlParameter("@PromotionAmount", SqlDbType.Decimal,9),
-					new SqlParameter("@CatId", SqlDbType.Int,4),
-					new SqlParameter("@ShowTime", SqlDbType.DateTime),
-					new SqlParameter("@HideTime", SqlDbType.DateTime),
-					new SqlParameter("@VideoList", SqlDbType.VarChar,3000),
-					new SqlParameter("@PlatType", SqlDbType.SmallInt,2)};
-			parameters[0].Value = model.ShareId;
-			parameters[1].Value = model.ShareContent;
-			parameters[2].Value = model.ShareImgList;
-			parameters[3].Value = model.CreateTime;
-			parameters[4].Value = model.ShareCount;
-			parameters[5].Value = model.GoodsId;
-			parameters[6].Value = model.PromotionAmount;
-			parameters[7].Value = model.CatId;
-			parameters[8].Value = model.ShowTime;
-			parameters[9].Value = model.HideTime;
-			parameters[10].Value = model.VideoList;
-			parameters[11].Value = model.PlatType;
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update HQ_ShareZone_Article set ");
+            strSql.Append("ShareContent=@ShareContent,");
+            strSql.Append("ShareImgList=@ShareImgList,");
+            strSql.Append("CreateTime=@CreateTime,");
+            strSql.Append("ShareCount=@ShareCount,");
+            strSql.Append("GoodsId=@GoodsId,");
+            strSql.Append("PromotionAmount=@PromotionAmount,");
+            strSql.Append("CatId=@CatId,");
+            strSql.Append("ShowTime=@ShowTime,");
+            strSql.Append("HideTime=@HideTime,");
+            strSql.Append("VideoList=@VideoList,");
+            strSql.Append("PlatType=@PlatType");
+            strSql.Append(" where ShareId=@ShareId");
+            SqlParameter[] parameters = {
+                    new SqlParameter("@ShareContent", SqlDbType.VarChar,1000),
+                    new SqlParameter("@ShareImgList", SqlDbType.VarChar,3000),
+                    new SqlParameter("@CreateTime", SqlDbType.DateTime),
+                    new SqlParameter("@ShareCount", SqlDbType.Int,4),
+                    new SqlParameter("@GoodsId", SqlDbType.VarChar,50),
+                    new SqlParameter("@PromotionAmount", SqlDbType.Decimal,9),
+                    new SqlParameter("@CatId", SqlDbType.Int,4),
+                    new SqlParameter("@ShowTime", SqlDbType.DateTime),
+                    new SqlParameter("@HideTime", SqlDbType.DateTime),
+                    new SqlParameter("@VideoList", SqlDbType.VarChar,3000),
+                    new SqlParameter("@PlatType", SqlDbType.SmallInt,2),
+                    new SqlParameter("@ShareId", SqlDbType.Int,4)};
+            parameters[0].Value = model.ShareContent;
+            parameters[1].Value = model.ShareImgList;
+            parameters[2].Value = model.CreateTime;
+            parameters[3].Value = model.ShareCount;
+            parameters[4].Value = model.GoodsId;
+            parameters[5].Value = model.PromotionAmount;
+            parameters[6].Value = model.CatId;
+            parameters[7].Value = model.ShowTime;
+            parameters[8].Value = model.HideTime;
+            parameters[9].Value = model.VideoList;
+            parameters[10].Value = model.PlatType;
+            parameters[11].Value = model.ShareId;
 
-			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
+            int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
 			{
 				return true;
@@ -151,7 +149,7 @@ namespace HQ.DAL
 		{
 			//该表无主键信息，请自定义主键/条件字段
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 ShareId,ShareContent,ShareImgList,CreateTime,ShareCount,GoodsId,PromotionAmount,CatId,ShowTime,HideTime,VideoList,PlatType from HQ_ShareZone_Article ");
+			strSql.Append("select  top 1 * from HQ_ShareZone_Article ");
 			strSql.Append(" where ");
 			SqlParameter[] parameters = {
 			};

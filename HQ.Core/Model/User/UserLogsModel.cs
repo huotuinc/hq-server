@@ -11,12 +11,12 @@ namespace HQ.Model
 		{}
 		#region Model
 		private int _logid;
-		private int? _userid;
-		private int? _logtype;
+		private int _userid;
+		private int _logtype;
 		private string _reamark;
-		private DateTime? _createtime;
+		private DateTime _createtime;
 		/// <summary>
-		/// 
+		/// 自增id
 		/// </summary>
 		public int LogId
 		{
@@ -24,23 +24,23 @@ namespace HQ.Model
 			get{return _logid;}
 		}
 		/// <summary>
-		/// 
+		/// 用户id
 		/// </summary>
-		public int? UserId
+		public int UserId
 		{
 			set{ _userid=value;}
 			get{return _userid;}
 		}
 		/// <summary>
-		/// 
+		/// 日志类型
 		/// </summary>
-		public int? LogType
+		public int LogType
 		{
 			set{ _logtype=value;}
 			get{return _logtype;}
 		}
 		/// <summary>
-		/// 
+		/// 备注
 		/// </summary>
 		public string Reamark
 		{
@@ -48,9 +48,9 @@ namespace HQ.Model
 			get{return _reamark;}
 		}
 		/// <summary>
-		/// 
+		/// 创建时间
 		/// </summary>
-		public DateTime? CreateTime
+		public DateTime CreateTime
 		{
 			set{ _createtime=value;}
 			get{return _createtime;}

@@ -1,5 +1,6 @@
 ﻿using HQ.ApiWeb.Models;
 using HQ.Common;
+using HQ.Core.BLL.User;
 using HQ.Core.Enum;
 using HQ.Core.Model.ViewModel;
 using HQ.Model;
@@ -93,7 +94,7 @@ namespace HQ.ApiWeb.Filters
                     filterContext.Result = this.GetJsonResult(HQEnums.ResultOptionType.用户登录信息非法);
                     return;
                 }
-                if (userInfo.IsLocked.HasValue && userInfo.IsLocked == 1)
+                if (userInfo.IsLocked == 1)
                 {
                     filterContext.Result = this.GetJsonResult(HQEnums.ResultOptionType.用户已被冻结);
                     return;
