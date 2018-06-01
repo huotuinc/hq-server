@@ -14,7 +14,7 @@ namespace HQ.ApiWeb.Controllers
     {
         public ActionResult Index(HQRequestHeader header)
         {
-            string userId = header.userId;
+            int userId = header.userId;
             return View();
         }
     }

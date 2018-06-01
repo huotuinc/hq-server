@@ -274,12 +274,12 @@ namespace HQ.Core.DAL.SystemConfig
         /// <summary>
         /// 分页获取列表
         /// </summary>
-        /// <param name="iPageSize"></param>
-        /// <param name="iPageIndex"></param>
-        /// <param name="iRecordCount"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="recordCount"></param>
         /// <param name="condition"></param>
         /// <returns></returns>
-        public DataTable GetList(int iPageSize, int iPageIndex, out int iRecordCount, ManagerSearchCondition condition)
+        public DataTable GetList(int pageSize, int pageIndex, out int recordCount, ManagerSearchCondition condition)
         {
             StringBuilder sbSqlwhere = new StringBuilder();
             if (!String.IsNullOrEmpty(condition.LoginName))
@@ -290,7 +290,7 @@ namespace HQ.Core.DAL.SystemConfig
             {
                 sbSqlwhere.Append(" AND IsSuper=0");
             }
-            return this.GetList(iPageSize, iPageIndex, sbSqlwhere.ToString(), out iRecordCount);
+            return this.GetList(pageSize, pageIndex, sbSqlwhere.ToString(), out recordCount);
         }
 
         /// <summary>
@@ -301,7 +301,7 @@ namespace HQ.Core.DAL.SystemConfig
         /// <param name="strWhere"></param>
         /// <param name="iRecordCount"></param>
         /// <returns></returns>
-        private DataTable GetList(int iPageSize, int iPageIndex, string strWhere, out int iRecordCount)
+        private DataTable GetList(int pageSize, int pageIndex, string strWhere, out int recordCount)
         {
             string sql = "select * FROM HQ_Manager where 1=1 ";
             if (strWhere.Trim() != "")
@@ -309,7 +309,7 @@ namespace HQ.Core.DAL.SystemConfig
                 sql += strWhere;
             }
             sql += " ORDER BY ManagerId DESC";
-            return DbHelperSQL.GetSplitDataTable(sql, iPageSize, iPageIndex, out iRecordCount);
+            return DbHelperSQL.GetSplitDataTable(sql, pageSize, pageIndex, out recordCount);
         }
 
         public bool ExistsLoginName(string loginName)

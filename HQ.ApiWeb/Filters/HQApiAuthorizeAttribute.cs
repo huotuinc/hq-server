@@ -1,5 +1,6 @@
 ﻿using HQ.ApiWeb.Models;
 using HQ.Common;
+using HQ.Core.BLL;
 using HQ.Core.BLL.User;
 using HQ.Core.Enum;
 using HQ.Core.Model.ViewModel;
@@ -46,8 +47,6 @@ namespace HQ.ApiWeb.Filters
             //签名校验
             if (!this.DebugMode)
             {
-                //todo 秘钥赋值
-                string secrectKey = "";
                 string requestSign = context.Request["sign"];
                 if (string.IsNullOrEmpty(requestSign))
                 {
@@ -65,7 +64,7 @@ namespace HQ.ApiWeb.Filters
                     }
                 }
 
-                string currentSign = HotSignatureHelper.BuildSign(paramters, secrectKey, new HotSignatureHelper.BuildSettingModel()
+                string currentSign = HotSignatureHelper.BuildSign(paramters, HQGlobalConfigProvider.ApiSecret, new HotSignatureHelper.BuildSettingModel()
                 {
                     JoinFormat = HotSignatureHelper.PreSignStrJoinFormatOptions.None,
                     EcryptType = HotSignatureHelper.EncryptTypeOptions.MD5_UTF8_32,
@@ -82,8 +81,7 @@ namespace HQ.ApiWeb.Filters
             //登录校验，由调用的地方自行决定是否需要
             if (this.flgCheckLogin)
             {
-                //todo 根据token查找出用户
-                UsersModel userInfo = new UsersModel();
+                UsersModel userInfo = UsersBLL.Instance.GetModelByToken(userToken);
                 if (userInfo == null)
                 {
                     filterContext.Result = this.GetJsonResult(HQEnums.ResultOptionType.用户未登录);
@@ -107,6 +105,8 @@ namespace HQ.ApiWeb.Filters
             {
                 if (p.ParameterType == typeof(HQ.ApiWeb.Models.HQRequestHeader))
                 {
+                    int iUserId = 0;
+                    int.TryParse(userId, out iUserId);
                     filterContext.ActionParameters[p.ParameterName] = new HQRequestHeader()
                     {
                         appVersion = appVersion,
@@ -114,7 +114,8 @@ namespace HQ.ApiWeb.Filters
                         mobileType = mobileType,
                         osType = osType,
                         ttid = ttid,
-                        userId = userId,
+                        userIdStr = userId,
+                        userId = iUserId,
                         userToken = userToken
                     };
                     break;

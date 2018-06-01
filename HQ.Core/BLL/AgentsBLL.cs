@@ -1,4 +1,5 @@
 ﻿using HQ.DAL;
+using HQ.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +25,39 @@ namespace HQ.Core.BLL
                 return instance;
             }
         }
+
+        #region  
+        /// <summary>
+        /// 增加一条数据
+        /// </summary>
+        public int Add(AgentsModel model)
+        {
+            return dal.Add(model);
+        }
+        /// <summary>
+        /// 更新一条数据
+        /// </summary>
+        public bool Update(AgentsModel model)
+        {
+            return dal.Update(model);
+        }
+
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool Delete(int AgentId)
+        {
+            return dal.Delete(AgentId);
+        }
+
+        /// <summary>
+        /// 得到一个对象实体
+        /// </summary>
+        public AgentsModel GetModel(int AgentId)
+        {
+            return dal.GetModel(AgentId);
+        }
+
+        #endregion  
     }
 }

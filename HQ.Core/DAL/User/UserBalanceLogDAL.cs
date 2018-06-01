@@ -3,6 +3,7 @@ using System.Data;
 using System.Text;
 using System.Data.SqlClient;
 using HQ.Common.DB;
+using HQ.Core.Model.User;
 
 namespace HQ.DAL
 {
@@ -191,8 +192,43 @@ namespace HQ.DAL
 			return model;
 		}
 
-		#endregion  BasicMethod
-		
-	}
+        /// <summary>
+        /// 分页获取列表
+        /// </summary>
+        /// <param name="iPageSize"></param>
+        /// <param name="iPageIndex"></param>
+        /// <param name="iRecordCount"></param>
+        /// <param name="condition"></param>
+        /// <returns></returns>
+        public DataTable GetList(int pageSize, int pageIndex, out int recordCount, UserBalanceLogsSearchCondition condition)
+        {
+            StringBuilder sbSqlwhere = new StringBuilder();
+       
+            //更多查询条件....
+            return this.GetList(pageSize, pageIndex, sbSqlwhere.ToString(), out recordCount);
+        }
+
+        /// <summary>
+        /// 分页获取列表
+        /// </summary>
+        /// <param name="iPageSize"></param>
+        /// <param name="iPageIndex"></param>
+        /// <param name="strWhere"></param>
+        /// <param name="iRecordCount"></param>
+        /// <returns></returns>
+        private DataTable GetList(int pageSize, int pageIndex, string strWhere, out int recordCount)
+        {
+            string sql = "select * FROM HQ_User_Balance_Logs where 1=1 ";
+            if (strWhere.Trim() != "")
+            {
+                sql += strWhere;
+            }
+            sql += " ORDER BY UserId DESC";
+            return DbHelperSQL.GetSplitDataTable(sql, pageSize, pageIndex, out recordCount);
+        }
+
+        #endregion  BasicMethod
+
+    }
 }
 

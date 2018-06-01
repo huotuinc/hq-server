@@ -90,14 +90,14 @@ namespace HQ.Core.BLL.SystemConfig
         /// <summary>
         /// 分页获取列表
         /// </summary>
-        /// <param name="iPageSize"></param>
-        /// <param name="iPageIndex"></param>
-        /// <param name="iRecordCount"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="recordCount"></param>
         /// <param name="condition"></param>
         /// <returns></returns>
-        public DataTable GetList(int iPageSize, int iPageIndex, out int iRecordCount, ManagerSearchCondition condition)
+        public DataTable GetList(int pageSize, int pageIndex, out int recordCount, ManagerSearchCondition condition)
         {
-            return dal.GetList(iPageSize, iPageIndex, out iRecordCount, condition);
+            return dal.GetList(pageSize, pageIndex, out recordCount, condition);
         }
 
         public bool ExistsLoginName(string loginName)

@@ -35,8 +35,12 @@ namespace HQ.ApiWeb.Models
         /// </summary>
         public string userToken { get; set; }
         /// <summary>
-        /// 用户ID
+        /// 用户id
         /// </summary>
-        public string userId { get; set; }
+        public int userId { get; set; }
+        /// <summary>
+        /// 用户ID字符串
+        /// </summary>
+        public string userIdStr { get; set; }
     }
 }
