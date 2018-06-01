@@ -241,7 +241,7 @@ namespace LM.Web.Controllers
                 }
                 else
                 {
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.参数错误, "图片格式错误,请提取jpeg,gif,png,webp,jpg格式的图片"));
+                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.缺少请求参数, "图片格式错误,请提取jpeg,gif,png,webp,jpg格式的图片"));
                 }
             }
             catch (Exception ex)

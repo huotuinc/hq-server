@@ -211,7 +211,7 @@ namespace LM.AdminWeb._3rdParty.Widget.Picture
                     }
                     return new ResultStatus(HQEnums.ResultOptionType.OK, "上传图片成功");
                 } else {
-                    return new ResultStatus(HQEnums.ResultOptionType.参数错误, "请选择图片上传");
+                    return new ResultStatus(HQEnums.ResultOptionType.缺少请求参数, "请选择图片上传");
                 }
             } catch (Exception ex) {
                 LogHelper.WriteError(string.Format("uploadImage error-->Statck:{0},Message:{1}",ex.StackTrace,ex.Message));

@@ -38,6 +38,15 @@ namespace HQ.Core.Enum
             验证码 = 0
         }
 
+        public enum ClientOsTypeOptions
+        {
+            unknown = 0,
+            miniProgram = 1,
+            ios = 2,
+            android = 3,
+            h5 = 4
+        }
+
         /// <summary>
         /// API接口返回状态枚举
         /// </summary>
@@ -48,56 +57,45 @@ namespace HQ.Core.Enum
             /// </summary>
             OK = 200,
             /// <summary>
-            /// 参数错误 300
-            /// </summary>
-            参数错误 = 300,
-            /// <summary>
-            /// 修改状态失败=301
-            /// </summary>
-            修改状态失败 = 301,
-            /// <summary>
             /// 失败=302
             /// </summary>
-            失败 = 302,
+            失败 = 301,
             /// <summary>
-            /// 没有授权401
+            /// 缺少请求参数 400
             /// </summary>
-            没有授权 = 401,
+            缺少请求参数 = 400,
             /// <summary>
-            /// 签名无效402
+            /// 签名未传401
             /// </summary>
-            签名无效 = 402,
+            签名未传 = 401,
             /// <summary>
-            /// 没有信息=403
+            /// 签名错误402
+            /// </summary>
+            签名错误 = 402,
+            /// <summary>
+            /// 数据不存在403
             /// </summary>
             没有信息 = 403,
-
             /// <summary>
-            /// 服务器错误=500
+            /// 服务器错误500
             /// </summary>
             服务器错误 = 500,
             /// <summary>
-            /// 上传图片失败 501
+            /// 没有登录
             /// </summary>
-            上传图片失败 = 501,
-            /// <summary>
-            /// 操作过于频繁
-            /// </summary>
-            操作过于频繁 = 502,
-
-            /// <summary>
-            /// 已经存在 503
-            /// </summary>
-            已经存在 = 503,
+            用户未登录 = 1000,
             /// <summary>
             /// 用户已被冻结
             /// </summary>
-            用户已被冻结 = 601,
-
+            用户已被冻结 = 1001,
             /// <summary>
-            /// 没有登录
+            /// token与用户不匹配
             /// </summary>
-            没有登录 = 602
+            用户登录信息非法 = 1002,
+            /// <summary>
+            /// 上传图片失败 1100
+            /// </summary>
+            上传图片失败 = 1100
         }
     }
 }
