@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HQ.Core.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,50 +7,69 @@ using System.Text;
 namespace HQ.Core.Model.ViewModel
 {
     /// <summary>
-    /// 返回JSON，一般用于后台ajax请求包装
+    /// API接口返回实体
     /// </summary>
     public class ApiResult
     {
-        public int resultCode;
-        public string resultMsg;
-        public object data;
+        /// <summary>
+        /// 状态码
+        /// </summary>
+        public int code { set; get; }
 
-        public static ApiResult resultWith(ApiResultEnum resultEnum, object data = null)
+        /// <summary>
+        /// 消息
+        /// </summary>
+        public string msg { set; get; }
+
+        /// <summary>
+        /// 数据对象
+        /// </summary>
+        public object data { set; get; }
+
+
+        public static ApiResult ResultWith(HQEnums.ResultOptionType optionType, string msg, object data)
         {
-            return new ApiResult
-            {
-                resultCode = (int)resultEnum,
-                resultMsg = resultEnum.ToString(),
-                data = data
-            };
+            return new ApiResult() { code = (int)optionType, msg = msg, data = data };
         }
 
-        public static ApiResult resultWith(ApiResultEnum resultEnum, string resultMsg, object data)
+        public static ApiResult ResultWith(HQEnums.ResultOptionType optionType, object data)
         {
-            return new ApiResult
-            {
-                resultCode = (int)resultEnum,
-                resultMsg = resultMsg,
-                data = data
-            };
+            return new ApiResult() { code = (int)optionType, msg = optionType.ToString(), data = data };
         }
 
-        public static ApiResult resultWith(int resultCode, string resultMsg = null,object data = null)
+        public static ApiResult ResultWith(HQEnums.ResultOptionType optionType)
         {
-            return new ApiResult
-            {
-                resultCode = resultCode,
-                resultMsg = resultMsg,
-                data = data
-            };
+            return new ApiResult() { code = (int)optionType, msg = optionType.ToString(), data = null };
         }
 
-    }
+        public ApiResult() { }
 
-    public enum ApiResultEnum
-    {
-        请求成功 = 1,
-        处理失败 = 0,
-        请求异常 = -1
+        public ApiResult(int code, string msg, object data = null)
+        {
+            this.code = code;
+            this.msg = msg;
+            this.data = data;
+        }
+
+        public ApiResult(HQEnums.ResultOptionType optionType, string msg, object data)
+        {
+            this.code = (int)optionType;
+            this.msg = msg;
+            this.data = data;
+        }
+
+        public ApiResult(HQEnums.ResultOptionType optionType, object data = null)
+        {
+            this.code = (int)optionType;
+            this.msg = optionType.ToString();
+            this.data = data;
+        }
+
+        public ApiResult(HQEnums.ResultOptionType optionType)
+        {
+            this.code = (int)optionType;
+            this.msg = optionType.ToString();
+            this.data = null;
+        }
     }
 }

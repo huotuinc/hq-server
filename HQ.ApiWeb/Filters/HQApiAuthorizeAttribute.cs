@@ -18,6 +18,9 @@ using System.Web.Mvc;
 
 namespace HQ.ApiWeb.Filters
 {
+    /// <summary>
+    /// API签名拦截器
+    /// </summary>
     public class HQApiAuthorizeAttribute : ActionFilterAttribute
     {
         private bool flgCheckLogin = true;
@@ -126,7 +129,7 @@ namespace HQ.ApiWeb.Filters
         #region 助手方法
         private JsonResult GetJsonResult(HQEnums.ResultOptionType resutType)
         {
-            return new JsonResult() { ContentType = "application/json", Data = new ResultStatus(resutType), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return new JsonResult() { ContentType = "application/json", Data = new ApiResult(resutType), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         /// <summary>

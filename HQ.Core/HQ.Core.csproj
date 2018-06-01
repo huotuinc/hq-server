@@ -150,9 +150,9 @@
     <Compile Include="Model\User\UserOAuthBondsModel.cs" />
     <Compile Include="Model\WxTokensModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\ApiResult.cs" />
+    <Compile Include="ViewModel\AjaxResult.cs" />
     <Compile Include="Model\ISearchCondition.cs" />
-    <Compile Include="ViewModel\ResultStatus.cs" />
+    <Compile Include="ViewModel\ApiResult.cs" />
     <Compile Include="BLL\HQSearchContext.cs" />
     <Compile Include="Model\SystemConfig\ManagerSearchCondition.cs" />
     <Compile Include="Model\ShortMessage\TemplateImpl\ShortMessageBase.cs" />
