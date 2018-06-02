@@ -3,6 +3,11 @@ using System.Data;
 using System.Text;
 using System.Data.SqlClient;
 using HQ.Common.DB;
+using HQ.Core.ViewModel.Zone;
+using System.Collections.Generic;
+using Micro.Mall.Core.Model;
+using Micro.Mall.Core.DAL;
+using HQ.Common;
 
 namespace HQ.DAL
 {
@@ -227,8 +232,35 @@ namespace HQ.DAL
 			return model;
 		}
 
-		#endregion  BasicMethod
-		
-	}
+        #endregion  BasicMethod
+
+
+        public List<ZoneArticleView> listByCategoryId(int categoryId, int pageIndex, int pageSize)
+        {
+            string sqlWhere = "CatId=" + categoryId;
+            //if (sqlWhere.Length > 0) sqlWhere = sqlWhere.Substring(4);
+
+            //初始化分页
+            PagingModel paging = new PagingModel()
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                RecordCount = 0,
+                PageCount = 0
+            };
+            PageQueryModel pageQuery = new PageQueryModel()
+            {
+                TableName = "HQ_ShareZone_Article with(nolock)",
+                Fields = "GoodsId as goodsId,'' as head,'' as name,ShareContent as content,ArticleType as type,ShareImgList as pictures,ShareImgList as smallPictures,VideoList as videos,CreateTime as time,ShareCount as turnAmount,PromotionAmount as reward,'' as linkUrl",
+                OrderField = "CreateTime desc",
+                SqlWhere = sqlWhere
+            };
+
+            List<ZoneArticleView> list = new CommonPageDAL().GetPageData<ZoneArticleView>(ConfigHelper.MssqlDBConnectionString_Sync, pageQuery, paging);
+            return list;
+
+        }
+
+    }
 }
 

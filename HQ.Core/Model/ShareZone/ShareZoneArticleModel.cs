@@ -118,6 +118,11 @@ namespace HQ.Model
             set { _plattype = value; }
             get { return _plattype; }
         }
+
+        /// <summary>
+        /// 文章类型 0 图片 1视频
+        /// </summary>
+        public int ArticleType { get; set; }
         #endregion Model
 
     }
