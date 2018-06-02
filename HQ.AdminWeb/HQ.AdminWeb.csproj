@@ -245,6 +245,11 @@
     <Content Include="3rdParty\zTree\js\jquery.ztree.exhide-3.5.js" />
     <Content Include="3rdParty\zTree\js\jquery.ztree.exhide-3.5.min.js" />
     <Content Include="AjaxHandler.aspx" />
+    <Content Include="Ddk\DdkAppEdit.aspx" />
+    <Content Include="Ddk\DdkAppList.aspx" />
+    <Content Include="Goods\DdkThemeList.aspx" />
+    <Content Include="Goods\GoodsCatEdit.aspx" />
+    <Content Include="Goods\GoodsCatList.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="SystemConfig\ManagerEdit.aspx" />
@@ -271,6 +276,41 @@
     </Compile>
     <Compile Include="AjaxHandler.aspx.designer.cs">
       <DependentUpon>AjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ddk\DdkAppEdit.aspx.cs">
+      <DependentUpon>DdkAppEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ddk\DdkAppEdit.aspx.designer.cs">
+      <DependentUpon>DdkAppEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ddk\DdkAppList.aspx.cs">
+      <DependentUpon>DdkAppList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ddk\DdkAppList.aspx.designer.cs">
+      <DependentUpon>DdkAppList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Goods\DdkThemeList.aspx.cs">
+      <DependentUpon>DdkThemeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Goods\DdkThemeList.aspx.designer.cs">
+      <DependentUpon>DdkThemeList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Goods\GoodsCatEdit.aspx.cs">
+      <DependentUpon>GoodsCatEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Goods\GoodsCatEdit.aspx.designer.cs">
+      <DependentUpon>GoodsCatEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Goods\GoodsCatList.aspx.cs">
+      <DependentUpon>GoodsCatList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Goods\GoodsCatList.aspx.designer.cs">
+      <DependentUpon>GoodsCatList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -347,6 +387,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="3rdParty\Widget\Picture\assets\css\" />
+    <Folder Include="Agent\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

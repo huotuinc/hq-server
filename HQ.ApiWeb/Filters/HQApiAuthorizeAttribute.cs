@@ -106,7 +106,7 @@ namespace HQ.ApiWeb.Filters
             var actionParameters = filterContext.ActionDescriptor.GetParameters();
             foreach (var p in actionParameters)
             {
-                if (p.ParameterType == typeof(HQ.ApiWeb.Models.HQRequestHeader))
+                if (p.ParameterType == typeof(HQRequestHeader))
                 {
                     int iUserId = 0;
                     int.TryParse(userId, out iUserId);

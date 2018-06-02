@@ -96,10 +96,29 @@ namespace HQ.PddOpen.Core
             return GetResult<PromotionIdJsonResult>(result);
         }
 
-        public static object GeneratePromotionId(string clientId, string clientSecret)
+        /// <summary>
+        /// 创建多多进宝推广位（pdd.ddk.goods.pid.generate）
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
+        /// <param name="number"></param>
+        /// <param name="nameList"></param>
+        /// <returns></returns>
+        public static PromotionIdGenerateJsonResult GeneratePromotionId(string clientId, string clientSecret, int number, List<string> nameList = null)
         {
-            //todo pdd.ddk.goods.pid.generate（创建多多进宝推广位）
-            return null;
+            NameValueCollection coll = InitNameValueCollection("pdd.ddk.goods.pid.generate", clientId);
+            coll.Add("number", number.ToString());
+            if (nameList != null && nameList.Count > 0 && nameList.Count != number)
+            {
+                throw new Exception("名称和生成的数量必须一致");
+            }
+            else
+            {
+                coll.Add("p_id_name_list", JsonConvert.SerializeObject(nameList));
+            }
+            coll.Add("sign", BuildSign(clientSecret, coll));
+            string result = DoPost(coll);
+            return GetResult<PromotionIdGenerateJsonResult>(result);
         }
 
         /// <summary>
@@ -120,7 +139,7 @@ namespace HQ.PddOpen.Core
             coll.Add("goods_id_list", "[" + goodsId + "]");
             coll.Add("generate_short_url", isShortUrl.ToString().ToLower());
             coll.Add("multi_group", isMultiGroup.ToString().ToLower());
-            if(!string.IsNullOrEmpty(customParameters)) coll.Add("custom_parameters", customParameters);
+            if (!string.IsNullOrEmpty(customParameters)) coll.Add("custom_parameters", customParameters);
             coll.Add("sign", BuildSign(clientSecret, coll));
             string result = DoPost(coll);
             return GetResult<GoodsPromotionUrlJsonResult>(result);
@@ -202,9 +221,10 @@ namespace HQ.PddOpen.Core
         /// <param name="clientId"></param>
         /// <param name="clientSecret"></param>
         /// <returns></returns>
-        public static GoodsTagCatJsonResult GetGoodsTagCatList(string clientId, string clientSecret)
+        public static GoodsTagCatJsonResult GetGoodsTagCatList(string clientId, string clientSecret, int parentId = 0)
         {
-            NameValueCollection coll = InitNameValueCollection("pdd.ddk.theme.goods.search", clientId);
+            NameValueCollection coll = InitNameValueCollection("pdd.goods.opt.get", clientId);
+            coll.Add("parent_opt_id", parentId.ToString());
             coll.Add("sign", BuildSign(clientSecret, coll));
             string result = DoPost(coll);
             return GetResult<GoodsTagCatJsonResult>(result);

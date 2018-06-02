@@ -53,6 +53,7 @@
     <Compile Include="Entities\GoodsSearchListJsonResult.cs" />
     <Compile Include="Entities\GoodsTagCatJsonResult.cs" />
     <Compile Include="Entities\IncrementOrderJsonResult.cs" />
+    <Compile Include="Entities\PromotionIdGenerateJsonResult.cs" />
     <Compile Include="Entities\ThemeGoodsSearchJsonResult.cs" />
     <Compile Include="Entities\ThemeListJsonResult.cs" />
     <Compile Include="IPinduoduoJsonResult.cs" />

@@ -8,7 +8,12 @@ namespace HQ.PddOpen.Core.Entities
 {
     public class GoodsTagCatJsonResult : IPinduoduoJsonResult
     {
-        public List<GoodsTagCateEntity> goods_opt_get_response { get; set; }
+        public GoodsTagCateListEntity goods_opt_get_response { get; set; }
+    }
+
+    public class GoodsTagCateListEntity
+    {
+        public List<GoodsTagCateEntity> goods_opt_list { get; set; }
     }
 
     /// <summary>
