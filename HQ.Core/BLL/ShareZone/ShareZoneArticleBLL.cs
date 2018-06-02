@@ -1,4 +1,5 @@
-﻿using HQ.DAL;
+﻿using HQ.Core.ViewModel.Zone;
+using HQ.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,17 @@ namespace HQ.Core.BLL.ShareZone
             }
         }
 
-
+        public List<ZoneArticleView> listByCategoryId(int categoryId, int pageIndex, int pageSize)
+        {
+            List<ZoneArticleView> list = dal.listByCategoryId(categoryId, pageIndex, pageSize);
+            list.ForEach(item =>
+            {
+                //todo 
+                item.head = "";
+                item.name = "好卷推手素材号";
+                item.linkUrl = "";
+            });
+            return list;
+        }
     }
 }

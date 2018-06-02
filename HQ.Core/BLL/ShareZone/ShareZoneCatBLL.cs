@@ -1,4 +1,5 @@
-﻿using HQ.DAL;
+﻿using HQ.Core.ViewModel.Zone;
+using HQ.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,9 @@ namespace HQ.Core.BLL.ShareZone
         private readonly ShareZoneCatDAL dal = new ShareZoneCatDAL();
         private static ShareZoneCatBLL instance = new ShareZoneCatBLL();
         private ShareZoneCatBLL()
-        { }
+        {
+
+        }
 
         public static ShareZoneCatBLL Instance
         {
@@ -23,6 +26,11 @@ namespace HQ.Core.BLL.ShareZone
             {
                 return instance;
             }
+        }
+
+        public List<ZoneCategoryView> getZoneCatList()
+        {
+            return dal.getZoneCatList();
         }
 
 

@@ -84,6 +84,8 @@
     <Compile Include="BLL\User\UserLogsBLL.cs" />
     <Compile Include="BLL\User\UserOAuthBondsBLL.cs" />
     <Compile Include="BLL\User\UsersBLL.cs" />
+    <Compile Include="DAL\CommonPageDAL.cs" />
+    <Compile Include="Model\PagingModel.cs" />
     <Compile Include="Model\GoodsCatsSearchCondition.cs" />
     <Compile Include="Model\Rebate\RebatesSearchCondition.cs" />
     <Compile Include="Model\User\UserBalanceLogsSearchCondition.cs" />
@@ -160,6 +162,8 @@
     <Compile Include="Model\SystemConfig\ManagerSearchCondition.cs" />
     <Compile Include="Model\ShortMessage\TemplateImpl\ShortMessageBase.cs" />
     <Compile Include="Model\ShortMessage\TemplateImpl\VerifyCodeShortMessage.cs" />
+    <Compile Include="ViewModel\Zone\ZoneArticleView.cs" />
+    <Compile Include="ViewModel\Zone\ZoneCategoryView.cs" />
     <Compile Include="ViewModel\SystemConfig\ManagerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
