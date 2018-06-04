@@ -5,6 +5,9 @@ using System.Data.SqlClient;
 using HQ.Common.DB;
 using HQ.Model;
 using System.Collections.Generic;
+using Micro.Mall.Core.Model;
+using Micro.Mall.Core.DAL;
+using HQ.Common;
 
 namespace HQ.DAL
 {
@@ -190,19 +193,40 @@ namespace HQ.DAL
         }
 
 
-        public List<UserFavoriteModel> list(int userId, int platType)
+        public List<UserFavoriteModel> list(int userId, int platType, int pageIndex, int pageSize)
         {
-            List<UserFavoriteModel> list = new List<UserFavoriteModel>();
-            string strsql = @"select * from HQ_User_Favorite  where UserId=@UserId and PlatType=@PlatType";
-             var parameters = new[]{
-                    new SqlParameter("@UserId",userId),
-                    new SqlParameter("@PlatType",platType)
-            };
-            using (IDataReader dr = DbHelperSQL.ExecuteReader(strsql))
+            String sqlWhere = "UserId="+userId+" and PlatType="+ platType;
+            //初始化分页
+            PagingModel paging = new PagingModel()
             {
-                list = DbHelperSQL.GetEntityList<UserFavoriteModel>(dr);
-            }
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                RecordCount = 0,
+                PageCount = 0
+            };
+            PageQueryModel pageQuery = new PageQueryModel()
+            {
+                TableName = "HQ_User_Favorite with(nolock)",
+                Fields = "*",
+                OrderField = "CreateTime desc",
+                SqlWhere = sqlWhere
+            };
+
+            List<UserFavoriteModel> list = new CommonPageDAL().GetPageData<UserFavoriteModel>(ConfigHelper.MssqlDBConnectionString_Sync, pageQuery, paging);
             return list;
+
+        }
+
+        public bool delete(string ids, int userId, Int16 platType)
+        {
+            string strsql = " delete from HQ_User_Favorite where UserId=@UserId and PlatType=@PlatType and GoodsId in (@ids) ";
+            var parms = new[]{
+                    new SqlParameter("@UserId",userId),
+                    new SqlParameter("@PlatType",platType),
+                       new SqlParameter("@ids",ids)
+            };
+            return DbHelperSQL.ExecuteSql(strsql, parms) > 0;
+
         }
     }
 }

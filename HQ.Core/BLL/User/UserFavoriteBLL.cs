@@ -41,6 +41,21 @@ namespace HQ.Core.BLL.User
             }
             return true;
         }
+        public List<UserFavoriteModel> favoriteList(int userId, int platType, int pageIndex, int pageSize)
+        {
+            //todo 获取相应商品数据
+            List<UserFavoriteModel> list = dal.list(userId, platType, pageIndex, pageSize);
+            list.ForEach(item =>
+            {
+
+            });
+            return null;
+        }
+
+        public bool favoriteDelete(string ids, int userId, Int16 platType)
+        {
+            return dal.delete(ids, userId, platType);
+        }
 
     }
 }
