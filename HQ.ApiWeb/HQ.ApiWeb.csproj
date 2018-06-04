@@ -156,9 +156,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
+    <Compile Include="Controllers\GoodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HQControllerBase.cs" />
     <Compile Include="Controllers\QuanController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ZoneController.cs" />
     <Compile Include="Filters\HQApiAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">

@@ -42,5 +42,9 @@ namespace HQ.ApiWeb.Models
         /// 用户ID字符串
         /// </summary>
         public string userIdStr { get; set; }
+        /// <summary>
+        /// 平台类型0平多多1京东2淘宝
+        /// </summary>
+        public int platType { get; set; }
     }
 }

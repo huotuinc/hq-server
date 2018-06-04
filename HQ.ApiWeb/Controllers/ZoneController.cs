@@ -1,4 +1,8 @@
-﻿using HQ.Core.BLL.ShareZone;
+﻿using HQ.ApiWeb.Filters;
+using HQ.ApiWeb.Models;
+using HQ.Core.BLL.ShareZone;
+using HQ.Core.Enum;
+using HQ.Core.Model.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,10 +12,11 @@ using System.Web.Mvc;
 
 namespace HQ.ApiWeb.Controllers
 {
+    [HQApiAuthorize(false)]
     /// <summary>
     /// 好卷圈
     /// </summary>
-    public class ZoneController : Controller
+    public class ZoneController : HQControllerBase
     {
 
 
@@ -21,15 +26,19 @@ namespace HQ.ApiWeb.Controllers
         /// <returns></returns>
         public ActionResult category()
         {
-            String json = JsonConvert.SerializeObject(ShareZoneCatBLL.Instance.getZoneCatList());
-            return Content(json, "application/json");
+            return Json(ApiResult.ResultWith(HQEnums.ResultOptionType.OK, ShareZoneCatBLL.Instance.getZoneCatList()));
         }
 
-
-        public ActionResult zoneList(int categoryId, int pageIndex, int pageSize)
+        /// <summary>
+        /// 文章列表
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult zoneList(int categoryId, int pageIndex, int pageSize, HQRequestHeader header)
         {
-            String json = JsonConvert.SerializeObject(ShareZoneArticleBLL.Instance.listByCategoryId(categoryId, pageIndex, pageSize));
-            return Content(json, "application/json");
+            return Json(ApiResult.ResultWith(HQEnums.ResultOptionType.OK, ShareZoneArticleBLL.Instance.listByCategoryId(header.platType, categoryId, pageIndex, pageSize)));
         }
     }
 }

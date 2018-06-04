@@ -235,9 +235,9 @@ namespace HQ.DAL
         #endregion  BasicMethod
 
 
-        public List<ZoneArticleView> listByCategoryId(int categoryId, int pageIndex, int pageSize)
+        public List<ZoneArticleView> listByCategoryId(int platType,int categoryId, int pageIndex, int pageSize)
         {
-            string sqlWhere = "CatId=" + categoryId;
+            string sqlWhere = "CatId=" + categoryId + " and platType="+ platType;
             //if (sqlWhere.Length > 0) sqlWhere = sqlWhere.Substring(4);
 
             //初始化分页
@@ -252,7 +252,7 @@ namespace HQ.DAL
             {
                 TableName = "HQ_ShareZone_Article with(nolock)",
                 Fields = "GoodsId as goodsId,'' as head,'' as name,ShareContent as content,ArticleType as type,ShareImgList as pictures,ShareImgList as smallPictures,VideoList as videos,CreateTime as time,ShareCount as turnAmount,PromotionAmount as reward,'' as linkUrl",
-                OrderField = "CreateTime desc",
+                OrderField = "ShareId desc",
                 SqlWhere = sqlWhere
             };
 
