@@ -219,10 +219,12 @@ namespace HQ.DAL
         /// 得到某个序号后面一个
         /// </summary>
         /// <param name="sortNum"></param>
+        /// <param name="platType"></param>
+        /// <param name="levelNo"></param>
         /// <returns></returns>
-        public GoodsCatsModel GetNext(int sortNum, int platType)
+        public GoodsCatsModel GetNext(int sortNum, int platType, int levelNo)
         {
-            DataTable dt = DbHelperSQL.Query(string.Format("select top 1 * from HQ_Goods_Cats where SortNum>{0} and PlatType={1} order by SortNum asc", sortNum, platType)).Tables[0];
+            DataTable dt = DbHelperSQL.Query(string.Format("select top 1 * from HQ_Goods_Cats where SortNum>{0} and PlatType={1} and LevelNo={2} order by SortNum asc", sortNum, platType, levelNo)).Tables[0];
             if (dt.Rows.Count == 0) return null;
             return this.DataRowToModel(dt.Rows[0]);
         }
@@ -231,10 +233,12 @@ namespace HQ.DAL
         /// 得到某个序号前面一个
         /// </summary>
         /// <param name="sortNum"></param>
+        /// <param name="platType"></param>
+        /// <param name="levelNo"></param>
         /// <returns></returns>
-        public GoodsCatsModel GetPrev(int sortNum, int platType)
+        public GoodsCatsModel GetPrev(int sortNum, int platType, int levelNo)
         {
-            DataTable dt = DbHelperSQL.Query(string.Format("select top 1 * from HQ_Goods_Cats where SortNum<{0} and PlatType={1} order by SortNum desc", sortNum, platType)).Tables[0];
+            DataTable dt = DbHelperSQL.Query(string.Format("select top 1 * from HQ_Goods_Cats where SortNum<{0} and PlatType={1} and LevelNo={2} order by SortNum desc", sortNum, platType, levelNo)).Tables[0];
             if (dt.Rows.Count == 0) return null;
             return this.DataRowToModel(dt.Rows[0]);
         }

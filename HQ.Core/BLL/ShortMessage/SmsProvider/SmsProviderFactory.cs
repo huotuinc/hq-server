@@ -12,8 +12,7 @@ namespace HQ.Core.BLL.ShortMessage
     {
         public static ISmsProvider GetSmsProvider()
         {
-            //todo 短信提供商
-            string providerKey = "";
+            string providerKey = HQGlobalConfigProvider.GetBaseConfig().SmsSetting.Provider;
             switch (providerKey)
             {
                 case "chuanglan":

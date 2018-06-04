@@ -156,12 +156,12 @@ namespace HQ.Core.BLL
             GoodsCatsModel swapInfo = null;
             if (type == 1)
             {
-                swapInfo = dal.GetNext(current.SortNum, platType);
+                swapInfo = dal.GetNext(current.SortNum, platType, current.LevelNo);
                 errMsg = "已到底部";
             }
             else
             {
-                swapInfo = dal.GetPrev(current.SortNum, platType);
+                swapInfo = dal.GetPrev(current.SortNum, platType, current.LevelNo);
                 errMsg = "已到顶部";
             }
             if (swapInfo == null)
