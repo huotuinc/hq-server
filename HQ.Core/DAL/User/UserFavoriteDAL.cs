@@ -4,6 +4,7 @@ using System.Text;
 using System.Data.SqlClient;
 using HQ.Common.DB;
 using HQ.Model;
+using System.Collections.Generic;
 
 namespace HQ.DAL
 {
@@ -189,7 +190,20 @@ namespace HQ.DAL
         }
 
 
-        public List<> 
+        public List<UserFavoriteModel> list(int userId, int platType)
+        {
+            List<UserFavoriteModel> list = new List<UserFavoriteModel>();
+            string strsql = @"select * from HQ_User_Favorite  where UserId=@UserId and PlatType=@PlatType";
+             var parameters = new[]{
+                    new SqlParameter("@UserId",userId),
+                    new SqlParameter("@PlatType",platType)
+            };
+            using (IDataReader dr = DbHelperSQL.ExecuteReader(strsql))
+            {
+                list = DbHelperSQL.GetEntityList<UserFavoriteModel>(dr);
+            }
+            return list;
+        }
     }
 }
 
