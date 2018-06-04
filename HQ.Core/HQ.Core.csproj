@@ -159,6 +159,7 @@
     <Compile Include="Model\SystemConfig\ManagerSearchCondition.cs" />
     <Compile Include="Model\ShortMessage\TemplateImpl\ShortMessageBase.cs" />
     <Compile Include="Model\ShortMessage\TemplateImpl\VerifyCodeShortMessage.cs" />
+    <Compile Include="ViewModel\Goods\AdView.cs" />
     <Compile Include="ViewModel\Zone\ZoneArticleView.cs" />
     <Compile Include="ViewModel\Zone\ZoneCategoryView.cs" />
     <Compile Include="ViewModel\SystemConfig\ManagerViewModel.cs" />

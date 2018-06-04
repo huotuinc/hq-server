@@ -4,6 +4,8 @@ using System.Text;
 using System.Data.SqlClient;
 using HQ.Common.DB;
 using HQ.Model;
+using HQ.Core.ViewModel.Goods;
+using System.Collections.Generic;
 
 namespace HQ.DAL
 {
@@ -235,8 +237,25 @@ namespace HQ.DAL
 			}
 			return model;
 		}
-        
-		#endregion  BasicMethod
-	}
+
+        #endregion  BasicMethod
+
+
+
+        public List<AdView> listForIndex()
+        {
+            List<AdView> list = new List<AdView>();
+            string strsql = "select  adType,LinkPic as pictureUrl,LinkData as linkdata,LinkType as linktype from HQ_Advertise where Status=1 and BeginTime<@BeginTime and EndTime>@EndTime order by SortNum";
+            var parms = new[] {
+                new SqlParameter("@BeginTime",DateTime.Now),
+                new SqlParameter("@EndTime",DateTime.Now)
+            };
+            using (IDataReader dr = DbHelperSQL.ExecuteReader(strsql))
+            {
+                list = DbHelperSQL.GetEntityList<AdView>(dr);
+            }
+            return list;
+        }
+    }
 }
 

@@ -252,7 +252,7 @@ namespace HQ.DAL
             {
                 TableName = "HQ_ShareZone_Article with(nolock)",
                 Fields = "GoodsId as goodsId,'' as head,'' as name,ShareContent as content,ArticleType as type,ShareImgList as pictures,ShareImgList as smallPictures,VideoList as videos,CreateTime as time,ShareCount as turnAmount,PromotionAmount as reward,'' as linkUrl",
-                OrderField = "CreateTime desc",
+                OrderField = "ShareId desc",
                 SqlWhere = sqlWhere
             };
 

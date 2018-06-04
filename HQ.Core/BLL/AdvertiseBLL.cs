@@ -1,4 +1,5 @@
-﻿using HQ.DAL;
+﻿using HQ.Core.ViewModel.Goods;
+using HQ.DAL;
 using HQ.Model;
 using System;
 using System.Collections.Generic;
@@ -59,5 +60,17 @@ namespace HQ.Core.BLL
         }
 
         #endregion  BasicMethod
+
+
+        public List<AdView> listForIndex()
+        {
+            List<AdView> list = dal.listForIndex();
+            list.ForEach(item =>
+            {
+                //todo
+                item.pictureUrl = "";
+            });
+            return list;
+        }
     }
 }
