@@ -214,6 +214,30 @@ namespace HQ.DAL
         {
             return DbHelperSQL.Query("select * from HQ_Goods_Cats where 1<>1").Tables[0];
         }
+
+        /// <summary>
+        /// 得到某个序号后面一个
+        /// </summary>
+        /// <param name="sortNum"></param>
+        /// <returns></returns>
+        public GoodsCatsModel GetNext(int sortNum, int platType)
+        {
+            DataTable dt = DbHelperSQL.Query(string.Format("select top 1 * from HQ_Goods_Cats where SortNum>{0} and PlatType={1} order by SortNum asc", sortNum, platType)).Tables[0];
+            if (dt.Rows.Count == 0) return null;
+            return this.DataRowToModel(dt.Rows[0]);
+        }
+
+        /// <summary>
+        /// 得到某个序号前面一个
+        /// </summary>
+        /// <param name="sortNum"></param>
+        /// <returns></returns>
+        public GoodsCatsModel GetPrev(int sortNum, int platType)
+        {
+            DataTable dt = DbHelperSQL.Query(string.Format("select top 1 * from HQ_Goods_Cats where SortNum<{0} and PlatType={1} order by SortNum desc", sortNum, platType)).Tables[0];
+            if (dt.Rows.Count == 0) return null;
+            return this.DataRowToModel(dt.Rows[0]);
+        }
         #endregion  BasicMethod
 
     }

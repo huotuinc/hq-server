@@ -56,9 +56,10 @@
                                         <th></th>
                                         <th>ClientId</th>
                                         <th>ClientSecret</th>
-                                        <th>是否主应用</th>
+                                        <th>是否默认</th>
                                         <th>状态</th>
                                         <th>绑定的代理商</th>
+                                        <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,13 +73,17 @@
                                                     <%#Eval("ClientSecret") %>
                                                 </td>
                                                 <td>
-                                                    <%#Eval("IsMain") %>
+                                                    <%#Eval("IsMain").ToString()=="1"?"<span style='color:green;'>是</span>":"<span style='color:red;'>否</span>" %>
                                                 </td>
                                                 <td>
-                                                    <%#Eval("Status") %>
+                                                    <%#Eval("Status").ToString()=="1"?"<span style='color:green;'>启用</span>":"<span style='color:red;'>禁用</span>" %>
                                                 </td>
                                                 <td>
                                                     <%#Eval("BindAgentId") %>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-myGreen btn-xs" href="DdkAppEdit.aspx?id=<%#Eval("AppId")%>">编辑</a>
+                                                    <a class="btn btn-myRed btn-xs" href="javascript:listHandler.del(<%#Eval("AppId")%>)">删除</a>
                                                 </td>
                                             </tr>
                                         </ItemTemplate>
@@ -125,6 +130,22 @@
             },
             searchAll: function () {
                 window.location.href = listUrl;
+            },
+            del: function (id) {
+                hqUtils.showConfirm('确定删除？', function () {
+                    hot.ajax("DdkAppList.aspx?action=del", { id: id }, function (data) {
+                        if (data.resultCode == 1) {
+                            layer.closeAll();
+                            hot.tip.success('删除成功');
+                            setTimeout(function () {
+                                location.href = location.href;
+                            }, 1200);
+                        } else {
+                            hot.tip.error("删除失败");
+                        }
+                    }, function () {
+                    }, "post", 100);
+                });
             }
         }
     </script>

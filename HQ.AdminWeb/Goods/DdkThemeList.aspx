@@ -26,15 +26,18 @@
                             <div class="form-inline">
                                 <div class="form-group m-r-sm">
 
-                                    <label class=" control-label">多多客主题</label>
-                                    <%-- <input type="text" class="form-control" name="loginname" id="loginname" runat="server"
-                                        placeholder="关键字" style="width: 200px;" />--%>
+                                    <label class=" control-label">名称</label>
+                                    <input type="text" class="form-control" id="txtkeyword" runat="server"
+                                        placeholder="关键字" style="width: 200px;" />
                                 </div>
 
-                                <%--<span onclick="listHandler.search(1)" class="btn btn-success btn-sm">搜索</span>
-                                <span onclick="listHandler.searchAll()" class="btn btn-success btn-sm">显示所有</span>--%>
+                                <span onclick="listHandler.search(1)" class="btn btn-success btn-sm">搜索</span>
+                                <span onclick="listHandler.searchAll()" class="btn btn-success btn-sm">显示所有</span>
 
-                                <a href="javascript:;"><span class="btn btn-info btn-sm" style="float: right;">同步所有主题</span></a>
+                                <label id="spLastSyncTime" class="control-label" style="padding-left: 10px;"></label>
+
+                                <a href="javascript:listHandler.syncThemes();"><span class="btn btn-info btn-sm" style="float: right;">同步所有主题</span></a>
+
                             </div>
                         </div>
 
@@ -54,11 +57,11 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>主题id</th>
-                                        <th>名称</th>
                                         <th>图片</th>
+                                        <th>名称</th>
+                                        <th>主题id</th>
                                         <th>商品数</th>
-                                        <th>操作</th>
+                                        <%--<th>操作</th>--%>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,17 +69,22 @@
                                         <ItemTemplate>
                                             <tr>
                                                 <td><%# Container.ItemIndex + 1 + pageSize*(pageIndex-1)%></td>
-                                                <td><%#Eval("ThemeId") %>
+                                                <td>
+                                                    <img src="<%#Eval("ImageUrl") %>" style="width: 375px; height: auto;" />
                                                 </td>
                                                 <td>
                                                     <%#Eval("Name") %>
                                                 </td>
+                                                <td><%#Eval("ThemeId") %>
+                                                </td>
+
                                                 <td>
                                                     <%#Eval("GoodsNum") %>
+                                                    <span class="spUpdateTime" style="display: none;"><%# Eval("UpdateTime") %></span>
                                                 </td>
-                                                <td>
+                                                <%--  <td>
                                                     <a class="btn btn-myGreen btn-xs" href="javascript:;">查看</a>
-                                                </td>
+                                                </td>--%>
                                             </tr>
                                         </ItemTemplate>
                                     </asp:Repeater>
@@ -124,6 +132,10 @@
             pageinate.init(function (p) {
                 listHandler.search(p);
             });
+
+            if ($('.spUpdateTime:first').length > 0) {
+                $('#spLastSyncTime').html('上次同步时间：' + $('.spUpdateTime:first').html());
+            }
         });
 
         var listHandler = {
@@ -134,9 +146,9 @@
             searchAll: function () {
                 window.location.href = listUrl;
             },
-            sysncThemes: function () {
-                hqUtils.showConfirm('确定从拼多多同步？', function () {
-                    hot.ajax("DdkThemeList.aspx?action=sync", {  }, function (data) {
+            syncThemes: function () {
+                hqUtils.showConfirm('点击确定将从拼多多拉取所有主题（含官方&自定义）', function () {
+                    hot.ajax("DdkThemeList.aspx?action=sync", {}, function (data) {
                         if (data.resultCode == 1) {
                             layer.closeAll();
                             hot.tip.success('同步成功');
@@ -144,7 +156,7 @@
                                 location.href = location.href;
                             }, 1200);
                         } else {
-                            hot.tip.error("同步失败");
+                            hot.tip.error("同步失败:" + data.resultMsg);
                         }
                     }, function () {
                     }, "post", 100);

@@ -84,6 +84,8 @@
     <Content Include="3rdParty\css\bootstrap.min.css" />
     <Content Include="3rdParty\css\common.css" />
     <Content Include="3rdParty\images\close.png" />
+    <Content Include="3rdParty\images\icon_asc.gif" />
+    <Content Include="3rdParty\images\icon_desc.gif" />
     <Content Include="3rdParty\images\jia.gif" />
     <Content Include="3rdParty\images\jia.jpg" />
     <Content Include="3rdParty\images\jian.gif" />

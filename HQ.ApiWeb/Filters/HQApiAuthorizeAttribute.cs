@@ -110,8 +110,7 @@ namespace HQ.ApiWeb.Filters
             {
                 if (p.ParameterType == typeof(HQRequestHeader))
                 {
-                    int iUserId = 0;
-                    int.TryParse(userId, out iUserId);
+                    int.TryParse(userId, out int iUserId);
                     filterContext.ActionParameters[p.ParameterName] = new HQRequestHeader()
                     {
                         appVersion = appVersion,

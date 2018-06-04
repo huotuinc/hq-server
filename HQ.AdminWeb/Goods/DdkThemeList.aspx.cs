@@ -34,19 +34,21 @@ namespace HQ.AdminWeb.Goods
         private AjaxResult DoSync()
         {
             int articleid = this.GetFormValue("articleid", 0);
-            if (DdkThemeBLL.Instance.Sync())
+            if (DdkThemeBLL.Instance.Sync(out string errMsg))
             {
                 return AjaxResult.resultWith(AjaxResultEnum.请求成功);
             }
             else
             {
-                return AjaxResult.resultWith(AjaxResultEnum.处理失败);
+                return AjaxResult.resultWith(AjaxResultEnum.处理失败, errMsg, null);
             }
         }
 
         private void LoadList()
         {
-            DataTable dt = DdkThemeBLL.Instance.GetList(pageSize, pageIndex, out recordCount);
+            string keyword = this.GetQueryString("txtkeyword", "");
+            txtkeyword.Value = keyword;
+            DataTable dt = DdkThemeBLL.Instance.GetList(pageSize, pageIndex, out recordCount, keyword);
             rptList.DataSource = dt;
             rptList.DataBind();
             pageCount = recordCount / pageSize;

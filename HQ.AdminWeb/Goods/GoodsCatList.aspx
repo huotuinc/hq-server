@@ -20,6 +20,10 @@
 
         .cat2 {
         }
+
+        .p0 {
+            background: #ffffdd;
+        }
     </style>
 </head>
 
@@ -27,11 +31,13 @@
     int rootTotal = 0, subTotal = 0, rootEffectTotal = 0, subEffectTotal = 0;
     foreach (var item in this.AllCates)
     {
-        if (item.ParentId == 0){
+        if (item.ParentId == 0)
+        {
             rootTotal++;
             if (item.Status == 1) rootEffectTotal++;
         }
-        else {
+        else
+        {
             subTotal++;
             if (item.Status == 1) subEffectTotal++;
         }
@@ -51,7 +57,7 @@
 
                                 <div class="form-group m-r-sm">
                                     <label class=" control-label">拼多多分类</label>
-                                    <label class=" control-label">【大类<%=rootTotal %>个(启用<%=rootEffectTotal %>个)，子类<%=subTotal %>个(用<%=subEffectTotal %>个)】</label>
+                                    <label class=" control-label">【大类<%=rootTotal %>个(启用<%=rootEffectTotal %>个)，子类<%=subTotal %>个(启用<%=subEffectTotal %>个)】</label>
                                 </div>
                                 <%--<div class="form-group m-r-sm">
                                     <label class=" control-label">所属平台：</label>
@@ -106,14 +112,19 @@
                                             <%=item.Id %>
                                         </td>
                                         <td>
-                                            <%=item.SortNum %>
+                                            <img src="/3rdParty/images/icon_asc.gif"
+                                                onclick="listHandler.sortUp(<%=item.Id %>);"
+                                                style="cursor: pointer;" />&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <img src="/3rdParty/images/icon_desc.gif"
+                                                onclick="listHandler.sortDown(<%=item.Id %>);"
+                                                style="cursor: pointer;" />
                                         </td>
                                         <td>
                                             <%=item.Status==1?"<span style='color:green;'>启用</span>":"<span style='color:red;'>停用</span>" %>
                                         </td>
                                         <td>
                                             <a class="btn btn-myGreen btn-xs" href="GoodsCatEdit.aspx?id=<%=item.Id %>">编辑</a>
-                                            <a class="btn btn-myRed btn-xs" href="javascript:del(<%=item.Id %>)">删除</a>
+                                            <a class="btn btn-myRed btn-xs" href="javascript:listHandler.del(<%=item.Id %>)">删除</a>
                                         </td>
                                     </tr>
                                     <%}
@@ -181,6 +192,43 @@
                     return;
                 }
                 window.location.href = url;
+            },
+            sortUp: function (catid) {
+                this.sort(catid, 2);
+            },
+            sortDown: function (catid) {
+                this.sort(catid, 1);
+            },
+            sort: function (catid, type) {
+                var plattype = $('#plattype').val();
+                hot.ajax("GoodsCatList.aspx?action=swap", { catid: catid, type: type, plattype: plattype }, function (data) {
+                    if (data.resultCode == 1) {
+                        //hot.tip.success("操作成功，等待刷新");
+                        setTimeout(function () {
+                            location.href = location.href;
+                        }, 50);
+                    } else {
+                        hot.tip.error(data.resultMsg);
+                    }
+                }, function () {
+                }, "post", 100);
+            },
+            del: function (id) {
+                var plattype = $('#plattype').val();
+                hqUtils.showConfirm('确定删除？', function () {
+                    hot.ajax("GoodsCatList.aspx?action=del", { id: id, plattype: plattype }, function (data) {
+                        if (data.resultCode == 1) {
+                            layer.closeAll();
+                            hot.tip.success('删除成功');
+                            setTimeout(function () {
+                                location.href = location.href;
+                            }, 1200);
+                        } else {
+                            hot.tip.error("删除失败");
+                        }
+                    }, function () {
+                    }, "post", 100);
+                });
             }
         }
     </script>

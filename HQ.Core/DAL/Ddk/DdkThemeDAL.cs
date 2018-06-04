@@ -171,9 +171,14 @@ namespace HQ.DAL
         /// <param name="pageIndex"></param>
         /// <param name="recordCount"></param>
         /// <returns></returns>
-        public DataTable GetList(int pageSize, int pageIndex, out int recordCount)
+        public DataTable GetList(int pageSize, int pageIndex, out int recordCount,string keyword)
         {
-            return this.GetList(pageSize, pageIndex, "", out recordCount);
+            StringBuilder sbWhere = new StringBuilder();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                sbWhere.AppendFormat(" AND Name LIKE '%{0}%'", keyword.Replace("'", ""));
+            }
+            return this.GetList(pageSize, pageIndex, sbWhere.ToString(), out recordCount);
         }
 
         /// <summary>
@@ -195,6 +200,13 @@ namespace HQ.DAL
             return DbHelperSQL.GetSplitDataTable(sql, pageSize, pageIndex, out recordCount);
         }
 
+        /// <summary>
+        /// 清空表
+        /// </summary>
+        public void TruncateTable()
+        {
+            DbHelperSQL.ExecuteSql("truncate table HQ_Ddk_Theme");
+        }        
         #endregion  BasicMethod
 
     }

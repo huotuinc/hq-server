@@ -2,8 +2,10 @@
 using HQ.Core.BLL.PageBase;
 using HQ.Core.Enum;
 using HQ.Core.Model;
+using HQ.Core.Model.ViewModel;
 using HQ.Model;
 using LM.Core.BLL;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,7 +25,27 @@ namespace HQ.AdminWeb.Goods
             if (this.GetQueryString("action", "") == "export")
             {
                 this.Export();
+                return;
             }
+
+            if (this.GetQueryString("action", "") == "swap")
+            {
+                AjaxResult result = this.Swap();
+                Response.ContentType = "application/json";
+                Response.Write(JsonConvert.SerializeObject(result));
+                Response.End();
+                return;
+            }
+
+            if (this.GetQueryString("action", "") == "del")
+            {
+                AjaxResult result = this.DoDelete();
+                Response.ContentType = "application/json";
+                Response.Write(JsonConvert.SerializeObject(result));
+                Response.End();
+                return;
+            }
+
             if (!IsPostBack)
             {
                 this.LoadList();
@@ -62,6 +84,29 @@ namespace HQ.AdminWeb.Goods
                 Response.AppendHeader("Content-Disposition", "attachment;filename=" + fileName);
                 Response.BinaryWrite(ms.ToArray());
             }
+        }
+
+        private AjaxResult Swap()
+        {
+            int catid = this.GetFormValue("catid", 0);
+            int type = this.GetFormValue("type", 1);
+            int platType = this.GetFormValue("plattype", 0);
+            if (GoodsCatsBLL.Instance.SwapPosition(catid, platType, type, out string errMsg))
+            {
+                return AjaxResult.resultWith(AjaxResultEnum.请求成功);
+            }
+            return AjaxResult.resultWith(AjaxResultEnum.处理失败, errMsg, null);
+        }
+
+        private AjaxResult DoDelete()
+        {
+            int id = this.GetFormValue("id", 0);
+            int platType = this.GetFormValue("plattype", 0);
+            if (GoodsCatsBLL.Instance.Delete(id, platType))
+            {
+                return AjaxResult.resultWith(AjaxResultEnum.请求成功);
+            }
+            return AjaxResult.resultWith(AjaxResultEnum.处理失败);
         }
 
         public DataTable Convert(List<GoodsCatsModel> catList)
