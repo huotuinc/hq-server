@@ -15,6 +15,6 @@ namespace HQ.Core.MallProvider
     {
         HotGoodsModel GetGoodsDetail(long goodsId);
 
-        HotPageData<HotGoodsModel> GetGoodsList(int page, int pageSize, HotGoodsSearchCondition condition);
+        HotPageData<HotGoodsModel> GetGoodsList(HotGoodsSearchCondition condition);
     }
 }

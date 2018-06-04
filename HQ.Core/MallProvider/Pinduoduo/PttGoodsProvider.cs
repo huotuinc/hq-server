@@ -18,7 +18,7 @@ namespace HQ.Core.MallProvider.Pinduoduo
             throw new NotImplementedException();
         }
 
-        public HotPageData<HotGoodsModel> GetGoodsList(int page, int pageSize, HotGoodsSearchCondition condition)
+        public HotPageData<HotGoodsModel> GetGoodsList(HotGoodsSearchCondition condition)
         {
             throw new NotImplementedException();
         }

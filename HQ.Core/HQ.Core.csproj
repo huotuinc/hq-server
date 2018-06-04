@@ -48,6 +48,7 @@
     <Compile Include="BLL\AdvertiseBLL.cs" />
     <Compile Include="BLL\AgentsBLL.cs" />
     <Compile Include="BLL\BaseConfigBLL.cs" />
+    <Compile Include="BLL\Ddk\DdkAppProvider.cs" />
     <Compile Include="BLL\Ddk\DdkAppsBLL.cs" />
     <Compile Include="BLL\Ddk\DdkPidPoolBLL.cs" />
     <Compile Include="BLL\Ddk\DdkThemeBLL.cs" />
