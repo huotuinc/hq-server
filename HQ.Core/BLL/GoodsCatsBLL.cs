@@ -140,6 +140,43 @@ namespace HQ.Core.BLL
         {
             return dal.GetListScheme();
         }
+
+        /// <summary>
+        /// 交换排序
+        /// </summary>
+        /// <param name="catId">分类id</param>
+        /// <param name="platType">平台类型</param>
+        /// <param name="type">1：下移；2：上移</param>
+        /// <param name="errMsg">错误信息</param>
+        /// <returns></returns>
+        public bool SwapPosition(int catId, int platType, int type, out string errMsg)
+        {
+            errMsg = "";
+            GoodsCatsModel current = dal.GetModel(catId, platType);
+            GoodsCatsModel swapInfo = null;
+            if (type == 1)
+            {
+                swapInfo = dal.GetNext(current.SortNum, platType);
+                errMsg = "已到底部";
+            }
+            else
+            {
+                swapInfo = dal.GetPrev(current.SortNum, platType);
+                errMsg = "已到顶部";
+            }
+            if (swapInfo == null)
+            {
+                return false;
+            }
+            int curSort = current.SortNum;
+            int swapSort = swapInfo.SortNum;
+            current.SortNum = swapSort;
+            swapInfo.SortNum = curSort;
+
+            this.Update(current);
+            this.Update(swapInfo);
+            return true;
+        }
         #endregion  BasicMethod
     }
 }

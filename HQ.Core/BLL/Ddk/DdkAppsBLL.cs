@@ -15,7 +15,7 @@ namespace HQ.Core.BLL.Ddk
     public class DdkAppsBLL
     {
         private readonly DdkAppsDAL dal = new DdkAppsDAL();
-        private static DdkAppsBLL instance = new DdkAppsBLL();
+        private static readonly DdkAppsBLL instance = new DdkAppsBLL();
         private DdkAppsBLL()
         { }
 
@@ -69,6 +69,15 @@ namespace HQ.Core.BLL.Ddk
         public DataTable GetList(int pageSize, int pageIndex, out int recordCount)
         {
             return dal.GetList(pageSize, pageIndex, out recordCount);
+        }
+
+        /// <summary>
+        /// 得到目前启用着的所有多多客应用
+        /// </summary>
+        /// <returns></returns>
+        public List<DdkAppsModel> GetEffectList()
+        {
+            return dal.GetEffectList();
         }
         #endregion  BasicMethod
     }
