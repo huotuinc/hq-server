@@ -22,6 +22,25 @@ namespace HQ.Core.Enum
         }
 
         /// <summary>
+        /// 返利类型
+        /// </summary>
+        public enum RebateTypeOptions
+        {
+            /// <summary>
+            /// 一级返利
+            /// </summary>
+            返利 = 0,
+            /// <summary>
+            /// 二级返利
+            /// </summary>
+            管理奖 = 1,
+            /// <summary>
+            /// 
+            /// </summary>
+            育成奖 = 2
+        }
+
+        /// <summary>
         /// 后台管理员类型
         /// </summary>
         public enum ManagerRoleOptions

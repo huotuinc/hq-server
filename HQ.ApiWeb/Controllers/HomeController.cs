@@ -29,7 +29,7 @@ namespace HQ.ApiWeb.Controllers
         {
             return Json(ApiResult.ResultWith(HQEnums.ResultOptionType.OK, header));
         }
-
+        
         public JsonResult Test3(HQRequestHeader header)
         {
             return Json(ApiResult.ResultWith(HQEnums.ResultOptionType.OK, "自己想写的文字", header));

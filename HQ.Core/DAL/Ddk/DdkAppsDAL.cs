@@ -180,7 +180,38 @@ namespace HQ.DAL
 			}
 			return model;
 		}
-		#endregion  BasicMethod
-	}
+
+        /// <summary>
+        /// 分页获取列表
+        /// </summary>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="recordCount"></param>
+        /// <returns></returns>
+        public DataTable GetList(int pageSize, int pageIndex, out int recordCount)
+        {
+            return this.GetList(pageSize, pageIndex, "", out recordCount);
+        }
+
+        /// <summary>
+        /// 分页获取列表
+        /// </summary>
+        /// <param name="iPageSize"></param>
+        /// <param name="iPageIndex"></param>
+        /// <param name="strWhere"></param>
+        /// <param name="iRecordCount"></param>
+        /// <returns></returns>
+        private DataTable GetList(int pageSize, int pageIndex, string strWhere, out int recordCount)
+        {
+            string sql = "select * FROM HQ_Ddk_Apps where 1=1 ";
+            if (strWhere.Trim() != "")
+            {
+                sql += strWhere;
+            }
+            sql += " ORDER BY AppId DESC";
+            return DbHelperSQL.GetSplitDataTable(sql, pageSize, pageIndex, out recordCount);
+        }
+        #endregion  BasicMethod
+    }
 }
 

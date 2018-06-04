@@ -29,3 +29,26 @@ function _updateSuccessCallback() {
 function showError(errinfo) {
     hot.tip.error(errinfo);
 }
+
+
+function showConfirm(content, callback) {
+    layer.confirm(content, { title: '提醒', icon: 1, btn: ['确定', '取消'] }, function () {
+        callback();
+    });
+}
+
+
+var hqUtils = {
+    showConfirm: function (content, callback) {
+        layer.confirm(content, { title: '提醒', icon: 1, btn: ['确定', '取消'] }, function () {
+            callback();
+        });
+    },
+    newTab: function (url, title) {
+        if (top.newTab) {
+            top.newTab(url, title);
+            return;
+        }
+        window.location.href = url;
+    }
+};

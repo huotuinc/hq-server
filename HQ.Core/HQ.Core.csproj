@@ -48,13 +48,16 @@
     <Compile Include="BLL\AdvertiseBLL.cs" />
     <Compile Include="BLL\AgentsBLL.cs" />
     <Compile Include="BLL\BaseConfigBLL.cs" />
+    <Compile Include="BLL\Ddk\DdkAppProvider.cs" />
     <Compile Include="BLL\Ddk\DdkAppsBLL.cs" />
     <Compile Include="BLL\Ddk\DdkPidPoolBLL.cs" />
     <Compile Include="BLL\Ddk\DdkThemeBLL.cs" />
     <Compile Include="BLL\Gallery\GalleryBLL.cs" />
     <Compile Include="BLL\Gallery\PhotoGroupBLL.cs" />
+    <Compile Include="BLL\GoodsCatsBLL.cs" />
     <Compile Include="BLL\HotKeywordBLL.cs" />
     <Compile Include="BLL\HQGlobalConfigProvider.cs" />
+    <Compile Include="BLL\HQExcelExporter.cs" />
     <Compile Include="BLL\ManagerProvider\AgentManagerProvider.cs" />
     <Compile Include="BLL\ManagerProvider\BackManagerProvider.cs" />
     <Compile Include="BLL\ManagerProvider\ManagerProviderBase.cs" />
@@ -84,6 +87,7 @@
     <Compile Include="BLL\User\UsersBLL.cs" />
     <Compile Include="DAL\CommonPageDAL.cs" />
     <Compile Include="Model\PagingModel.cs" />
+    <Compile Include="Model\GoodsCatsSearchCondition.cs" />
     <Compile Include="Model\Rebate\RebatesSearchCondition.cs" />
     <Compile Include="Model\User\UserBalanceLogsSearchCondition.cs" />
     <Compile Include="Model\User\UsersSearchCondition.cs" />

@@ -77,13 +77,13 @@
                         <ul class="nav nav-second-level">
                             <li><a class="J_menuItem" href="javascript:;">推广订单管理</a>
                             </li>
-                            <li><a class="J_menuItem" href="javascript:;">应用管理</a>
+                            <li><a class="J_menuItem" href="Ddk/DdkAppList.aspx">应用管理</a>
                             </li>
                             <li><a class="J_menuItem" href="javascript:;">广告位管理</a>
                             </li>
-                            <li><a class="J_menuItem" href="javascript:;">分类管理</a>
+                            <li><a class="J_menuItem" href="Goods/GoodsCatList.aspx">商品分类管理</a>
                             </li>
-                            <li><a class="J_menuItem" href="javascript:;">主题管理</a>
+                            <li><a class="J_menuItem" href="Goods/DdkThemeList.aspx">商品主题管理</a>
                             </li>
                         </ul>
                     </li>
