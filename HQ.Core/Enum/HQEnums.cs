@@ -95,6 +95,8 @@ namespace HQ.Core.Enum
             /// 数据不存在403
             /// </summary>
             没有信息 = 403,
+
+            参数有误 = 404,
             /// <summary>
             /// 服务器错误500
             /// </summary>
@@ -114,7 +116,9 @@ namespace HQ.Core.Enum
             /// <summary>
             /// 上传图片失败 1100
             /// </summary>
-            上传图片失败 = 1100
+            上传图片失败 = 1100,
+
+        
         }
     }
 }
