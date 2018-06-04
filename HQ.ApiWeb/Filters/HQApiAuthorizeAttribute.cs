@@ -15,6 +15,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Mvc;
+using static HQ.Core.Enum.HQEnums;
 
 namespace HQ.ApiWeb.Filters
 {
@@ -46,6 +47,7 @@ namespace HQ.ApiWeb.Filters
             string ttid = GetHeaderValue(context, "ttid");//渠道信息
             string userToken = GetHeaderValue(context, "userToken");//用户token
             string userId = GetHeaderValue(context, "userId");//用户ID
+            int platType = GetHeaderIntValue(context, "platType",(int) PlatformTypeOptions.拼多多);
 
             //签名校验
             if (!this.DebugMode)
@@ -119,7 +121,8 @@ namespace HQ.ApiWeb.Filters
                         ttid = ttid,
                         userIdStr = userId,
                         userId = iUserId,
-                        userToken = userToken
+                        userToken = userToken,
+                        platType = platType
                     };
                     break;
                 }

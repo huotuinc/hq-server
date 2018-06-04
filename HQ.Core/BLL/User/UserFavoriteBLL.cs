@@ -1,4 +1,5 @@
 ﻿using HQ.DAL;
+using HQ.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,21 @@ namespace HQ.Core.BLL.User
             }
         }
 
+
+        public bool favorite(long goodsId, int userId, Int16 platType)
+        {
+            UserFavoriteModel model = dal.GetModel(userId, goodsId, platType);
+            if (model == null)
+            {
+                model = new UserFavoriteModel();
+                model.GoodsId = goodsId;
+                model.UserId = userId;
+                model.PlatType = platType;
+                model.CreateTime = DateTime.Now;
+                return dal.Add(model) == 1;
+            }
+            return true;
+        }
 
     }
 }

@@ -26,9 +26,9 @@ namespace HQ.Core.BLL.ShareZone
             }
         }
 
-        public List<ZoneArticleView> listByCategoryId(int categoryId, int pageIndex, int pageSize)
+        public List<ZoneArticleView> listByCategoryId(int platType, int categoryId, int pageIndex, int pageSize)
         {
-            List<ZoneArticleView> list = dal.listByCategoryId(categoryId, pageIndex, pageSize);
+            List<ZoneArticleView> list = dal.listByCategoryId(platType,categoryId, pageIndex, pageSize);
             list.ForEach(item =>
             {
                 //todo 

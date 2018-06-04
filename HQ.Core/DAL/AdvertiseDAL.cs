@@ -242,10 +242,11 @@ namespace HQ.DAL
 
 
 
-        public List<AdView> listForIndex()
+        public List<AdView> listForIndex(int platType)
         {
             List<AdView> list = new List<AdView>();
-            string strsql = "select  adType,LinkPic as pictureUrl,LinkData as linkdata,LinkType as linktype from HQ_Advertise where Status=1 and BeginTime<@BeginTime and EndTime>@EndTime order by SortNum";
+            string strsql = @"select  adType,LinkPic as pictureUrl,LinkData as linkdata,LinkType as linktype from HQ_Advertise 
+                    where platType=" + platType + " and Status=1 and BeginTime<@BeginTime and EndTime>@EndTime order by SortNum";
             var parms = new[] {
                 new SqlParameter("@BeginTime",DateTime.Now),
                 new SqlParameter("@EndTime",DateTime.Now)

@@ -1,5 +1,8 @@
 ﻿using HQ.ApiWeb.Filters;
+using HQ.ApiWeb.Models;
 using HQ.Core.BLL;
+using HQ.Core.Enum;
+using HQ.Core.Model.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,16 +13,15 @@ using System.Web.Mvc;
 namespace HQ.ApiWeb.Controllers
 {
     [HQApiAuthorize(false)]
-    public class GoodsControllerr : Controller
+    public class GoodsControllerr : HQControllerBase
     {
         /// <summary>
         /// 首页推荐
         /// </summary>
         /// <returns></returns>
-        public ActionResult recommend()
+        public ActionResult recommend(HQRequestHeader header)
         {
-            String json = JsonConvert.SerializeObject(AdvertiseBLL.Instance.listForIndex());
-            return Content(json, "application/json");
+            return Json(ApiResult.ResultWith(HQEnums.ResultOptionType.OK, AdvertiseBLL.Instance.listForIndex(header.platType)));
         }
     }
 }

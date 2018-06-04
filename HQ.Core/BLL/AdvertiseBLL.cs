@@ -62,9 +62,9 @@ namespace HQ.Core.BLL
         #endregion  BasicMethod
 
 
-        public List<AdView> listForIndex()
+        public List<AdView> listForIndex(int platType)
         {
-            List<AdView> list = dal.listForIndex();
+            List<AdView> list = dal.listForIndex(platType);
             list.ForEach(item =>
             {
                 //todo
