@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace HQ.Model
 {
 	/// <summary>
@@ -15,7 +17,6 @@ namespace HQ.Model
 		private string _levelname;
 		private string _remark;
 		private DateTime _createtime;
-		private string _upgradecondition;
 		/// <summary>
 		/// 等级id
 		/// </summary>
@@ -59,13 +60,37 @@ namespace HQ.Model
 		/// <summary>
 		/// 升级条件
 		/// </summary>
-		public string UpgradeCondition
-		{
-			set{ _upgradecondition=value;}
-			get{return _upgradecondition;}
-		}
-		#endregion Model
+		public List<UpgradeConditionModel> UpgradeCondition { get; set; }
+        /// <summary>
+		/// 等级类型(0-普通会员,1-代理商,2-运营商,3-军团长,4-分公司) 
+		/// </summary>
+		public int LevelType { get; set; }
+        /// <summary>
+        /// 升级模式(默认0-手动,1-自动)
+        /// </summary>
+        public int LevelModel { get; set; }
+        #endregion Model
 
-	}
+    }
+
+    public class UpgradeConditionModel
+    {
+        /// <summary>
+        /// 关键词
+        /// </summary>
+        public string ConditionKey { get; set;}
+        /// <summary>
+        /// 描述
+        /// </summary>
+        public string ConditionDecs { get; set; }
+        /// <summary>
+        /// 值
+        /// </summary>
+        public int ConditionValue { get; set; }
+        /// <summary>
+        /// 且or或(默认0-且,1-或)
+        /// </summary>
+        public int ConditionType { get; set; }
+    }
 }
 

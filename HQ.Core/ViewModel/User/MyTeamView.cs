@@ -8,9 +8,9 @@ namespace HQ.Core.ViewModel.User
 {
     public class MyTeamView
     {
-        List<MyTeamNumView> nums { get; set; }//推手数量
+        public List<MyTeamNumView> nums { get; set; }//推手数量
 
-        List<MyTeamDevoteView> devote { get; set; }//直接推手贡献
+        public List<MyTeamDevoteView> devote { get; set; }//直接推手贡献
     }
 
     public class MyTeamNumView
@@ -23,9 +23,10 @@ namespace HQ.Core.ViewModel.User
 
     public class MyTeamDevoteView
     {
+        public int userId { get; set; }//贡献用户id
         public string head { get; set; }//用户头像
         public string mobile { get; set; }//手机号
-        public string date { get; set; }//日期
+        public string date { get; set; }//注册日期
         public string inviteCode { get; set; }//邀请码
         public decimal devote { get; set; }//预估贡献钻
     }

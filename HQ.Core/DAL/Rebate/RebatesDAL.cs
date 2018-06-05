@@ -4,6 +4,9 @@ using System.Text;
 using System.Data.SqlClient;
 using HQ.Common.DB;
 using HQ.Core.Model.Rebate;
+using static HQ.Core.Enum.HQEnums;
+using HQ.Core.ViewModel.User;
+using System.Collections.Generic;
 
 namespace HQ.DAL
 {
@@ -282,6 +285,23 @@ namespace HQ.DAL
 
         #endregion  BasicMethod
 
+
+        /// <summary>
+        /// 获取直接推手的贡献情况
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public List<MyTeamDevoteView> listDevote(int userId)
+        {
+            List<MyTeamDevoteView> list = new List<MyTeamDevoteView>();
+            string strsql = String.Format(@"SELECT ContribUserId as userId,sum(FinalMoney) as devote from HQ_Rebates
+                where  UserId={0} and RebateType={1}  GROUP by ContribUserId", userId, (int)RebateTypeOptions.返利);
+            using (IDataReader dr = DbHelperSQL.ExecuteReader(strsql))
+            {
+                list = DbHelperSQL.GetEntityList<MyTeamDevoteView>(dr);
+            }
+            return list;
+        }
     }
 }
 
