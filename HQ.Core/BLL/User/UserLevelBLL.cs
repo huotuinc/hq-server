@@ -69,7 +69,7 @@ namespace HQ.Core.BLL.User
 
         public int GetLevelId(int UserId)
         {
-            UsersBLL.Instance.get
+            UsersBLL.Instance.GetMyMemberNum(UserId);
 
             return -1;
         }

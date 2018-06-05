@@ -62,7 +62,7 @@ namespace HQ.Model
 		/// </summary>
 		public List<UpgradeConditionModel> UpgradeCondition { get; set; }
         /// <summary>
-		/// 等级类型 
+		/// 等级类型(0-普通会员,1-代理商,2-运营商,3-军团长,4-分公司) 
 		/// </summary>
 		public int LevelType { get; set; }
         /// <summary>
