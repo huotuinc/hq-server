@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using HQ.Common.DB;
 using HQ.Model;
 using HQ.Core.Model.User;
+using System.Collections.Generic;
 
 namespace HQ.DAL
 {
@@ -374,6 +375,21 @@ namespace HQ.DAL
         }
         #endregion  BasicMethod
 
+        /// <summary>
+        /// 按ids查询用户
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        public List<UsersModel> listByIds(String ids)
+        {
+            List<UsersModel> list = new List<UsersModel>();
+            string strsql = String.Format(@"SELECT *  from HQ_Users where  UserId in ({0})", ids);
+            using (IDataReader dr = DbHelperSQL.ExecuteReader(strsql))
+            {
+                list = DbHelperSQL.GetEntityList<UsersModel>(dr);
+            }
+            return list;
+        }
     }
 }
 

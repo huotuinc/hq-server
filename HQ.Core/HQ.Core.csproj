@@ -68,6 +68,7 @@
     <Compile Include="BLL\PageBase\AdminPageBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="BLL\Rebate\RebatesBLL.cs" />
     <Compile Include="BLL\ShareZone\ShareZoneArticleBLL.cs" />
     <Compile Include="BLL\ShareZone\ShareZoneCatBLL.cs" />
     <Compile Include="BLL\ShortMessage\SmsProvider\ChuanglanSmsProvider.cs" />
@@ -86,9 +87,11 @@
     <Compile Include="BLL\User\UserOAuthBondsBLL.cs" />
     <Compile Include="BLL\User\UsersBLL.cs" />
     <Compile Include="DAL\CommonPageDAL.cs" />
+    <Compile Include="DAL\Rebate\RebateStatsDailyDAL.cs" />
     <Compile Include="Model\PagingModel.cs" />
     <Compile Include="Model\GoodsCatsSearchCondition.cs" />
     <Compile Include="Model\Rebate\RebatesSearchCondition.cs" />
+    <Compile Include="Model\Rebate\RebateStatsDailyModel.cs" />
     <Compile Include="Model\User\UserBalanceLogsSearchCondition.cs" />
     <Compile Include="Model\User\UsersSearchCondition.cs" />
     <Compile Include="BLL\WxTokensBLL.cs" />

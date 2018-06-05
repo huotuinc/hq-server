@@ -54,7 +54,7 @@ namespace HQ.ApiWeb.Controllers
 
         public ActionResult myTeams(HQRequestHeader header)
         {
-            //MyTeamView view = UserFavoriteBLL.Instance.MyTeams(header.userId);
+            MyTeamView view = UsersBLL.Instance.MyTeams(header.userId);
             return Json(ApiResult.ResultWith(HQEnums.ResultOptionType.OK, null));
         }
     }
