@@ -46,7 +46,7 @@ namespace HQ.PddOpen.Core
         {
             NameValueCollection coll = InitNameValueCollection("pdd.ddk.goods.search", clientId);
             if (!String.IsNullOrEmpty(condition.keyword)) coll.Add("keyword", condition.keyword);
-            if (condition.opt_id.HasValue) coll.Add("opt_id", condition.opt_id.ToString());
+            if (condition.opt_id.HasValue && condition.opt_id > 0) coll.Add("opt_id", condition.opt_id.ToString());
             if (condition.page > 0) coll.Add("page", condition.page.ToString());
             if (condition.page_size >= 10 && condition.page_size <= 100) coll.Add("page_size", condition.page_size.ToString());
             coll.Add("sort_type", ((int)condition.sort_type).ToString());
@@ -247,6 +247,8 @@ namespace HQ.PddOpen.Core
             string result = DoPost(coll);
             return GetResult<GoodsTagCatJsonResult>(result);
         }
+
+
 
         #region 助手方法
         private static NameValueCollection InitNameValueCollection(string type, string clientId)

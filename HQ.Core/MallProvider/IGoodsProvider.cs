@@ -9,12 +9,24 @@ using System.Threading.Tasks;
 namespace HQ.Core.MallProvider
 {
     /// <summary>
-    /// 商品数据提供器
+    /// 统一商品数据提供器
     /// </summary>
     public interface IGoodsProvider
     {
-        HotGoodsModel GetGoodsDetail(long goodsId);
+        /// <summary>
+        /// 获取商品详情
+        /// </summary>
+        /// <param name="goodsId"></param>
+        /// <param name="errMsg"></param>
+        /// <returns></returns>
+        HotGoodsModel GetGoodsDetail(long goodsId, out string errMsg);
 
-        HotPageData<HotGoodsModel> GetGoodsList(HotGoodsSearchCondition condition);
+        /// <summary>
+        /// 分页获取商品列表
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="errMsg"></param>
+        /// <returns></returns>
+        HotPageData<List<HotGoodsModel>> GetGoodsList(HotGoodsSearchCondition condition, out string errMsg);
     }
 }
