@@ -10,5 +10,7 @@ namespace HQ.Core.MallProvider.Model
     {
         public string Keyword { get; set; }
         public int SortType { get; set; }
+        public int pageSize { get; set; }
+        public int page { get; set; }
     }
 }

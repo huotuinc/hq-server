@@ -14,7 +14,7 @@ namespace HQ.Model
 		private int _userid;
 		private long _goodsid;
 		private DateTime _createtime;
-		private int _plattype;
+		private Int16 _plattype;
 		/// <summary>
 		/// 自增id
 		/// </summary>
@@ -50,7 +50,7 @@ namespace HQ.Model
         /// <summary>
         /// 平台类型，对应枚举HQEnums.PlatformTypeOptions
         /// </summary>
-        public int PlatType
+        public Int16 PlatType
 		{
 			set{ _plattype=value;}
 			get{return _plattype;}

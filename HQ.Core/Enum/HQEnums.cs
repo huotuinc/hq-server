@@ -22,6 +22,25 @@ namespace HQ.Core.Enum
         }
 
         /// <summary>
+        /// 返利类型
+        /// </summary>
+        public enum RebateTypeOptions
+        {
+            /// <summary>
+            /// 一级返利
+            /// </summary>
+            返利 = 0,
+            /// <summary>
+            /// 二级返利
+            /// </summary>
+            管理奖 = 1,
+            /// <summary>
+            /// 
+            /// </summary>
+            育成奖 = 2
+        }
+
+        /// <summary>
         /// 后台管理员类型
         /// </summary>
         public enum ManagerRoleOptions
@@ -76,6 +95,8 @@ namespace HQ.Core.Enum
             /// 数据不存在403
             /// </summary>
             没有信息 = 403,
+
+            参数有误 = 404,
             /// <summary>
             /// 服务器错误500
             /// </summary>
@@ -95,7 +116,9 @@ namespace HQ.Core.Enum
             /// <summary>
             /// 上传图片失败 1100
             /// </summary>
-            上传图片失败 = 1100
+            上传图片失败 = 1100,
+
+        
         }
     }
 }

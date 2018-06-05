@@ -3,6 +3,8 @@ using System.Data;
 using System.Text;
 using System.Data.SqlClient;
 using HQ.Common.DB;
+using HQ.Core.ViewModel.Zone;
+using System.Collections.Generic;
 
 namespace HQ.DAL
 {
@@ -154,8 +156,20 @@ namespace HQ.DAL
 			}
 			return model;
 		}
-		#endregion  BasicMethod
-		
-	}
+        #endregion  BasicMethod
+
+
+        public List<ZoneCategoryView> getZoneCatList()
+        {
+            List<ZoneCategoryView> list = new List<ZoneCategoryView>();
+            string strsql = "select CatId as pid,CatName as name from HQ_ShareZone_Cat where Status=1 order by SortNum";
+            using (IDataReader dr = DbHelperSQL.ExecuteReader(strsql))
+            {
+                list = DbHelperSQL.GetEntityList<ZoneCategoryView>(dr);
+            }
+            return list;
+        }
+
+    }
 }
 

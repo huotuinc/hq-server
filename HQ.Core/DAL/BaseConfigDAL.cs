@@ -3,6 +3,9 @@ using System.Data;
 using System.Text;
 using System.Data.SqlClient;
 using HQ.Common.DB;
+using HQ.Model;
+using Newtonsoft.Json;
+using HQ.Common;
 
 namespace HQ.DAL
 {
@@ -36,7 +39,7 @@ namespace HQ.DAL
             parameters[1].Value = model.WxAppSecret;
             parameters[2].Value = model.RebateMode;
             parameters[3].Value = model.RebateSetting;
-            parameters[4].Value = model.SmsSetting;
+            parameters[4].Value = JsonConvert.SerializeObject(model.SmsSetting);
             parameters[5].Value = model.MainDomain;
 
             object obj = DbHelperSQL.GetSingle(strSql.ToString(), parameters);
@@ -75,7 +78,7 @@ namespace HQ.DAL
             parameters[1].Value = model.WxAppSecret;
             parameters[2].Value = model.RebateMode;
             parameters[3].Value = model.RebateSetting;
-            parameters[4].Value = model.SmsSetting;
+            parameters[4].Value = JsonConvert.SerializeObject(model.SmsSetting);
             parameters[5].Value = model.MainDomain;
             parameters[6].Value = model.ConfigId;
 
@@ -114,26 +117,7 @@ namespace HQ.DAL
                 return false;
             }
         }
-        /// <summary>
-        /// 批量删除数据
-        /// </summary>
-        public bool DeleteList(string ConfigIdlist)
-        {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("delete from HQ_BaseConfig ");
-            strSql.Append(" where ConfigId in (" + ConfigIdlist + ")  ");
-            int rows = DbHelperSQL.ExecuteSql(strSql.ToString());
-            if (rows > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-
+       
         /// <summary>
         /// 得到一个对象实体
         /// </summary>
@@ -141,7 +125,7 @@ namespace HQ.DAL
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select  top 1 ConfigId,WxAppId,WxAppSecret,RebateMode,RebateSetting,SmsSetting,MainDomain from HQ_BaseConfig ");
+            strSql.Append("select  top 1 * from HQ_BaseConfig ");
             strSql.Append(" where ConfigId=@ConfigId");
             SqlParameter[] parameters = {
                     new SqlParameter("@ConfigId", SqlDbType.Int,4)
@@ -160,6 +144,16 @@ namespace HQ.DAL
             }
         }
 
+        /// <summary>
+        /// 获取第一条配置
+        /// </summary>
+        /// <returns></returns>
+        public BaseConfigModel GetTopModel()
+        {
+            DataTable dt = DbHelperSQL.Query("select top 1 * from HQ_BaseConfig ").Tables[0];
+            if (dt.Rows.Count == 0) return null;
+            return this.DataRowToModel(dt.Rows[0]);
+        }
 
         /// <summary>
         /// 得到一个对象实体
@@ -189,9 +183,20 @@ namespace HQ.DAL
                 {
                     model.RebateSetting = row["RebateSetting"].ToString();
                 }
-                if (row["SmsSetting"] != null)
+                if (row["SmsSetting"].ToString() != "")
                 {
-                    model.SmsSetting = row["SmsSetting"].ToString();
+                    try
+                    {
+                        model.SmsSetting = JsonConvert.DeserializeObject<SmsSettingInfo>(row["SmsSetting"].ToString());
+                    }
+                    catch (Exception)
+                    {
+                        LogHelper.Error("短信接口参数反序列化出错");
+                    }
+                }
+                if (model.SmsSetting == null)
+                {
+                    model.SmsSetting = new SmsSettingInfo();
                 }
                 if (row["MainDomain"] != null)
                 {
@@ -200,7 +205,7 @@ namespace HQ.DAL
             }
             return model;
         }
-        
+
         #endregion  BasicMethod
 
     }

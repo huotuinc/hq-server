@@ -24,7 +24,7 @@ namespace LM.AdminWeb._3rdParty.Widget.Picture
     /// </summary>
     public partial class PictureHandler : AdminPageBase {
         protected void Page_Load(object sender, EventArgs e) {
-            ResultStatus resultStatus = null;
+            ApiResult resultStatus = null;
             switch (this.action) { 
                 case "modifyGroupName"://修改分组名称
                     resultStatus = this.modifyGroupName();
@@ -53,10 +53,10 @@ namespace LM.AdminWeb._3rdParty.Widget.Picture
             Response.End();
         }
 
-        public ResultStatus GetBase64Image() {
+        public ApiResult GetBase64Image() {
             HttpPostedFile file = Request.Files[0];
             string base64 = encodingbase64_image(file.InputStream);
-            return new ResultStatus(HQEnums.ResultOptionType.OK, base64);
+            return new ApiResult(HQEnums.ResultOptionType.OK, base64);
         }
 
         public string encodingbase64_image(Stream stream) {
@@ -70,21 +70,21 @@ namespace LM.AdminWeb._3rdParty.Widget.Picture
         /// 修改分组名称
         /// </summary>
         /// <returns></returns>
-        public ResultStatus modifyGroupName() {
+        public ApiResult modifyGroupName() {
             try {
                 PhotoGroupModel model = PhotoGroupBLL.Instance.GetModel(this.groupId);
                 if (model != null) {
                     model.PhotoName = this.groupName;
                     if (PhotoGroupBLL.Instance.Update(model))
-                        return new ResultStatus(HQEnums.ResultOptionType.OK);
+                        return new ApiResult(HQEnums.ResultOptionType.OK);
                     else
-                        return new ResultStatus(HQEnums.ResultOptionType.失败,"修改名称失败,请稍后再试...");
+                        return new ApiResult(HQEnums.ResultOptionType.失败,"修改名称失败,请稍后再试...");
                 } else {
-                    return new ResultStatus(HQEnums.ResultOptionType.没有信息,"没有该分组信息");
+                    return new ApiResult(HQEnums.ResultOptionType.没有信息,"没有该分组信息");
                 }
             } catch (Exception ex) {
                 LogHelper.WriteError(string.Format("modifyGroupName error-->Statck:{0},Message:{1}",ex.StackTrace,ex.Message));
-                return new ResultStatus(HQEnums.ResultOptionType.服务器错误, "服务器错误");
+                return new ApiResult(HQEnums.ResultOptionType.服务器错误, "服务器错误");
             }
         }
 
@@ -92,22 +92,22 @@ namespace LM.AdminWeb._3rdParty.Widget.Picture
         /// 删除分组并且把分组下面的图片移动到未分组状态(groupId=0) 
         /// </summary>
         /// <returns></returns>
-        public ResultStatus deleteGroup() {
+        public ApiResult deleteGroup() {
             try {
                 PhotoGroupModel model = PhotoGroupBLL.Instance.GetModel(this.groupId);
                 if (model != null) {
                     if (PhotoGroupBLL.Instance.DeleteList(this.groupId.ToString())) {
                         GalleryBLL.Instance.UpdateCalleryGroupId(this.groupId);
-                        return new ResultStatus(HQEnums.ResultOptionType.OK);
+                        return new ApiResult(HQEnums.ResultOptionType.OK);
                     }else{
-                        return new ResultStatus(HQEnums.ResultOptionType.失败, "删除分组失败");
+                        return new ApiResult(HQEnums.ResultOptionType.失败, "删除分组失败");
                     }
                 } else {
-                    return new ResultStatus(HQEnums.ResultOptionType.没有信息, "没有该分组信息");
+                    return new ApiResult(HQEnums.ResultOptionType.没有信息, "没有该分组信息");
                 }
             } catch (Exception ex) {
                 LogHelper.WriteError(string.Format("deleteGroup error-->Statck:{0},Message:{1}",ex.StackTrace,ex.Message));
-                return new ResultStatus(HQEnums.ResultOptionType.服务器错误, "服务器错误");
+                return new ApiResult(HQEnums.ResultOptionType.服务器错误, "服务器错误");
             }
         }
 
@@ -116,15 +116,15 @@ namespace LM.AdminWeb._3rdParty.Widget.Picture
         /// 特别提示：目前还需要加入权限问题，避免恶意删除别家商户的图片(现还未考虑)
         /// </summary>
         /// <returns></returns>
-        public ResultStatus deletePhotoList() {
+        public ApiResult deletePhotoList() {
             try {
                 if(GalleryBLL.Instance.DeleteCalleryByIds(this.photoIds))
-                    return new ResultStatus(HQEnums.ResultOptionType.OK);
+                    return new ApiResult(HQEnums.ResultOptionType.OK);
                 else
-                    return new ResultStatus(HQEnums.ResultOptionType.失败, "删除图片失败");
+                    return new ApiResult(HQEnums.ResultOptionType.失败, "删除图片失败");
             } catch (Exception ex) {
                 LogHelper.WriteError(string.Format("deleteCalleryList error-->Statck:{0},Message:{1}",ex.StackTrace,ex.Message));
-                return new ResultStatus(HQEnums.ResultOptionType.服务器错误, "服务器错误");
+                return new ApiResult(HQEnums.ResultOptionType.服务器错误, "服务器错误");
             }
         }
 
@@ -132,21 +132,21 @@ namespace LM.AdminWeb._3rdParty.Widget.Picture
         /// 修改图片名称
         /// </summary>
         /// <returns></returns>
-        public ResultStatus modifyPhotoName() {
+        public ApiResult modifyPhotoName() {
             try {
                 GalleryModel model = GalleryBLL.Instance.GetModel(this.photoId);
                 if (model != null) {
                     model.Callery_Name = this.photoName;
                     if(GalleryBLL.Instance.Update(model))
-                        return new ResultStatus(HQEnums.ResultOptionType.OK);
+                        return new ApiResult(HQEnums.ResultOptionType.OK);
                     else
-                        return new ResultStatus(HQEnums.ResultOptionType.失败, "修改图片名称失败");
+                        return new ApiResult(HQEnums.ResultOptionType.失败, "修改图片名称失败");
                 } else {
-                    return new ResultStatus(HQEnums.ResultOptionType.没有信息, "没有找到该图片");
+                    return new ApiResult(HQEnums.ResultOptionType.没有信息, "没有找到该图片");
                 }
             } catch (Exception ex) {
                 LogHelper.WriteError(string.Format("modifyPhotoName error-->Statck:{0},Message:{1}",ex.StackTrace,ex.Message));
-                return new ResultStatus(HQEnums.ResultOptionType.服务器错误, "服务器错误");
+                return new ApiResult(HQEnums.ResultOptionType.服务器错误, "服务器错误");
             }
         }
 
@@ -154,16 +154,16 @@ namespace LM.AdminWeb._3rdParty.Widget.Picture
         /// 修改图片分组
         /// </summary>
         /// <returns></returns>
-        public ResultStatus modifyPhotoGroupId() {
+        public ApiResult modifyPhotoGroupId() {
             try {
                 bool Flag = GalleryBLL.Instance.UpdateGroupIDByIds(this.groupId, this.photoIds);
                 if (Flag)
-                    return new ResultStatus(HQEnums.ResultOptionType.OK);
+                    return new ApiResult(HQEnums.ResultOptionType.OK);
                 else
-                    return new ResultStatus(HQEnums.ResultOptionType.失败, "修改图片分组失败");
+                    return new ApiResult(HQEnums.ResultOptionType.失败, "修改图片分组失败");
             } catch (Exception ex) {
                 LogHelper.WriteError(string.Format("modifyPhotoName error-->Statck:{0},Message:{1}", ex.StackTrace, ex.Message));
-                return new ResultStatus(HQEnums.ResultOptionType.服务器错误, "服务器错误");
+                return new ApiResult(HQEnums.ResultOptionType.服务器错误, "服务器错误");
             }
         }
 
@@ -171,7 +171,7 @@ namespace LM.AdminWeb._3rdParty.Widget.Picture
         /// 批量上传图片
         /// </summary>
         /// <returns></returns>
-        public ResultStatus uploadImage() {
+        public ApiResult uploadImage() {
             try {
                 if (this.imageModel != null && this.imageModel.Count > 0) {
                     for (int i = 0; i < this.imageModel.Count; i++) {
@@ -206,16 +206,16 @@ namespace LM.AdminWeb._3rdParty.Widget.Picture
                                 Photo_FatherID = this.groupId
                             });
                         } else {
-                            return new ResultStatus(HQEnums.ResultOptionType.上传图片失败, "上传图片失败");
+                            return new ApiResult(HQEnums.ResultOptionType.上传图片失败, "上传图片失败");
                         }
                     }
-                    return new ResultStatus(HQEnums.ResultOptionType.OK, "上传图片成功");
+                    return new ApiResult(HQEnums.ResultOptionType.OK, "上传图片成功");
                 } else {
-                    return new ResultStatus(HQEnums.ResultOptionType.缺少请求参数, "请选择图片上传");
+                    return new ApiResult(HQEnums.ResultOptionType.缺少请求参数, "请选择图片上传");
                 }
             } catch (Exception ex) {
                 LogHelper.WriteError(string.Format("uploadImage error-->Statck:{0},Message:{1}",ex.StackTrace,ex.Message));
-                return new ResultStatus(HQEnums.ResultOptionType.服务器错误, "服务器错误");
+                return new ApiResult(HQEnums.ResultOptionType.服务器错误, "服务器错误");
             }
         }
 

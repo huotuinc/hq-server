@@ -1,4 +1,6 @@
-﻿using HQ.Core.Model.User;
+﻿using HQ.Core.BLL.Rebate;
+using HQ.Core.Model.User;
+using HQ.Core.ViewModel.User;
 using HQ.DAL;
 using HQ.Model;
 using System;
@@ -93,5 +95,23 @@ namespace HQ.Core.BLL.User
         }
         #endregion  BasicMethod
 
+
+        /// <summary>
+        /// 我的团队
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public MyTeamView MyTeams(int userId)
+        {
+            MyTeamView view = new MyTeamView();
+            view.devote = RebatesBLL.Instance.listDevote(userId);
+            //view.nums = ;
+            return view;
+        }
+
+        public List<UsersModel> listByIds(String ids)
+        {
+            return dal.listByIds(ids);
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace HQ.AdminWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ApiResult result = null;
+            AjaxResult result = null;
             switch (this.Action)
             {
                 case "login":
@@ -31,34 +31,34 @@ namespace HQ.AdminWeb
             Response.End();
         }
 
-        private ApiResult Login()
+        private AjaxResult Login()
         {
             int roleType = this.GetFormValue("roletype", 0);
             string loginName = this.GetFormValue("loginname", "");
             string passWord = this.GetFormValue("password", "");
             if (loginName == "" || passWord == "")
             {
-                return ApiResult.resultWith(ApiResultEnum.处理失败, "账号名或密码未输入", null);
+                return AjaxResult.resultWith(AjaxResultEnum.处理失败, "账号名或密码未输入", null);
             }
             ManagerProviderBase provider = ManagerProviderFactory.Current.GetInstance((HQEnums.ManagerRoleOptions)roleType);
             int result = provider.DoLogin(loginName, passWord);
             if (result == 0)
             {
-                return ApiResult.resultWith(ApiResultEnum.处理失败, "账号被锁定", null);
+                return AjaxResult.resultWith(AjaxResultEnum.处理失败, "账号被锁定", null);
             }
             else if (result == 1)
             {
-                return ApiResult.resultWith(ApiResultEnum.请求成功);
+                return AjaxResult.resultWith(AjaxResultEnum.请求成功);
             }
-            return ApiResult.resultWith(ApiResultEnum.处理失败, "账号名或密码错误", null);
+            return AjaxResult.resultWith(AjaxResultEnum.处理失败, "账号名或密码错误", null);
         }
 
-        private ApiResult Logout()
+        private AjaxResult Logout()
         {
             ManagerProviderBase provider = ManagerProviderFactory.Current.GetInstance(HQEnums.ManagerRoleOptions.后台管理员);
             provider.DoLoginOut();
 
-            return ApiResult.resultWith(ApiResultEnum.请求成功);
+            return AjaxResult.resultWith(AjaxResultEnum.请求成功);
         }
 
         public string Action

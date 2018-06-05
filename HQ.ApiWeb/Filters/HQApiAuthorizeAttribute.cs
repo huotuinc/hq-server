@@ -15,9 +15,13 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Mvc;
+using static HQ.Core.Enum.HQEnums;
 
 namespace HQ.ApiWeb.Filters
 {
+    /// <summary>
+    /// API签名拦截器
+    /// </summary>
     public class HQApiAuthorizeAttribute : ActionFilterAttribute
     {
         private bool flgCheckLogin = true;
@@ -43,6 +47,7 @@ namespace HQ.ApiWeb.Filters
             string ttid = GetHeaderValue(context, "ttid");//渠道信息
             string userToken = GetHeaderValue(context, "userToken");//用户token
             string userId = GetHeaderValue(context, "userId");//用户ID
+            int platType = GetHeaderIntValue(context, "platType",(int) PlatformTypeOptions.拼多多);
 
             //签名校验
             if (!this.DebugMode)
@@ -103,10 +108,9 @@ namespace HQ.ApiWeb.Filters
             var actionParameters = filterContext.ActionDescriptor.GetParameters();
             foreach (var p in actionParameters)
             {
-                if (p.ParameterType == typeof(HQ.ApiWeb.Models.HQRequestHeader))
+                if (p.ParameterType == typeof(HQRequestHeader))
                 {
-                    int iUserId = 0;
-                    int.TryParse(userId, out iUserId);
+                    int.TryParse(userId, out int iUserId);
                     filterContext.ActionParameters[p.ParameterName] = new HQRequestHeader()
                     {
                         appVersion = appVersion,
@@ -116,7 +120,8 @@ namespace HQ.ApiWeb.Filters
                         ttid = ttid,
                         userIdStr = userId,
                         userId = iUserId,
-                        userToken = userToken
+                        userToken = userToken,
+                        platType = platType
                     };
                     break;
                 }
@@ -126,7 +131,7 @@ namespace HQ.ApiWeb.Filters
         #region 助手方法
         private JsonResult GetJsonResult(HQEnums.ResultOptionType resutType)
         {
-            return new JsonResult() { ContentType = "application/json", Data = new ResultStatus(resutType), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return new JsonResult() { ContentType = "application/json", Data = new ApiResult(resutType), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         /// <summary>

@@ -77,13 +77,13 @@
                         <ul class="nav nav-second-level">
                             <li><a class="J_menuItem" href="javascript:;">推广订单管理</a>
                             </li>
-                            <li><a class="J_menuItem" href="javascript:;">应用管理</a>
+                            <li><a class="J_menuItem" href="Ddk/DdkAppList.aspx">应用管理</a>
                             </li>
                             <li><a class="J_menuItem" href="javascript:;">广告位管理</a>
                             </li>
-                            <li><a class="J_menuItem" href="javascript:;">分类管理</a>
+                            <li><a class="J_menuItem" href="Goods/GoodsCatList.aspx">商品分类管理</a>
                             </li>
-                            <li><a class="J_menuItem" href="javascript:;">主题管理</a>
+                            <li><a class="J_menuItem" href="Goods/DdkThemeList.aspx">商品主题管理</a>
                             </li>
                         </ul>
                     </li>
@@ -92,9 +92,9 @@
                         <a href="#"><i class="fa fa-edit"></i><span class="nav-label">系统管理</span><span
                             class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="javascript:;">基本配置</a>
+                            <li><a class="J_menuItem" href="SystemConfig/BaseConfigEdit.aspx">基本配置</a>
                             </li>
-                            <li><a class="J_menuItem" href="javascript:;">返利配置</a>
+                            <li><a class="J_menuItem" href="SystemConfig/RebateConfig.aspx">返利配置</a>
                             </li>
                             <li><a class="J_menuItem" href="SystemConfig/ManagerList.aspx">操作员管理</a>
                             </li>

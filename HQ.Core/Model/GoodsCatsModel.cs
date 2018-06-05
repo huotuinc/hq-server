@@ -8,7 +8,9 @@ namespace HQ.Model
     public partial class GoodsCatsModel
     {
         public GoodsCatsModel()
-        { }
+        {
+            this.Status = 1;
+        }
         #region Model
         private int _id;
         private int _plattype;
@@ -52,7 +54,7 @@ namespace HQ.Model
         /// <summary>
         /// 层次
         /// </summary>
-        public int Level
+        public int LevelNo
         {
             set { _level = value; }
             get { return _level; }
@@ -73,6 +75,10 @@ namespace HQ.Model
             set { _sortnum = value; }
             get { return _sortnum; }
         }
+        /// <summary>
+        /// 启用状态
+        /// </summary>
+        public int Status { get; set; }
         #endregion Model
 
     }

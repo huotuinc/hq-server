@@ -3,6 +3,11 @@ using System.Data;
 using System.Text;
 using System.Data.SqlClient;
 using HQ.Common.DB;
+using HQ.Model;
+using System.Collections.Generic;
+using Micro.Mall.Core.Model;
+using Micro.Mall.Core.DAL;
+using HQ.Common;
 
 namespace HQ.DAL
 {
@@ -160,14 +165,69 @@ namespace HQ.DAL
 				}
 				if(row["PlatType"]!=null && row["PlatType"].ToString()!="")
 				{
-					model.PlatType=int.Parse(row["PlatType"].ToString());
+					model.PlatType=Int16.Parse(row["PlatType"].ToString());
 				}
 			}
 			return model;
 		}
 
-		#endregion  BasicMethod
-		
-	}
+        #endregion  BasicMethod
+
+
+        public HQ.Model.UserFavoriteModel GetModel(int UserId, long GoodsId, Int16 platType)
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select  top 1 * from HQ_User_Favorite  where UserId=@UserId and GoodsId=@GoodsId and PlatType=@PlatType");
+            var parameters = new[]{
+                    new SqlParameter("@UserId",UserId),
+                    new SqlParameter("@GoodsId",GoodsId),
+                    new SqlParameter("@PlatType",platType)
+            };
+            UserFavoriteModel model = null;
+            using (IDataReader dr = DbHelperSQL.ExecuteReader(strSql.ToString()))
+            {
+                model = DbHelperSQL.GetEntity<UserFavoriteModel>(dr);
+            }
+            return model;
+        }
+
+
+        public List<UserFavoriteModel> list(int userId, int platType, int pageIndex, int pageSize)
+        {
+            String sqlWhere = "UserId="+userId+" and PlatType="+ platType;
+            //初始化分页
+            PagingModel paging = new PagingModel()
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                RecordCount = 0,
+                PageCount = 0
+            };
+            PageQueryModel pageQuery = new PageQueryModel()
+            {
+                TableName = "HQ_User_Favorite with(nolock)",
+                Fields = "*",
+                OrderField = "CreateTime desc",
+                SqlWhere = sqlWhere
+            };
+
+            List<UserFavoriteModel> list = new CommonPageDAL().GetPageData<UserFavoriteModel>(ConfigHelper.MssqlDBConnectionString_Sync, pageQuery, paging);
+            return list;
+
+        }
+
+        public bool delete(string ids, int userId, Int16 platType)
+        {
+            string strsql = " delete from HQ_User_Favorite where UserId=@UserId and PlatType=@PlatType and GoodsId in (@ids) ";
+            var parms = new[]{
+                    new SqlParameter("@UserId",userId),
+                    new SqlParameter("@PlatType",platType),
+                       new SqlParameter("@ids",ids)
+            };
+            return DbHelperSQL.ExecuteSql(strsql, parms) > 0;
+
+        }
+    }
 }
 

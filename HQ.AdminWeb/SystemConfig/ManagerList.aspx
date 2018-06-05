@@ -134,13 +134,6 @@
             },
             searchAll: function () {
                 window.location.href = listUrl;
-            },
-            newTab: function (url, title) {
-                if (top.newTab) {
-                    top.newTab(url, title);
-                    return;
-                }
-                window.location.href = url;
             }
         }
     </script>

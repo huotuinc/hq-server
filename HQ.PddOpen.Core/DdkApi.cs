@@ -96,10 +96,29 @@ namespace HQ.PddOpen.Core
             return GetResult<PromotionIdJsonResult>(result);
         }
 
-        public static object GeneratePromotionId(string clientId, string clientSecret)
+        /// <summary>
+        /// 创建多多进宝推广位（pdd.ddk.goods.pid.generate）
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
+        /// <param name="number"></param>
+        /// <param name="nameList"></param>
+        /// <returns></returns>
+        public static PromotionIdGenerateJsonResult GeneratePromotionId(string clientId, string clientSecret, int number, List<string> nameList = null)
         {
-            //todo pdd.ddk.goods.pid.generate（创建多多进宝推广位）
-            return null;
+            NameValueCollection coll = InitNameValueCollection("pdd.ddk.goods.pid.generate", clientId);
+            coll.Add("number", number.ToString());
+            if (nameList != null && nameList.Count > 0 && nameList.Count != number)
+            {
+                throw new Exception("名称和生成的数量必须一致");
+            }
+            else
+            {
+                coll.Add("p_id_name_list", JsonConvert.SerializeObject(nameList));
+            }
+            coll.Add("sign", BuildSign(clientSecret, coll));
+            string result = DoPost(coll);
+            return GetResult<PromotionIdGenerateJsonResult>(result);
         }
 
         /// <summary>
@@ -120,16 +139,34 @@ namespace HQ.PddOpen.Core
             coll.Add("goods_id_list", "[" + goodsId + "]");
             coll.Add("generate_short_url", isShortUrl.ToString().ToLower());
             coll.Add("multi_group", isMultiGroup.ToString().ToLower());
-            if(!string.IsNullOrEmpty(customParameters)) coll.Add("custom_parameters", customParameters);
+            if (!string.IsNullOrEmpty(customParameters)) coll.Add("custom_parameters", customParameters);
             coll.Add("sign", BuildSign(clientSecret, coll));
             string result = DoPost(coll);
             return GetResult<GoodsPromotionUrlJsonResult>(result);
         }
 
-        public static object GetIncrementOrderList(string clientId, string clientSecret)
+        /// <summary>
+        /// 最后更新时间段增量同步推广订单信息（pdd.ddk.order.list.increment.get）
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
+        /// <param name="startUpdateTime">最近90天内多多进宝商品订单更新时间--查询时间开始</param>
+        /// <param name="endUpdateTime">最近90天内多多进宝商品订单更新时间--查询时间结束</param>
+        /// <param name="pId">推广位ID</param>
+        /// <param name="pageSize">返回的每页结果订单数，默认为100，范围为10到100，建议使用40~50，可以提高成功率，减少超时数量。</param>
+        /// <param name="page">第几页，从1到10000，默认1，注：使用最后更新时间范围增量同步时，必须采用倒序的分页方式（从最后一页往回取）才能避免漏单问题</param>
+        /// <returns></returns>
+        public static IncrementOrderJsonResult GetIncrementOrderList(string clientId, string clientSecret, DateTime startUpdateTime, DateTime endUpdateTime, string pId, int pageSize, int page)
         {
-            //todo pdd.ddk.order.list.increment.get（最后更新时间段增量同步推广订单信息）
-            return null;
+            NameValueCollection coll = InitNameValueCollection("pdd.ddk.goods.promotion.url.generate", clientId);
+            coll.Add("start_update_time", ConvertHepler.ConvertDateTimeInt(startUpdateTime).ToString());
+            coll.Add("end_update_time", ConvertHepler.ConvertDateTimeInt(endUpdateTime).ToString());
+            if (!string.IsNullOrEmpty(pId)) coll.Add("p_id", pId);
+            coll.Add("page_size", pageSize.ToString());
+            coll.Add("page", page.ToString());
+            coll.Add("sign", BuildSign(clientSecret, coll));
+            string result = DoPost(coll);
+            return GetResult<IncrementOrderJsonResult>(result);
         }
 
         public static object GetCheckInPromotionBill(string clientId, string clientSecret)
@@ -202,9 +239,10 @@ namespace HQ.PddOpen.Core
         /// <param name="clientId"></param>
         /// <param name="clientSecret"></param>
         /// <returns></returns>
-        public static GoodsTagCatJsonResult GetGoodsTagCatList(string clientId, string clientSecret)
+        public static GoodsTagCatJsonResult GetGoodsTagCatList(string clientId, string clientSecret, int parentId = 0)
         {
-            NameValueCollection coll = InitNameValueCollection("pdd.ddk.theme.goods.search", clientId);
+            NameValueCollection coll = InitNameValueCollection("pdd.goods.opt.get", clientId);
+            coll.Add("parent_opt_id", parentId.ToString());
             coll.Add("sign", BuildSign(clientSecret, coll));
             string result = DoPost(coll);
             return GetResult<GoodsTagCatJsonResult>(result);
@@ -217,13 +255,8 @@ namespace HQ.PddOpen.Core
             {
                 { "type", type },
                 { "client_id", clientId },
-                { "timestamp", GetTimeStamp() }
+                { "timestamp", StringHelper.GetTimeStamp() }
             };
-        }
-
-        private static string GetTimeStamp()
-        {
-            return StringHelper.GetTimeStamp();
         }
 
         private static string DoPost(NameValueCollection collection)

@@ -45,12 +45,12 @@ namespace LM.Web.Controllers
                 if (obj != null)
                     json = JsonConvert.SerializeObject(obj);
                 else
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.没有信息));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.没有信息));
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(string.Format("get error  --->StackTrace:{0},error:{1}", ex.StackTrace, ex.Message));
-                json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.服务器错误));
+                json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.服务器错误));
             }
             if (!string.IsNullOrEmpty(callback))
                 resultJson = callback + "(" + json + ")";
@@ -82,14 +82,14 @@ namespace LM.Web.Controllers
                     FatherID = fileid
                 });
                 if (count > 0)
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.OK, extenName));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.OK, extenName));
                 else
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.失败));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.失败));
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(string.Format("get error  --->StackTrace:{0},error:{1}", ex.StackTrace, ex.Message));
-                json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.服务器错误));
+                json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.服务器错误));
             }
             if (!string.IsNullOrEmpty(callback))
                 resultJson = callback + "(" + json + ")";
@@ -114,14 +114,14 @@ namespace LM.Web.Controllers
             {
                 List<ResultMallPhotoGroup> list = PhotoGroupBLL.Instance.GetPhotoGroupList(customerId);
                 if (list != null)
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.OK, list));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.OK, list));
                 else
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.没有信息));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.没有信息));
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(string.Format("get GetGroupList  --->StackTrace:{0},error:{1}", ex.StackTrace, ex.Message));
-                json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.服务器错误));
+                json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.服务器错误));
             }
             if (!string.IsNullOrEmpty(callback))
                 resultJson = callback + "(" + json + ")";
@@ -150,12 +150,12 @@ namespace LM.Web.Controllers
                 if (list != null)
                     json = JsonConvert.SerializeObject(list);
                 else
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.没有信息));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.没有信息));
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(string.Format("get GetGroupList  --->StackTrace:{0},error:{1}", ex.StackTrace, ex.Message));
-                json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.服务器错误));
+                json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.服务器错误));
             }
             if (!string.IsNullOrEmpty(callback))
                 resultJson = callback + "(" + json + ")";
@@ -235,19 +235,19 @@ namespace LM.Web.Controllers
                         Photo_FatherID = groupId
                     });
                     if (count > 0)
-                        json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.OK, path));
+                        json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.OK, path));
                     else
-                        json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.上传图片失败));
+                        json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.上传图片失败));
                 }
                 else
                 {
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.缺少请求参数, "图片格式错误,请提取jpeg,gif,png,webp,jpg格式的图片"));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.缺少请求参数, "图片格式错误,请提取jpeg,gif,png,webp,jpg格式的图片"));
                 }
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(string.Format("GetPhotoByUrl error-->Statck:{0},Message:{1}", ex.StackTrace, ex.Message));
-                json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.服务器错误));
+                json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.服务器错误));
             }
             finally
             {
@@ -285,19 +285,19 @@ namespace LM.Web.Controllers
                 {
                     model.PhotoName = groupName;
                     if (PhotoGroupBLL.Instance.Update(model))
-                        json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.OK));
+                        json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.OK));
                     else
-                        json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.失败, "修改名称失败,请稍后再试..."));
+                        json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.失败, "修改名称失败,请稍后再试..."));
                 }
                 else
                 {
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.没有信息, "没有该分组信息"));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.没有信息, "没有该分组信息"));
                 }
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(string.Format("modifyGroupName error-->Statck:{0},Message:{1}", ex.StackTrace, ex.Message));
-                json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.服务器错误));
+                json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.服务器错误));
             }
             if (!string.IsNullOrEmpty(callback))
                 resultJson = callback + "(" + json + ")";
@@ -325,22 +325,22 @@ namespace LM.Web.Controllers
                     if (PhotoGroupBLL.Instance.DeleteList(groupId.ToString()))
                     {
                         GalleryBLL.Instance.UpdateCalleryGroupId(groupId);
-                        json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.OK));
+                        json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.OK));
                     }
                     else
                     {
-                        json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.失败, "删除分组失败"));
+                        json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.失败, "删除分组失败"));
                     }
                 }
                 else
                 {
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.没有信息, "没有该分组信息"));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.没有信息, "没有该分组信息"));
                 }
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(string.Format("deleteGroup error-->Statck:{0},Message:{1}", ex.StackTrace, ex.Message));
-                json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.服务器错误));
+                json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.服务器错误));
             }
             if (!string.IsNullOrEmpty(callback))
                 resultJson = callback + "(" + json + ")";
@@ -363,14 +363,14 @@ namespace LM.Web.Controllers
             try
             {
                 if (GalleryBLL.Instance.DeleteCalleryByIds(photoIds))
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.OK));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.OK));
                 else
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.失败, "删除图片失败"));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.失败, "删除图片失败"));
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(string.Format("deleteCalleryList error-->Statck:{0},Message:{1}", ex.StackTrace, ex.Message));
-                json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.服务器错误));
+                json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.服务器错误));
             }
             if (!string.IsNullOrEmpty(callback))
                 resultJson = callback + "(" + json + ")";
@@ -398,19 +398,19 @@ namespace LM.Web.Controllers
                 {
                     model.Callery_Name = photoName;
                     if (GalleryBLL.Instance.Update(model))
-                        json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.OK));
+                        json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.OK));
                     else
-                        json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.失败, "修改图片名称失败"));
+                        json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.失败, "修改图片名称失败"));
                 }
                 else
                 {
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.没有信息, "没有找到该图片"));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.没有信息, "没有找到该图片"));
                 }
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(string.Format("modifyPhotoName error-->Statck:{0},Message:{1}", ex.StackTrace, ex.Message));
-                json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.服务器错误));
+                json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.服务器错误));
             }
             if (!string.IsNullOrEmpty(callback))
                 resultJson = callback + "(" + json + ")";
@@ -435,14 +435,14 @@ namespace LM.Web.Controllers
             {
                 bool Flag = GalleryBLL.Instance.UpdateGroupIDByIds(groupId, photoIds);
                 if (Flag)
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.OK));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.OK));
                 else
-                    json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.失败, "修改图片分组失败"));
+                    json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.失败, "修改图片分组失败"));
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(string.Format("modifyPhotoName error-->Statck:{0},Message:{1}", ex.StackTrace, ex.Message));
-                json = JsonConvert.SerializeObject(new ResultStatus(HQEnums.ResultOptionType.服务器错误));
+                json = JsonConvert.SerializeObject(new ApiResult(HQEnums.ResultOptionType.服务器错误));
             }
             if (!string.IsNullOrEmpty(callback))
                 resultJson = callback + "(" + json + ")";

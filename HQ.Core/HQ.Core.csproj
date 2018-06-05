@@ -48,13 +48,16 @@
     <Compile Include="BLL\AdvertiseBLL.cs" />
     <Compile Include="BLL\AgentsBLL.cs" />
     <Compile Include="BLL\BaseConfigBLL.cs" />
+    <Compile Include="BLL\Ddk\DdkAppProvider.cs" />
     <Compile Include="BLL\Ddk\DdkAppsBLL.cs" />
     <Compile Include="BLL\Ddk\DdkPidPoolBLL.cs" />
     <Compile Include="BLL\Ddk\DdkThemeBLL.cs" />
     <Compile Include="BLL\Gallery\GalleryBLL.cs" />
     <Compile Include="BLL\Gallery\PhotoGroupBLL.cs" />
+    <Compile Include="BLL\GoodsCatsBLL.cs" />
     <Compile Include="BLL\HotKeywordBLL.cs" />
     <Compile Include="BLL\HQGlobalConfigProvider.cs" />
+    <Compile Include="BLL\HQExcelExporter.cs" />
     <Compile Include="BLL\ManagerProvider\AgentManagerProvider.cs" />
     <Compile Include="BLL\ManagerProvider\BackManagerProvider.cs" />
     <Compile Include="BLL\ManagerProvider\ManagerProviderBase.cs" />
@@ -65,6 +68,7 @@
     <Compile Include="BLL\PageBase\AdminPageBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="BLL\Rebate\RebatesBLL.cs" />
     <Compile Include="BLL\ShareZone\ShareZoneArticleBLL.cs" />
     <Compile Include="BLL\ShareZone\ShareZoneCatBLL.cs" />
     <Compile Include="BLL\ShortMessage\SmsProvider\ChuanglanSmsProvider.cs" />
@@ -82,7 +86,12 @@
     <Compile Include="BLL\User\UserLogsBLL.cs" />
     <Compile Include="BLL\User\UserOAuthBondsBLL.cs" />
     <Compile Include="BLL\User\UsersBLL.cs" />
+    <Compile Include="DAL\CommonPageDAL.cs" />
+    <Compile Include="DAL\Rebate\RebateStatsDailyDAL.cs" />
+    <Compile Include="Model\PagingModel.cs" />
+    <Compile Include="Model\GoodsCatsSearchCondition.cs" />
     <Compile Include="Model\Rebate\RebatesSearchCondition.cs" />
+    <Compile Include="Model\Rebate\RebateStatsDailyModel.cs" />
     <Compile Include="Model\User\UserBalanceLogsSearchCondition.cs" />
     <Compile Include="Model\User\UsersSearchCondition.cs" />
     <Compile Include="BLL\WxTokensBLL.cs" />
@@ -150,13 +159,17 @@
     <Compile Include="Model\User\UserOAuthBondsModel.cs" />
     <Compile Include="Model\WxTokensModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\ApiResult.cs" />
+    <Compile Include="ViewModel\AjaxResult.cs" />
     <Compile Include="Model\ISearchCondition.cs" />
-    <Compile Include="ViewModel\ResultStatus.cs" />
+    <Compile Include="ViewModel\ApiResult.cs" />
     <Compile Include="BLL\HQSearchContext.cs" />
     <Compile Include="Model\SystemConfig\ManagerSearchCondition.cs" />
     <Compile Include="Model\ShortMessage\TemplateImpl\ShortMessageBase.cs" />
     <Compile Include="Model\ShortMessage\TemplateImpl\VerifyCodeShortMessage.cs" />
+    <Compile Include="ViewModel\Goods\AdView.cs" />
+    <Compile Include="ViewModel\User\MyTeamView.cs" />
+    <Compile Include="ViewModel\Zone\ZoneArticleView.cs" />
+    <Compile Include="ViewModel\Zone\ZoneCategoryView.cs" />
     <Compile Include="ViewModel\SystemConfig\ManagerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
