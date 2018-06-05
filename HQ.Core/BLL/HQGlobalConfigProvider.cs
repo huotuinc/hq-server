@@ -22,7 +22,7 @@ namespace HQ.Core.BLL
         /// <returns></returns>
         public static BaseConfigModel GetBaseConfig()
         {
-            return null;
+            return BaseConfigBLL.Instance.GetModelCached();
         }
 
         /// <summary>

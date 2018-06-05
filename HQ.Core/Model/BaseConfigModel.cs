@@ -15,7 +15,7 @@ namespace HQ.Model
         private string _wxappsecret;
         private int _rebatemode;
         private string _rebatesetting;
-        private string _smssetting;
+        private SmsSettingInfo _smssetting;
         private string _maindomain;
         /// <summary>
         /// 自增id
@@ -60,7 +60,7 @@ namespace HQ.Model
         /// <summary>
         /// 短信设置信息
         /// </summary>
-        public string SmsSetting
+        public SmsSettingInfo SmsSetting
         {
             set { _smssetting = value; }
             get { return _smssetting; }
@@ -75,6 +75,18 @@ namespace HQ.Model
         }
         #endregion Model
 
+    }
+
+    /// <summary>
+    /// 短信接口参数
+    /// </summary>
+    [Serializable]
+    public class SmsSettingInfo
+    {
+        public string SerialNo { get; set; }
+        public string Password { get; set; }
+        public string Provider { get; set; }
+        public string ServiceUrl { get; set; }
     }
 }
 

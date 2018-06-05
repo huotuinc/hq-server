@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HQ.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -135,10 +136,10 @@ namespace HQ.Core.BLL.ShortMessage
         public bool SendSms(string mobile, string content, out string msg)
         {
             msg = "";
-            //todo 短信账号信息
-            string serverUrl = "";
-            string account = "";
-            string pswd = "";
+            SmsSettingInfo smsSetting = HQGlobalConfigProvider.GetBaseConfig().SmsSetting;
+            string serverUrl = smsSetting.ServiceUrl;
+            string account = smsSetting.SerialNo;
+            string pswd = smsSetting.Password;
 
             string postJsonTpl = "\"account\":\"{0}\",\"password\":\"{1}\",\"phone\":\"{2}\",\"report\":\"false\",\"msg\":\"{3}\"";
             string jsonBody = string.Format(postJsonTpl, account, pswd, mobile, content.Replace("\"", ""));

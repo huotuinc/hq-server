@@ -255,9 +255,11 @@
     <Content Include="Goods\GoodsCatList.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="SystemConfig\BaseConfigEdit.aspx" />
     <Content Include="SystemConfig\ManagerEdit.aspx" />
     <Content Include="SystemConfig\ManagerList.aspx" />
     <Content Include="SystemConfig\ModifyPassword.aspx" />
+    <Content Include="SystemConfig\RebateConfig.aspx" />
     <Content Include="SystemConfig\ShortMessageTemplateList.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -330,6 +332,13 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemConfig\BaseConfigEdit.aspx.cs">
+      <DependentUpon>BaseConfigEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemConfig\BaseConfigEdit.aspx.designer.cs">
+      <DependentUpon>BaseConfigEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SystemConfig\ManagerEdit.aspx.cs">
       <DependentUpon>ManagerEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -350,6 +359,13 @@
     </Compile>
     <Compile Include="SystemConfig\ModifyPassword.aspx.designer.cs">
       <DependentUpon>ModifyPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemConfig\RebateConfig.aspx.cs">
+      <DependentUpon>RebateConfig.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemConfig\RebateConfig.aspx.designer.cs">
+      <DependentUpon>RebateConfig.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemConfig\ShortMessageTemplateList.aspx.cs">
       <DependentUpon>ShortMessageTemplateList.aspx</DependentUpon>

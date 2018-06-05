@@ -155,5 +155,12 @@ namespace HQ.WinTester
                 return "";
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string temp = "http://thirdwx.qlogo.cn/mmopen/vi_32/aJ6kSF2WFSoiaRw69jF1Z2icdUibVuGSNKlZldfNmkLz22fjY7L5iaxEc3YBzNpnMEAPd1Viab33hKWjNKJUjyLCGoA/132";
+            string headImg = Regex.Replace(temp, @"/\d+$", "/0", RegexOptions.Compiled);
+            MessageBox.Show(temp + "\r\n\r\n" + headImg);
+        }
     }
 }
