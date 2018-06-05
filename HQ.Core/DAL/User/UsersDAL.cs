@@ -372,6 +372,21 @@ namespace HQ.DAL
             sql += " ORDER BY UserId DESC";
             return DbHelperSQL.GetSplitDataTable(sql, pageSize, pageIndex, out recordCount);
         }
+
+        /// <summary>
+        /// 获取我当前的下线人数
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <returns></returns>
+        public int GetMyMemberNum(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongOneId={0}", UserId);
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+
+
         #endregion  BasicMethod
 
     }

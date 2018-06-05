@@ -81,6 +81,16 @@ namespace HQ.Core.BLL.User
         {
             return dal.GetList(pageSize, pageIndex, out recordCount, condition);
         }
+
+        /// <summary>
+        /// 获取我当前的下线人数
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <returns></returns>
+        public int GetMyMemberNum(int UserId)
+        {
+            return dal.GetMyMemberNum(UserId);
+        }
         #endregion  BasicMethod
 
     }
