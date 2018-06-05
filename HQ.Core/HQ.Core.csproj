@@ -125,7 +125,6 @@
     <Compile Include="DAL\User\UserOAuthBondsDAL.cs" />
     <Compile Include="DAL\WxTokensDAL.cs" />
     <Compile Include="Enum\HQEnums.cs" />
-    <Compile Include="GoodsCatsBLL.cs" />
     <Compile Include="BLL\MallProvider\GoodsProviderFactory.cs" />
     <Compile Include="Model\Goods\HotGoodsModel.cs" />
     <Compile Include="BLL\MallProvider\IGoodsProvider.cs" />
