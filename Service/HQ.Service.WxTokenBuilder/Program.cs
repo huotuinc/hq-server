@@ -17,7 +17,7 @@ namespace HQ.Service.WxTokenBuilder
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new TokenBuildService()
             };
             ServiceBase.Run(ServicesToRun);
         }

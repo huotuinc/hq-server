@@ -37,6 +37,8 @@ namespace HQ.Model
             set { _buildtime = value; }
             get { return _buildtime; }
         }
+
+        public int TypeKey { get; set; }
         #endregion Model
 
     }

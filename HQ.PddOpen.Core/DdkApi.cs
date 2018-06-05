@@ -248,7 +248,21 @@ namespace HQ.PddOpen.Core
             return GetResult<GoodsTagCatJsonResult>(result);
         }
 
-
+        /// <summary>
+        /// 商品标准类目接口（pdd.goods.cats.get）
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
+        /// <param name="parentCatId"></param>
+        /// <returns></returns>
+        public static GoodsCatJsonResult GetGoodsCatList(string clientId, string clientSecret, int parentCatId = 0)
+        {
+            NameValueCollection coll = InitNameValueCollection("pdd.goods.cats.get", clientId);
+            coll.Add("parent_cat_id", parentCatId.ToString());
+            coll.Add("sign", BuildSign(clientSecret, coll));
+            string result = DoPost(coll);
+            return GetResult<GoodsCatJsonResult>(result);
+        }
 
         #region 助手方法
         private static NameValueCollection InitNameValueCollection(string type, string clientId)
