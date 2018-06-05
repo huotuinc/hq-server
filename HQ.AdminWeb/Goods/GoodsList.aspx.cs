@@ -1,9 +1,9 @@
 ﻿using HQ.Common;
 using HQ.Core.BLL;
+using HQ.Core.BLL.MallProvider;
 using HQ.Core.BLL.PageBase;
 using HQ.Core.Enum;
-using HQ.Core.MallProvider;
-using HQ.Core.MallProvider.Model;
+using HQ.Core.Model;
 using HQ.Model;
 using System;
 using System.Collections.Generic;

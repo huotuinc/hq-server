@@ -1,8 +1,8 @@
 ﻿using HQ.Common;
 using HQ.Core.BLL;
+using HQ.Core.BLL.MallProvider;
 using HQ.Core.Enum;
-using HQ.Core.MallProvider;
-using HQ.Core.MallProvider.Model;
+using HQ.Core.Model;
 using HQ.Model;
 using HQ.PddOpen.Core;
 using HQ.PddOpen.Core.Entities;

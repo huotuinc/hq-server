@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using HQ.Common;
 using HQ.Common.PageData;
 using HQ.Core.BLL.Ddk;
-using HQ.Core.MallProvider.Model;
+using HQ.Core.Model;
 using HQ.Model;
 using HQ.PddOpen.Core;
 using HQ.PddOpen.Core.Entities;
 
-namespace HQ.Core.MallProvider.Pinduoduo
+namespace HQ.Core.BLL.MallProvider.Pinduoduo
 {
     /// <summary>
     /// 拼多多商品数据提供器

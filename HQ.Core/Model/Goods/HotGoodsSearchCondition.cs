@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HQ.Core.MallProvider.Model
+namespace HQ.Core.Model
 {
     /// <summary>
     /// 商品搜索条件

@@ -126,12 +126,11 @@
     <Compile Include="DAL\WxTokensDAL.cs" />
     <Compile Include="Enum\HQEnums.cs" />
     <Compile Include="GoodsCatsBLL.cs" />
-    <Compile Include="MallProvider\GoodsProviderFactory.cs" />
-    <Compile Include="MallProvider\Model\HotGoodsModel.cs" />
-    <Compile Include="MallProvider\IGoodsProvider.cs" />
-    <Compile Include="MallProvider\Model\HotGoodsSearchCondition.cs" />
-    <Compile Include="MallProvider\Pinduoduo\DdkApiWrapper.cs" />
-    <Compile Include="MallProvider\Pinduoduo\PttGoodsProvider.cs" />
+    <Compile Include="BLL\MallProvider\GoodsProviderFactory.cs" />
+    <Compile Include="Model\Goods\HotGoodsModel.cs" />
+    <Compile Include="BLL\MallProvider\IGoodsProvider.cs" />
+    <Compile Include="Model\Goods\HotGoodsSearchCondition.cs" />
+    <Compile Include="BLL\MallProvider\Pinduoduo\PttGoodsProvider.cs" />
     <Compile Include="Model\AdvertiseModel.cs" />
     <Compile Include="Model\AgentsModel.cs" />
     <Compile Include="Model\BaseConfigModel.cs" />
@@ -174,7 +173,7 @@
     <Compile Include="ViewModel\SystemConfig\ManagerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MallProvider\Jingdong\" />
+    <Folder Include="BLL\MallProvider\Jingdong\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HQ.Common\HQ.Common.csproj">

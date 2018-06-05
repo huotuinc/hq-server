@@ -1,12 +1,12 @@
 ﻿using HQ.Common;
-using HQ.Core.MallProvider.Model;
+using HQ.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HQ.Core.MallProvider
+namespace HQ.Core.BLL.MallProvider
 {
     /// <summary>
     /// 统一商品数据提供器
