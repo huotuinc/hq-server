@@ -69,6 +69,8 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BLL\Rebate\RebatesBLL.cs" />
+    <Compile Include="BLL\Rebate\RebateStatsDailyBLL.cs" />
+    <Compile Include="BLL\Rebate\RebateStatsMonthlyBLL.cs" />
     <Compile Include="BLL\ShareZone\ShareZoneArticleBLL.cs" />
     <Compile Include="BLL\ShareZone\ShareZoneCatBLL.cs" />
     <Compile Include="BLL\ShortMessage\SmsProvider\ChuanglanSmsProvider.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="BLL\User\UsersBLL.cs" />
     <Compile Include="DAL\CommonPageDAL.cs" />
     <Compile Include="DAL\Rebate\RebateStatsDailyDAL.cs" />
+    <Compile Include="DAL\Rebate\RebateStatsMonthlyDAL.cs" />
     <Compile Include="Model\PagingModel.cs" />
     <Compile Include="Model\GoodsCatsSearchCondition.cs" />
     <Compile Include="Model\Rebate\RebatesSearchCondition.cs" />
@@ -167,6 +170,7 @@
     <Compile Include="Model\ShortMessage\TemplateImpl\ShortMessageBase.cs" />
     <Compile Include="Model\ShortMessage\TemplateImpl\VerifyCodeShortMessage.cs" />
     <Compile Include="ViewModel\Goods\AdView.cs" />
+    <Compile Include="ViewModel\User\MyProfitView.cs" />
     <Compile Include="ViewModel\User\MyTeamView.cs" />
     <Compile Include="ViewModel\Zone\ZoneArticleView.cs" />
     <Compile Include="ViewModel\Zone\ZoneCategoryView.cs" />

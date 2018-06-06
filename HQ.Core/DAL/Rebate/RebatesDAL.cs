@@ -302,6 +302,41 @@ namespace HQ.DAL
             }
             return list;
         }
+
+
+        public List<MyTeamDevoteView> countDevote(int userId, string contribUserIds)
+        {
+            List<MyTeamDevoteView> list = new List<MyTeamDevoteView>();
+            string strsql = String.Format(@"SELECT ContribUserId as userId,sum(FinalMoney) as devote from HQ_Rebates
+                where  UserId={0} and ContribUserId in ({1})  GROUP by ContribUserId", userId, contribUserIds);
+            using (IDataReader dr = DbHelperSQL.ExecuteReader(strsql))
+            {
+                list = DbHelperSQL.GetEntityList<MyTeamDevoteView>(dr);
+            }
+            return list;
+        }
+
+        public decimal countTodayFinalMoney(int userId)
+        {
+            string strsql = String.Format(@"select sum(FinalMoney) from HQ_Rebates where UserId={0} and CreateTime>='{1}'", userId, DateTime.Now.ToString("yyyy-MM-dd"));
+            Object obj = DbHelperSQL.GetSingle(strsql);
+            if (obj != null)
+            {
+                return Decimal.Parse(obj.ToString());
+            }
+            return 0;
+        }
+
+        public decimal countFinalMoney(int userId)
+        {
+            string strsql = String.Format(@"select sum(FinalMoney) from HQ_Rebates where UserId={0}", userId);
+            Object obj = DbHelperSQL.GetSingle(strsql);
+            if (obj != null)
+            {
+                return Decimal.Parse(obj.ToString());
+            }
+            return 0;
+        }
     }
 }
 

@@ -101,17 +101,80 @@ namespace HQ.Core.BLL.User
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public MyTeamView MyTeams(int userId)
+        public MyTeamView MyTeams(int userId, int pageIndex, int pageSize)
         {
-            MyTeamView view = new MyTeamView();
-            view.devote = RebatesBLL.Instance.listDevote(userId);
-            //view.nums = ;
-            return view;
+            MyTeamView team = new MyTeamView();
+
+            List<UsersModel> users = dal.listBelongOne(userId, pageIndex, pageSize);
+            if (users.Count > 0)
+            {
+                List<MyTeamDevoteView> list = new List<MyTeamDevoteView>();
+                String ids = "";
+                users.ForEach(item =>
+                {
+                    ids += item.UserId + ",";
+                    MyTeamDevoteView view = new MyTeamDevoteView();
+                    view.userId = item.UserId;
+                    //todo
+                    view.head = item.WxHeadImg;
+                    view.mobile = item.LoginName;
+                    view.date = item.RegTime.Value.ToString("yyyy-MM-dd");
+                    view.inviteCode = item.InviteCode;
+                    list.Add(view);
+
+                });
+                if (ids.EndsWith(",")) ids = ids.Substring(0, ids.Length - 1);
+
+                //获取贡献值
+                List<MyTeamDevoteView> devotes = RebatesBLL.Instance.countDevote(userId, ids);
+                list.ForEach(item =>
+                {
+                    MyTeamDevoteView devote = devotes.Find(d => { return d.userId == item.userId; });
+                    if (devote != null)
+                    {
+                        item.devote = devote.devote;
+                    }
+                    else {
+                        item.devote = 0;
+                    }
+                });
+                team.devote = list;
+            }
+
+            List<MyTeamNumView> nums = new List<MyTeamNumView>();
+            MyTeamNumView num = new MyTeamNumView();
+            num.type = "一级团队";
+            num.total = dal.GetMyMemberNum(userId);
+            num.today = dal.GetMyMemberNumToday(userId);
+            num.month = dal.GetMyMemberNumMonth(userId);
+            nums.Add(num);
+
+            num = new MyTeamNumView();
+            num.type = "二级团队";
+            num.total = dal.GetMyBelongTowNum(userId);
+            num.today = dal.GetMyBelongTowNumToday(userId);
+            num.month = dal.GetMyBelongTowNumMonth(userId);
+            nums.Add(num);
+            team.nums = nums;
+            return team;
         }
 
         public List<UsersModel> listByIds(String ids)
         {
             return dal.listByIds(ids);
+        }
+
+
+        public MyProfitView myProfit(int userId)
+        {
+            MyProfitView view = new MyProfitView();
+            view.today = RebatesBLL.Instance.countTodayFinalMoney(userId);
+            view.yesterday = RebateStatsDailyBLL.Instance.getYesterday(userId);
+            view.week = RebateStatsDailyBLL.Instance.getWeek(userId);
+            view.lastWeek = RebateStatsDailyBLL.Instance.getLastWeek(userId);
+            view.month = RebateStatsMonthlyBLL.Instance.getMonth(userId);
+            view.lastMonth = RebateStatsMonthlyBLL.Instance.getLastMonth(userId);
+            return view;
         }
     }
 }

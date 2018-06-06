@@ -15,7 +15,7 @@ namespace HQ.Core.ViewModel.User
 
     public class MyTeamNumView
     {
-        public string type { get; set; }//类型：推荐总监，直接推手，直接推手下级
+        public string type { get; set; }//团队级别：一级团队，二级团队
         public int total { get; set; }//总人数
         public int today { get; set; }//今日人数
         public int month { get; set; }//本月人数

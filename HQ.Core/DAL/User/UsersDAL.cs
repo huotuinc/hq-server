@@ -6,6 +6,9 @@ using HQ.Common.DB;
 using HQ.Model;
 using HQ.Core.Model.User;
 using System.Collections.Generic;
+using Micro.Mall.Core.Model;
+using Micro.Mall.Core.DAL;
+using HQ.Common;
 
 namespace HQ.DAL
 {
@@ -386,7 +389,41 @@ namespace HQ.DAL
             return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
         }
 
+        public int GetMyBelongTowNum(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongTwoId={0}", UserId);
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
 
+        public int GetMyMemberNumToday(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongOneId={0} and RegTime>='{1}'", UserId, DateTime.Now.ToString("yyyy-MM-dd"));
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+        public int GetMyBelongTowNumToday(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongTwoId={0} and RegTime>='{1}'", UserId, DateTime.Now.ToString("yyyy-MM-dd"));
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+
+        public int GetMyMemberNumMonth(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongOneId={0} and RegTime>='{1}'", UserId, new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).ToString("yyyy-MM-dd"));
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+        public int GetMyBelongTowNumMonth(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongTwoId={0} and RegTime>='{1}'", UserId, new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).ToString("yyyy-MM-dd"));
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
 
         #endregion  BasicMethod
 
@@ -405,6 +442,33 @@ namespace HQ.DAL
             }
             return list;
         }
+
+
+        public List<UsersModel> listBelongOne(int userId, int pageIndex, int pageSize)
+        {
+            string sqlWhere = "BelongOneId=" + userId;
+            //if (sqlWhere.Length > 0) sqlWhere = sqlWhere.Substring(4);
+            //初始化分页
+            PagingModel paging = new PagingModel()
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                RecordCount = 0,
+                PageCount = 0
+            };
+            PageQueryModel pageQuery = new PageQueryModel()
+            {
+                TableName = "HQ_Users with(nolock)",
+                Fields = "*",
+                OrderField = "UserId desc",
+                SqlWhere = sqlWhere
+            };
+
+            List<UsersModel> list = new CommonPageDAL().GetPageData<UsersModel>(ConfigHelper.MssqlDBConnectionString_Sync, pageQuery, paging);
+            return list;
+
+        }
+
     }
 }
 

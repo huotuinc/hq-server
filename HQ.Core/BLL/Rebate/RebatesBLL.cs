@@ -54,5 +54,15 @@ namespace HQ.Core.BLL.Rebate
             }
             return list;
         }
+
+        public List<MyTeamDevoteView> countDevote(int userId, string contribUserIds)
+        {
+            return dal.countDevote(userId,contribUserIds);
+        }
+
+        public decimal countTodayFinalMoney(int userId)
+        {
+            return dal.countTodayFinalMoney(userId);
+        }
     }
 }
