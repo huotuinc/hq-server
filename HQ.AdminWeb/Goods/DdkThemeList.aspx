@@ -70,7 +70,7 @@
                                             <tr>
                                                 <td><%# Container.ItemIndex + 1 + pageSize*(pageIndex-1)%></td>
                                                 <td>
-                                                    <img src="<%#Eval("ImageUrl") %>" style="width: 375px; height: auto;" />
+                                                    <img src="<%#Eval("ImageUrl") %>" style="width: 283px; height: auto;" />
                                                 </td>
                                                 <td>
                                                     <%#Eval("Name") %>

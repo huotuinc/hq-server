@@ -40,6 +40,16 @@ namespace HQ.Core.Enum
             育成奖 = 2
         }
 
+
+        public enum UserLevelTypeOptions
+        {
+            普通会员 = 0,
+            代理商 = 10,
+            运营商 = 20,
+            军团长 = 30,
+            分公司 = 40
+        }
+
         /// <summary>
         /// 后台管理员类型
         /// </summary>
@@ -64,6 +74,15 @@ namespace HQ.Core.Enum
             ios = 2,
             android = 3,
             h5 = 4
+        }
+
+        /// <summary>
+        /// 微信token类型
+        /// </summary>
+        public enum WxTokenTypeOptions
+        {
+            Accesstoken = 0,
+            Jsticket = 1
         }
 
         /// <summary>
@@ -118,7 +137,7 @@ namespace HQ.Core.Enum
             /// </summary>
             上传图片失败 = 1100,
 
-        
+
         }
     }
 }

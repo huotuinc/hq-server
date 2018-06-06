@@ -307,6 +307,18 @@ namespace HQ.DAL
 			return model;
 		}
 
+        /// <summary>
+        /// 获取我直接下线的下单数量
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <returns></returns>
+        public int GetMyMemberOrderNum(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Orders where UserId in(select UserId from HQ_Users where BelongOneId={0})", UserId);
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
 		#endregion  BasicMethod
 		
 	}

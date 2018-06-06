@@ -1,6 +1,6 @@
 ﻿namespace HQ.Service.WxTokenBuilder
 {
-    partial class Service1
+    partial class TokenBuildService
     {
         /// <summary> 
         /// 必需的设计器变量。

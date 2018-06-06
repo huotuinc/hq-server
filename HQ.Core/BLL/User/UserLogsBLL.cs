@@ -25,5 +25,13 @@ namespace HQ.Core.BLL.User
             }
         }
 
+        /// <summary>
+		/// 增加一条数据
+		/// </summary>
+		public int Add(HQ.Model.UserLogsModel model)
+        {
+            return dal.Add(model);
+        }
+
     }
 }

@@ -119,7 +119,7 @@ namespace HQ.AdminWeb.Handler
                 {
                     model.LevelNo = TableLevelNo + 1;
                 }
-                model.LevelType = LevelType;
+                model.LevelType = (Core.Enum.HQEnums.UserLevelTypeOptions)LevelType;
                 model.Remark = LevelMemo;
                 model.LevelModel = LevelModel;
                 model.UpgradeCondition = Items;
@@ -190,6 +190,15 @@ namespace HQ.AdminWeb.Handler
             {
 
                 int LevelId = this.GetFormValue("levelid", 0);
+
+                int CountUserNum = UsersBLL.Instance.CountUserNumByLevelId(LevelId);
+                if (CountUserNum > 0)
+                {
+                    this.code = -1;
+                    this.msg = "删除失败,有"+CountUserNum+"位用户在该等级!";
+                    return;
+                }
+
                 if (UserLevelBLL.Instance.Delete(LevelId))
                 {
                     this.code = 1;

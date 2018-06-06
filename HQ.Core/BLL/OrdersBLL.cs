@@ -25,6 +25,14 @@ namespace HQ.Core.BLL
             }
         }
 
-
+        /// <summary>
+        /// 获取我直接下线的下单数量
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <returns></returns>
+        public int GetMyMemberOrderNum(int UserId)
+        {
+            return dal.GetMyMemberOrderNum(UserId);
+        }
     }
 }
