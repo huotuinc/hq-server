@@ -29,7 +29,7 @@ namespace HQ.DAL
             SqlParameter[] parameters = {
                     new SqlParameter("@Id", SqlDbType.Int,4),
                     new SqlParameter("@PlatType", SqlDbType.SmallInt,2),
-                    new SqlParameter("@Name", SqlDbType.VarChar,30),
+                    new SqlParameter("@Name", SqlDbType.VarChar,50),
                     new SqlParameter("@ParentId", SqlDbType.Int,4),
                     new SqlParameter("@LevelNo", SqlDbType.Int,4),
                     new SqlParameter("@Icon", SqlDbType.VarChar,300),
@@ -69,7 +69,7 @@ namespace HQ.DAL
             strSql.Append("Status=@Status");
             strSql.Append(" where Id=@Id and PlatType=@PlatType ");
             SqlParameter[] parameters = {
-                    new SqlParameter("@Name", SqlDbType.VarChar,30),
+                    new SqlParameter("@Name", SqlDbType.VarChar,50),
                     new SqlParameter("@ParentId", SqlDbType.Int,4),
                     new SqlParameter("@LevelNo", SqlDbType.Int,4),
                     new SqlParameter("@Icon", SqlDbType.VarChar,300),

@@ -78,10 +78,10 @@ namespace HQ.Core.BLL.MallProvider.Pinduoduo
                 DdkAppsModel appInfo = DdkAppProvider.Instance.GetModelByDefault();
                 GoodsSearchListJsonResult goodsSearchListJsonResult = DdkApi.GetGoodsList(appInfo.ClientId, appInfo.ClientSecret, new GoodsSearchConditionEntity()
                 {
-                    cat_id = null,
+                    cat_id = condition.CatId,
                     goods_id_list = condition.GoodsIdList,
                     keyword = condition.Keyword,
-                    opt_id = condition.CatId,
+                    opt_id = condition.OptId,
                     page = condition.Page,
                     page_size = condition.PageSize,
                     range_list = null,

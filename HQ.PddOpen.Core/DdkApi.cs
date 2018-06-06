@@ -68,7 +68,7 @@ namespace HQ.PddOpen.Core
                     coll.Add("range_list", string.Format("[{{0}}]", sbTemp.ToString()));
                 }
             }
-            if (condition.cat_id.HasValue) coll.Add("cat_id", condition.cat_id.ToString());
+            if (condition.cat_id.HasValue && condition.cat_id > 0) coll.Add("cat_id", condition.cat_id.ToString());
             if (condition.goods_id_list != null && condition.goods_id_list.Length > 0)
             {
                 coll.Add("goods_id_list", "[" + string.Join(",", condition.goods_id_list) + "]");

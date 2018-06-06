@@ -53,7 +53,7 @@ namespace HQ.AdminWeb.Goods
         {
             HotGoodsSearchCondition condition = this.GetSearchCondition();
             this.BindSearchCondition(condition);
-            HotPageData<List<HotGoodsModel>> pageData = GoodsProviderFactory.Current.GetGoodsList(condition, out string errMsg);
+            HotPageData<List<HotGoodsModel>> pageData = GoodsProviderFactory.GetInstance(HQEnums.PlatformTypeOptions.拼多多).GetGoodsList(condition, out string errMsg);
             if (errMsg != "")
             {
                 Response.Write(errMsg);

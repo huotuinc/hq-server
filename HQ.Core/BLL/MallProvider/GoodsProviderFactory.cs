@@ -1,4 +1,5 @@
 ﻿using HQ.Core.BLL.MallProvider.Pinduoduo;
+using HQ.Core.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,20 @@ namespace HQ.Core.BLL.MallProvider
         {
         }
 
-        public static IGoodsProvider Current
+        public static IGoodsProvider GetInstance(int platTypeVal)
         {
-            get
+            HQEnums.PlatformTypeOptions platType = (HQEnums.PlatformTypeOptions)platTypeVal;
+            return GetInstance(platType);
+        }
+
+        public static IGoodsProvider GetInstance(HQEnums.PlatformTypeOptions platType)
+        {
+            switch (platType)
             {
-                return pptProvider;
+                case HQEnums.PlatformTypeOptions.拼多多:
+                    return pptProvider;
             }
+            return pptProvider;
         }
     }
 }

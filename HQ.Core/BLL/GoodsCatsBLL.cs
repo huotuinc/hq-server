@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HQ.Core.BLL
@@ -34,12 +35,13 @@ namespace HQ.Core.BLL
         public List<GoodsCatsModel> GetCats(string clientId, string clientSecret)
         {
             List<GoodsCatsModel> rootList = new List<GoodsCatsModel>();
-            this.GetListByDdkApi(clientId, clientSecret, 0, rootList);
+            this.GetListTypeCatByDdkApi(clientId, clientSecret, 0, rootList);
 
             List<GoodsCatsModel> subList = new List<GoodsCatsModel>();
             foreach (GoodsCatsModel cat in rootList)
             {
-                this.GetListByDdkApi(clientId, clientSecret, cat.Id, subList);
+                Thread.Sleep(300);
+                this.GetListTypeCatByDdkApi(clientId, clientSecret, cat.Id, subList);
             }
 
             foreach (GoodsCatsModel cat in subList)
@@ -47,6 +49,24 @@ namespace HQ.Core.BLL
                 rootList.Add(cat);
             }
             return rootList;
+        }
+
+        public void GetListTypeCatByDdkApi(string clientId, string clientSecret, int parentId, List<GoodsCatsModel> goodsCatList)
+        {
+            GoodsCatJsonResult catJsonResult = DdkApi.GetGoodsCatList(clientId, clientSecret, parentId);
+            foreach (GoodsCateEntity cat in catJsonResult.goods_cats_get_response.goods_cats_list)
+            {
+                goodsCatList.Add(new GoodsCatsModel()
+                {
+                    Icon = "",
+                    Id = cat.cat_id,
+                    LevelNo = cat.level,
+                    Name = cat.cat_name,
+                    ParentId = cat.parent_cat_id,
+                    SortNum = 0,
+                    PlatType = (int)HQEnums.PlatformTypeOptions.拼多多
+                });
+            }
         }
 
         public void GetListByDdkApi(string clientId, string clientSecret, int parentId, List<GoodsCatsModel> goodsCatList)

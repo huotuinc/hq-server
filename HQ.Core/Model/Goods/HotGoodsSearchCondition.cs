@@ -41,9 +41,13 @@ namespace HQ.Core.Model
         /// </summary>
         public bool WithCoupon { get; set; }
         /// <summary>
-        /// 商品分类ID，注：拼多多商品分类我们使用的是标签分类，对应optid
+        /// 商品分类ID
         /// </summary>
         public int CatId { get; set; }
+        /// <summary>
+        /// 标签分类，对应optid
+        /// </summary>
+        public int OptId { get; set; }
         /// <summary>
         ///  商品ID列表。例如：[123456,123]，当入参带有goods_id_list字段，将不会以opt_id、 cat_id、keyword维度筛选商品
         /// </summary>

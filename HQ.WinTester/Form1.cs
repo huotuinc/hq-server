@@ -50,6 +50,8 @@ namespace HQ.WinTester
 
             //InitPttGoodsCatIcon();
 
+            InitPttGoodsCats();
+            MessageBox.Show("OK!!");
         }
 
         private void InitPttGoodsCats()
@@ -160,7 +162,7 @@ namespace HQ.WinTester
 
         private void button2_Click(object sender, EventArgs e)
         {
-            HotPageData<List<HotGoodsModel>> pageData = GoodsProviderFactory.Current.GetGoodsList(new HotGoodsSearchCondition()
+            HotPageData<List<HotGoodsModel>> pageData = GoodsProviderFactory.GetInstance(HQEnums.PlatformTypeOptions.拼多多).GetGoodsList(new HotGoodsSearchCondition()
             {
                 SortField = HotGoodsSortFieldOptions.默认,
                 SortType = HotGoodsSortTypeOptions.ASC
