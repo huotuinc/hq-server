@@ -324,11 +324,8 @@ namespace HQ.DAL
             return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
         }
 
-		#endregion  BasicMethod
-		
-	}
-}
         #endregion  BasicMethod
+
 
 
         /// <summary>

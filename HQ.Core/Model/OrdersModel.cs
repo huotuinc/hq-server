@@ -204,28 +204,6 @@ namespace HQ.Model
     }
 
 
-    /// <summary>
-    /// 接口订单实体
-    /// </summary>
-    [Serializable]
-    public class ApiOrderModel
-    {
-        public string orderId { get; set; }
-
-        public string imgSrc { get; set; }
-
-        public string goodsName { get; set; }
-
-        public decimal orderAmount { get; set; }
-
-        public decimal promotionAmount { get; set; }
-
-        public int orderStatus { get; set; }
-
-        public string orderGroupCuccessTime { get; set; }
-
-        public string orderCreateTime { get; set; }
-
-    }
+ 
 }
 
