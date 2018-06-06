@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="DdkApi.cs" />
+    <Compile Include="Entities\GoodsCatJsonResult.cs" />
     <Compile Include="Entities\GoodsDetailJsonResult.cs" />
     <Compile Include="Entities\GoodsPromotionUrlJsonResult.cs" />
     <Compile Include="Entities\GoodsSearchListJsonResult.cs" />

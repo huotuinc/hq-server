@@ -77,6 +77,15 @@ namespace HQ.Core.Enum
         }
 
         /// <summary>
+        /// 微信token类型
+        /// </summary>
+        public enum WxTokenTypeOptions
+        {
+            Accesstoken = 0,
+            Jsticket = 1
+        }
+
+        /// <summary>
         /// API接口返回状态枚举
         /// </summary>
         public enum ResultOptionType

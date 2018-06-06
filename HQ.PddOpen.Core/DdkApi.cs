@@ -46,7 +46,7 @@ namespace HQ.PddOpen.Core
         {
             NameValueCollection coll = InitNameValueCollection("pdd.ddk.goods.search", clientId);
             if (!String.IsNullOrEmpty(condition.keyword)) coll.Add("keyword", condition.keyword);
-            if (condition.opt_id.HasValue) coll.Add("opt_id", condition.opt_id.ToString());
+            if (condition.opt_id.HasValue && condition.opt_id > 0) coll.Add("opt_id", condition.opt_id.ToString());
             if (condition.page > 0) coll.Add("page", condition.page.ToString());
             if (condition.page_size >= 10 && condition.page_size <= 100) coll.Add("page_size", condition.page_size.ToString());
             coll.Add("sort_type", ((int)condition.sort_type).ToString());
@@ -246,6 +246,22 @@ namespace HQ.PddOpen.Core
             coll.Add("sign", BuildSign(clientSecret, coll));
             string result = DoPost(coll);
             return GetResult<GoodsTagCatJsonResult>(result);
+        }
+
+        /// <summary>
+        /// 商品标准类目接口（pdd.goods.cats.get）
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
+        /// <param name="parentCatId"></param>
+        /// <returns></returns>
+        public static GoodsCatJsonResult GetGoodsCatList(string clientId, string clientSecret, int parentCatId = 0)
+        {
+            NameValueCollection coll = InitNameValueCollection("pdd.goods.cats.get", clientId);
+            coll.Add("parent_cat_id", parentCatId.ToString());
+            coll.Add("sign", BuildSign(clientSecret, coll));
+            string result = DoPost(coll);
+            return GetResult<GoodsCatJsonResult>(result);
         }
 
         #region 助手方法

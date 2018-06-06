@@ -1,6 +1,8 @@
 ﻿using HQ.Common;
 using HQ.Core.BLL;
+using HQ.Core.BLL.MallProvider;
 using HQ.Core.Enum;
+using HQ.Core.Model;
 using HQ.Model;
 using HQ.PddOpen.Core;
 using HQ.PddOpen.Core.Entities;
@@ -158,9 +160,18 @@ namespace HQ.WinTester
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string temp = "http://thirdwx.qlogo.cn/mmopen/vi_32/aJ6kSF2WFSoiaRw69jF1Z2icdUibVuGSNKlZldfNmkLz22fjY7L5iaxEc3YBzNpnMEAPd1Viab33hKWjNKJUjyLCGoA/132";
-            string headImg = Regex.Replace(temp, @"/\d+$", "/0", RegexOptions.Compiled);
-            MessageBox.Show(temp + "\r\n\r\n" + headImg);
+            HotPageData<List<HotGoodsModel>> pageData = GoodsProviderFactory.Current.GetGoodsList(new HotGoodsSearchCondition()
+            {
+                SortField = HotGoodsSortFieldOptions.默认,
+                SortType = HotGoodsSortTypeOptions.ASC
+            }, out string errMsg);
+
+            MessageBox.Show(JsonConvert.SerializeObject(pageData));
+
+
+            //HotGoodsModel goodsInfo = GoodsProviderFactory.Current.GetGoodsDetail(1523581237, out string errDetailMsg);
+            //MessageBox.Show(JsonConvert.SerializeObject(goodsInfo));
+
         }
     }
 }

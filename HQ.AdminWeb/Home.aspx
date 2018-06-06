@@ -83,6 +83,8 @@
                             </li>
                             <li><a class="J_menuItem" href="Goods/GoodsCatList.aspx">商品分类管理</a>
                             </li>
+                            <li><a class="J_menuItem" href="Goods/GoodsList.aspx">商品列表管理</a>
+                            </li>
                             <li><a class="J_menuItem" href="Goods/DdkThemeList.aspx">商品主题管理</a>
                             </li>
                         </ul>

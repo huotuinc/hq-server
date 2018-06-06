@@ -87,7 +87,7 @@ namespace HQ.PddOpen.Core.Entities
         /// <summary>
         /// 商品标签ID，使用pdd.goods.opt.get接口获取
         /// </summary>
-        public int opt_id { get; set; }
+        public int? opt_id { get; set; }
         /// <summary>
         /// 参与多多进宝的商品ID
         /// </summary>
@@ -121,5 +121,9 @@ namespace HQ.PddOpen.Core.Entities
         /// 最低价sku的单买价，单位为分
         /// </summary>
         public int min_normal_price { get; set; }
+        /// <summary>
+        /// 缩略小图
+        /// </summary>
+        public string goods_thumbnail_url { get; set; }
     }
 }
