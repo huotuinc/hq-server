@@ -34,7 +34,14 @@ namespace HQ.Core.BLL
             return dal.GetOroderList(PlatType, orderStatus, pageIndex, pageSize, date);
         }
 
-
-
+        /// <summary>
+        /// 获取我直接下线的下单数量
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <returns></returns>
+        public int GetMyMemberOrderNum(int UserId)
+        {
+            return dal.GetMyMemberOrderNum(UserId);
+        }
     }
 }
