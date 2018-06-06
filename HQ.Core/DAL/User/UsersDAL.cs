@@ -6,6 +6,9 @@ using HQ.Common.DB;
 using HQ.Model;
 using HQ.Core.Model.User;
 using System.Collections.Generic;
+using Micro.Mall.Core.Model;
+using Micro.Mall.Core.DAL;
+using HQ.Common;
 
 namespace HQ.DAL
 {
@@ -375,6 +378,18 @@ namespace HQ.DAL
         }
 
         /// <summary>
+        /// 获取该等级是否有用户存在
+        /// </summary>
+        /// <param name="LevelId">等级Id</param>
+        /// <returns></returns>
+        public int CountUserNumByLevelId(int LevelId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where LevelId={0})", LevelId);
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+        /// <summary>
         /// 获取我当前的下线人数
         /// </summary>
         /// <param name="UserId">用户Id</param>
@@ -386,7 +401,78 @@ namespace HQ.DAL
             return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
         }
 
+        /// <summary>
+        /// 获取我当前的下线人数
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <returns></returns>
+        public int GetMyBelongOneBuddyNum(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongOneId={0} and LevelId in(select LevelId from HQ_User_Level where LevelType=1)", UserId);
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
 
+        /// <summary>
+        /// 获取我当前的下线人数
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <returns></returns>
+        public int GetMyBelongTwoBuddyNum(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongTwoId={0} and LevelId in(select LevelId from HQ_User_Level where LevelType=1)", UserId);
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+        /// <summary>
+        /// 更新用户等级
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <param name="ToLevelId">等级Id</param>
+        /// <returns></returns>
+        public bool UpdateUserLevel(int UserId, int ToLevelId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("UPDATE dbo.HQ_Users SET LevelId={0} WHERE UserId={1}", ToLevelId,UserId);
+            return DbHelperSQL.ExecuteSql(strSql.ToString())>0;
+        }
+
+        public int GetMyBelongTowNum(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongTwoId={0}", UserId);
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+        public int GetMyMemberNumToday(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongOneId={0} and RegTime>='{1}'", UserId, DateTime.Now.ToString("yyyy-MM-dd"));
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+        public int GetMyBelongTowNumToday(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongTwoId={0} and RegTime>='{1}'", UserId, DateTime.Now.ToString("yyyy-MM-dd"));
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+
+        public int GetMyMemberNumMonth(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongOneId={0} and RegTime>='{1}'", UserId, new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).ToString("yyyy-MM-dd"));
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+        public int GetMyBelongTowNumMonth(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongTwoId={0} and RegTime>='{1}'", UserId, new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).ToString("yyyy-MM-dd"));
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
 
         #endregion  BasicMethod
 
@@ -405,6 +491,33 @@ namespace HQ.DAL
             }
             return list;
         }
+
+
+        public List<UsersModel> listBelongOne(int userId, int pageIndex, int pageSize)
+        {
+            string sqlWhere = "BelongOneId=" + userId;
+            //if (sqlWhere.Length > 0) sqlWhere = sqlWhere.Substring(4);
+            //初始化分页
+            PagingModel paging = new PagingModel()
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                RecordCount = 0,
+                PageCount = 0
+            };
+            PageQueryModel pageQuery = new PageQueryModel()
+            {
+                TableName = "HQ_Users with(nolock)",
+                Fields = "*",
+                OrderField = "UserId desc",
+                SqlWhere = sqlWhere
+            };
+
+            List<UsersModel> list = new CommonPageDAL().GetPageData<UsersModel>(ConfigHelper.MssqlDBConnectionString_Sync, pageQuery, paging);
+            return list;
+
+        }
+
     }
 }
 

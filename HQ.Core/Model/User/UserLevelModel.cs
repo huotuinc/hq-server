@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static HQ.Core.Enum.HQEnums;
 
 namespace HQ.Model
 {
@@ -62,9 +63,9 @@ namespace HQ.Model
 		/// </summary>
 		public List<UpgradeConditionModel> UpgradeCondition { get; set; }
         /// <summary>
-		/// 等级类型(0-普通会员,1-代理商,2-运营商,3-军团长,4-分公司) 
+		/// 等级类型(0-普通会员,10-代理商,20-运营商,30-军团长,40-分公司) 
 		/// </summary>
-		public int LevelType { get; set; }
+		public UserLevelTypeOptions LevelType { get; set; }
         /// <summary>
         /// 升级模式(默认0-手动,1-自动)
         /// </summary>

@@ -51,11 +51,23 @@ namespace HQ.ApiWeb.Controllers
             return Json(ApiResult.ResultWith(HQEnums.ResultOptionType.OK, (UserFavoriteBLL.Instance.favoriteDelete(ids, header.userId, (Int16)header.platType))));
         }
 
-
-        public ActionResult myTeams(HQRequestHeader header)
+        /// <summary>
+        /// 我的团队
+        /// </summary>
+        /// <param name="header"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult myTeams(HQRequestHeader header, int pageIndex, int pageSize)
         {
-            MyTeamView view = UsersBLL.Instance.MyTeams(header.userId);
-            return Json(ApiResult.ResultWith(HQEnums.ResultOptionType.OK, null));
+            MyTeamView view = UsersBLL.Instance.MyTeams(header.userId, pageIndex, pageSize);
+            return Json(ApiResult.ResultWith(HQEnums.ResultOptionType.OK, view));
+        }
+
+        public ActionResult myProfit(HQRequestHeader header)
+        {
+            MyProfitView profit = UsersBLL.Instance.myProfit(header.userId);
+            return Json(ApiResult.ResultWith(HQEnums.ResultOptionType.OK, profit));
         }
     }
 }
