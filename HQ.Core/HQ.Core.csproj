@@ -169,6 +169,7 @@
     <Compile Include="Model\ShortMessage\TemplateImpl\ShortMessageBase.cs" />
     <Compile Include="Model\ShortMessage\TemplateImpl\VerifyCodeShortMessage.cs" />
     <Compile Include="ViewModel\Goods\AdView.cs" />
+    <Compile Include="ViewModel\Order\OrderViewModel.cs" />
     <Compile Include="ViewModel\User\MyProfitView.cs" />
     <Compile Include="ViewModel\User\MyTeamView.cs" />
     <Compile Include="ViewModel\Zone\ZoneArticleView.cs" />
