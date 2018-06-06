@@ -261,6 +261,7 @@
     <Content Include="SystemConfig\ModifyPassword.aspx" />
     <Content Include="SystemConfig\RebateConfig.aspx" />
     <Content Include="SystemConfig\ShortMessageTemplateList.aspx" />
+    <Content Include="UserManage\UserLevelManage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +317,10 @@
     </Compile>
     <Compile Include="Goods\GoodsCatList.aspx.designer.cs">
       <DependentUpon>GoodsCatList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\UserLevelHandler.ashx.cs">
+      <DependentUpon>UserLevelHandler.ashx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -374,6 +379,13 @@
     <Compile Include="SystemConfig\ShortMessageTemplateList.aspx.designer.cs">
       <DependentUpon>ShortMessageTemplateList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserManage\UserLevelManage.aspx.cs">
+      <DependentUpon>UserLevelManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserManage\UserLevelManage.aspx.designer.cs">
+      <DependentUpon>UserLevelManage.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="3rdParty\ueditor\net\fileUp.ashx" />
@@ -385,6 +397,7 @@
     <Content Include="3rdParty\ueditor\net\imageUp1.ashx" />
     <Content Include="3rdParty\ueditor\net\scrawlUp.ashx" />
     <Content Include="3rdParty\ueditor\net\Web.config" />
+    <Content Include="Handler\UserLevelHandler.ashx" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">

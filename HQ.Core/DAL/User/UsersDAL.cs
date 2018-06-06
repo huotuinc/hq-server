@@ -375,6 +375,18 @@ namespace HQ.DAL
         }
 
         /// <summary>
+        /// 获取该等级是否有用户存在
+        /// </summary>
+        /// <param name="LevelId">等级Id</param>
+        /// <returns></returns>
+        public int CountUserNumByLevelId(int LevelId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where LevelId={0})", LevelId);
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+        /// <summary>
         /// 获取我当前的下线人数
         /// </summary>
         /// <param name="UserId">用户Id</param>
@@ -384,6 +396,43 @@ namespace HQ.DAL
             StringBuilder strSql = new StringBuilder();
             strSql.AppendFormat("select count(1) from HQ_Users where BelongOneId={0}", UserId);
             return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+        /// <summary>
+        /// 获取我当前的下线人数
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <returns></returns>
+        public int GetMyBelongOneBuddyNum(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongOneId={0} and LevelId in(select LevelId from HQ_User_Level where LevelType=1)", UserId);
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+        /// <summary>
+        /// 获取我当前的下线人数
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <returns></returns>
+        public int GetMyBelongTwoBuddyNum(int UserId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("select count(1) from HQ_Users where BelongTwoId={0} and LevelId in(select LevelId from HQ_User_Level where LevelType=1)", UserId);
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+        /// <summary>
+        /// 更新用户等级
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <param name="ToLevelId">等级Id</param>
+        /// <returns></returns>
+        public bool UpdateUserLevel(int UserId, int ToLevelId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.AppendFormat("UPDATE dbo.HQ_Users SET LevelId={0} WHERE UserId={1}", ToLevelId,UserId);
+            return DbHelperSQL.ExecuteSql(strSql.ToString())>0;
         }
 
 

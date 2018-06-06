@@ -32,7 +32,7 @@ namespace HQ.Model
 			get{return _userid;}
 		}
 		/// <summary>
-		/// 日志类型
+		/// 日志类型(0-用户降级,1-用户升级)
 		/// </summary>
 		public int LogType
 		{

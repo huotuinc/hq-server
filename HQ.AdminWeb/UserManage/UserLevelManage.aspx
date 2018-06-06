@@ -71,10 +71,10 @@
                 <label class="col-sm-2 control-label" style="width: 100px; text-align: right;">添加类型:</label>
                 <div>
                     <input name="LevelType" type="radio" class="radio" value="0" />普通会员&nbsp;
-                    <input name="LevelType" type="radio" class="radio" value="1" />代理商&nbsp;
-                    <input name="LevelType" type="radio" class="radio" value="2" />运营商&nbsp;
-                    <input name="LevelType" type="radio" class="radio" value="3" />军团长&nbsp;
-                    <input name="LevelType" type="radio" class="radio" value="4" />分公司
+                    <input name="LevelType" type="radio" class="radio" value="10" />代理商&nbsp;
+                    <input name="LevelType" type="radio" class="radio" value="20" />运营商&nbsp;
+                    <input name="LevelType" type="radio" class="radio" value="30" />军团长&nbsp;
+                    <input name="LevelType" type="radio" class="radio" value="40" />分公司
                 </div>
             </div>
             <div class="hr-line-dashed" style="margin: 8px 0px;"></div>
@@ -166,7 +166,7 @@
                     $("#layui-layer1").css("height", "400px");
                     $(".layui-layer-content").css("height", "368px");
                 }
-                else if ($(this).val() == "1") {
+                else if ($(this).val() == "10") {
                     $("p[data-class=user]").hide();
                     $("p[data-class=company]").hide();
                     $("p[data-class=belonguser]").show();
@@ -174,7 +174,7 @@
                     $("#layui-layer1").css("height", "400px");
                     $(".layui-layer-content").css("height", "368px");
                 }
-                else if ($(this).val() == "2") {
+                else if ($(this).val() == "20") {
                     $("p[data-class=user]").hide();
                     $("p[data-class=company]").hide();
                     $("p[data-class=belonguser]").hide();
@@ -182,7 +182,7 @@
                     $("#layui-layer1").css("height", "500px");
                     $(".layui-layer-content").css("height", "468px");
                 }
-                else if ($(this).val() == "3" || $(this).val() == "4") {
+                else if ($(this).val() == "30" || $(this).val() == "40") {
                     $("p[data-class=user]").hide();
                     $("p[data-class=company]").show();
                     $("p[data-class=belonguser]").hide();
@@ -252,7 +252,7 @@
                     for (var i = 0; i < json.list.length; i++) {
                         var row = json.list[i];
                         var conditionHtml = row.UpgradeCondition[0].ConditionDecs;
-                        if (row.LevelType == "1" || row.LevelType == "2") {
+                        if (row.LevelType == "10" || row.LevelType == "20") {
                             conditionHtml = "";
                             for (var j = 0; j < row.UpgradeCondition.length; j++) {
                                 var Uprow = row.UpgradeCondition[j];
@@ -290,7 +290,7 @@
                                     $("p[data-class=belonguser]").hide();
                                     $("p[data-class=belongbuddy]").hide();
                                 }
-                                else if (levelType == "1") {
+                                else if (levelType == "10") {
                                     $("p[data-class=user]").hide();
                                     $("p[data-class=company]").hide();
                                     $("p[data-class=belonguser]").show();
@@ -302,7 +302,7 @@
                                         }
                                     }
                                 }
-                                else if (levelType == "2") {
+                                else if (levelType == "20") {
                                     $("p[data-class=user]").hide();
                                     $("p[data-class=company]").hide();
                                     $("p[data-class=belonguser]").hide();
@@ -322,7 +322,7 @@
                                     }
                                     layheight = "500px";
                                 }
-                                else if (levelType == "3" || levelType == "4") {
+                                else if (levelType == "30" || levelType == "40") {
                                     $("p[data-class=user]").hide();
                                     $("p[data-class=company]").show();
                                     $("p[data-class=belonguser]").hide();

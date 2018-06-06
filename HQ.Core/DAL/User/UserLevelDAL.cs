@@ -205,7 +205,7 @@ namespace HQ.DAL
 				}
                 if (row["LevelType"] != null && row["LevelType"].ToString() != "")
                 {
-                    model.LevelType = int.Parse(row["LevelType"].ToString());
+                    model.LevelType = (Core.Enum.HQEnums.UserLevelTypeOptions)int.Parse(row["LevelType"].ToString());
                 }
                 if (row["LevelModel"] != null && row["LevelModel"].ToString() != "")
                 {

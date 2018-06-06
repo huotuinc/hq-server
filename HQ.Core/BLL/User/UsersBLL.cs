@@ -85,6 +85,16 @@ namespace HQ.Core.BLL.User
         }
 
         /// <summary>
+        /// 获取该等级是否有用户存在
+        /// </summary>
+        /// <param name="LevelId">等级Id</param>
+        /// <returns></returns>
+        public int CountUserNumByLevelId(int LevelId)
+        {
+            return dal.CountUserNumByLevelId(LevelId);
+        }
+
+        /// <summary>
         /// 获取我当前的下线人数
         /// </summary>
         /// <param name="UserId">用户Id</param>
@@ -93,14 +103,45 @@ namespace HQ.Core.BLL.User
         {
             return dal.GetMyMemberNum(UserId);
         }
+        /// <summary>
+        /// 获取我当前的下线人数
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <returns></returns>
+        public int GetMyBelongOneBuddyNum(int UserId)
+        {
+            return dal.GetMyBelongOneBuddyNum(UserId);
+        }
+        /// <summary>
+        /// 获取我当前的下线人数
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <returns></returns>
+        public int GetMyBelongTwoBuddyNum(int UserId)
+        {
+            return dal.GetMyBelongTwoBuddyNum(UserId);
+        }
+
+        /// <summary>
+        /// 更新用户等级
+        /// </summary>
+        /// <param name="UserId">用户Id</param>
+        /// <param name="ToLevelId">等级Id</param>
+        /// <returns></returns>
+        public bool UpdateUserLevel(int UserId, int ToLevelId)
+        {
+            return dal.UpdateUserLevel(UserId, ToLevelId);
+        }
+
+
         #endregion  BasicMethod
 
 
-        /// <summary>
-        /// 我的团队
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+            /// <summary>
+            /// 我的团队
+            /// </summary>
+            /// <param name="userId"></param>
+            /// <returns></returns>
         public MyTeamView MyTeams(int userId)
         {
             MyTeamView view = new MyTeamView();
